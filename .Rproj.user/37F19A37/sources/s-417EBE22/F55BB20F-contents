@@ -1,0 +1,137 @@
+source('R/die.R')
+
+# Auxiliary Function make_roll
+
+make_roll <- function(die, throws) {
+  res <- list(
+    die = die,
+    prob = die$prob,
+    sides = die$sides,
+    rolls = throws,
+    total = length(throws))
+  class(res) <- "roll"
+  res
+}
+
+# private function to check vector of 'times'
+check_times <- function(times) {
+  if (times <= 0 | !is.numeric(times)) {
+    stop("\nargument 'times' must be a positive integer")
+  } else {
+    TRUE
+  }
+}
+
+# private function throw
+throw <- function(x, times = 1) {
+  sample(x$sides, size = times, replace = TRUE, prob = x$prob)
+}
+
+
+#' @title Roll a die
+#' @description Creates an object of class \code{"roll"}
+#' @param die object of class \code{"die"}
+#' @param times number of rolls
+#' @return an object of class \code{"roll"} with the following elements:
+#' @return \item{rolls}{vector of rolls}
+#' @return \item{sides}{vector of die \code{"sides"}}
+#' @return \item{prob}{vector of die \code{"prob"}}
+#' @return \item{total}{total number of rolls}
+#' @examples
+#' fair_die <- die()
+#'
+#' # roll 50 times
+#' fair_50rolls <- roll(fair_die, times = 50)
+
+
+#' @export
+roll <- function(die, times = 1) {
+  check_times(times)
+  throws <- throw(die, times = times)
+  make_roll(die, throws)
+}
+
+
+
+#' @export
+print.roll <- function(x, ...) {
+  cat('object "roll"\n\n')
+  cat("$rolls", '\n')
+  print(x$rolls)
+  invisible(x)
+}
+
+# roll fair die 50 times
+fair_die <- die()
+# roll 50 times
+set.seed(123)
+fair_50 <- roll(fair_die, times = 50)
+# print
+fair_50
+
+# what's in fair50?
+names(fair_50)
+
+fair_50$rolls
+
+fair_50$sides
+
+fair_50$prob
+
+fair_50$total
+
+# string die
+str_die <- die(
+  sides = c('a', 'b', 'c', 'd', 'e', 'f'),
+  prob = c(0.075, 0.1, 0.125, 0.15, 0.20, 0.35))
+# roll 20 times
+set.seed(123)
+str_rolls <- roll(str_die, times = 20)
+names(str_rolls)
+
+
+#' @export
+summary.roll <- function(x, ...) {
+  proportions <- c(
+    sum(x$rolls == x$sides[1]) / x$total,
+    sum(x$rolls == x$sides[2]) / x$total,
+    sum(x$rolls == x$sides[3]) / x$total,
+    sum(x$rolls == x$sides[4]) / x$total,
+    sum(x$rolls == x$sides[5]) / x$total,
+    sum(x$rolls == x$sides[6]) / x$total
+  )
+  count = c(sum(x$rolls == x$sides[1]), sum(x$rolls == x$sides[2]),
+            sum(x$rolls == x$sides[3]), sum(x$rolls == x$sides[4]),
+            sum(x$rolls == x$sides[5]), sum(x$rolls == x$sides[6]))
+  freqs <- data.frame(
+    side = x$sides,
+    count = count,
+    prop = proportions)
+  obj <- list(freqs = freqs)
+  class(obj) <- "summary.roll"
+  obj
+}
+
+
+#' @export
+print.summary.roll <- function(x, ...) {
+  cat('summary "roll"\n\n')
+  print(x$freqs)
+  invisible(x)
+}
+
+# Example
+set.seed(123)
+fair_50rolls <- roll(fair_die, times = 50)
+fair50_sum <- summary(fair_50rolls)
+fair50_sum
+
+# what's in the summary
+class(fair50_sum)
+
+names(fair50_sum)
+
+fair50_sum$freqs
+
+
+

@@ -1,0 +1,84 @@
+# Your package should include tests for your functions die() and roll(), and
+# the auxiliary functions called by them: e.g. check_sides(), check_prob(),
+# check_times().
+library(testthat)
+
+source('../../R/die.r')
+source('../../R/plot.roll.r')
+source('../../R/roll.r')
+# tests for die
+
+# Testing with incorrect die
+
+context("Check die arguments")
+
+test_that("check_sides with ok vectors", {
+
+  expect_true(check_sides(c('one', 'two', 'three', 'four', 'five', 'six')))
+  expect_true(check_sides(c(5, 6, 7, 8, 9, 10)))
+})
+
+
+test_that("check_sides fails with invalid lengths", {
+
+  expect_error(check_sides(c('one', 'two', 'three')))
+  expect_error(check_sides(c('one')))
+  expect_error(check_sides(1:5))
+  expect_error(check_sides(1))
+})
+
+
+test_that("check_sides fails with invalid types", {
+
+  expect_error(check_sides(c('one', 'two', 'three')))
+  expect_error(check_sides(c('one')),
+               "\n'prob' must be a vector of length 6")
+})
+
+
+test_that("check_prob works with ok vectors", {
+
+  expect_true(check_prob(c(0.5, 0.5, 0, 0, 0, 0)))
+  expect_true(check_prob(c(0, 1, 0, 0, 0, 0)))
+  expect_true(check_prob(c(1, 0, 0, 0, 0, 0)))
+  expect_true(check_prob(c(0.1, 0.9, 0, 0, 0, 0)))
+  expect_true(check_prob(c(1/3, 2/3, 0, 0, 0, 0)))
+  expect_true(check_prob(c(1/6, 1/6, 1/6, 1/6, 1/6, 1/6)))
+})
+
+
+test_that("check_prob fails with invalid lengths", {
+
+  expect_error(check_prob(1:5))
+  expect_error(check_prob(1))
+})
+
+
+test_that("check_prob fails with invalid numbers", {
+
+  expect_error(check_prob(0.333, 0.666, 1.0, 0.55, -56))
+  expect_error(check_prob(-0.5, 0.5, 0.78, 0.89, 0.99, 0,45))
+  expect_error(check_prob(0.5, -0.5, -0.5, 0.5, -0.5, 0.5))
+  expect_error(check_prob(0.5, NA, NA, NA, NA, NA))
+})
+
+
+# Test for check_times used in roll function
+context("Tests for check_times")
+
+test_that("check_times works with correct inputs", {
+
+  expect_true(check_times(4))
+  expect_true(check_times(3))
+})
+
+test_that("check_times doesn't work with incorrect inputs", {
+
+  expect_error(check_times('4'))
+  expect_error(check_times(-4))
+})
+
+
+
+
+
