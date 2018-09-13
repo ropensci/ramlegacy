@@ -27,6 +27,6 @@ download(location = '../data/version2.5', version = 2.5)
 
 download(location = '../data/version3.0', version = 3.0)
 
-# if version is not provided then it defaults to most recen(3.0) version
+# if version is not provided then it defaults to most recent (3.0) version
 download(location = '../data/version3.0')
 }

@@ -4,7 +4,7 @@ library(testthat)
 
 context("Check download arguments")
 
-test_that("check_version with ok versions", {
+test_that("check_version with valid versions", {
   expect_true(check_version(3))
   expect_true(check_version(3.0))
   expect_true(check_version(2.5))
@@ -24,16 +24,16 @@ test_that("check_version fails with invalid versions", {
 
 
 test_that("check_format fails with invalid formats", {
-  expect_error(check_format('Excel'))
-  expect_error(check_format('Access'))
-  expect_error(check_format('zip'))
-  expect_error(check_format('xlsx'))
-  expect_error(check_format('json'))
-  expect_error(check_format('sql'))
+  expect_error(check_format('Excel'), "Invalid format. Format can only be excel or access.")
+  expect_error(check_format('Access'), "Invalid format. Format can only be excel or access.")
+  expect_error(check_format('zip'), "Invalid format. Format can only be excel or access.")
+  expect_error(check_format('xlsx'), "Invalid format. Format can only be excel or access.")
+  expect_error(check_format('json'), "Invalid format. Format can only be excel or access.")
+  expect_error(check_format('sql'), "Invalid format. Format can only be excel or access.")
 
 })
 
-test_that("check_format works with ok formats", {
+test_that("check_format works with valid formats", {
 
   expect_true(check_format('excel'))
   expect_true(check_format('access'))

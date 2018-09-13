@@ -8,7 +8,7 @@ Description: Contains a download function to download the RAM Legacy Stock Asses
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/kshtzgupta1/ramlegacy
+URL: http://www.ramlegacy.org/
 BugReports: https://github.com/kshtzgupta1/ramlegacy/issues
 RoxygenNote: 6.1.0
 Imports: testthat

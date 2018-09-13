@@ -22,8 +22,8 @@ check_location <- function(format) {
   TRUE
 }
 
-#' @title download
 #' @importFrom utils download.file
+#' @title download
 #' @description Downloads the zipped RAM Legacy Stock Assessment Data Base to a specified location
 #' @param location A character string specifying path of the location where the downloaded database should be saved
 #' @param version Version Number of the database. Defaults to most recent version 3.0
@@ -36,7 +36,7 @@ check_location <- function(format) {
 #'
 #' download(location = '../data/version3.0', version = 3.0)
 #'
-#' # if version is not provided then it defaults to most recen(3.0) version
+#' # if version is not provided then it defaults to most recent (3.0) version
 #' download(location = '../data/version3.0')
 
 #' @export
