@@ -2,9 +2,6 @@
 # the auxiliary functions called by it: check_version() & check_format()
 library(testthat)
 
-source('../../R/download.R')
-# tests for download
-
 context("Check download arguments")
 
 test_that("check_version with ok versions", {
