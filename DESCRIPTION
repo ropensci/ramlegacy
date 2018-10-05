@@ -1,14 +1,21 @@
 Package: ramlegacy
 Type: Package
-Title: Downloads the RAM Legacy Stock Assessment Data Base
+Title: Download and Read RAM Legacy Stock Assessment Data Base
 Version: 0.1.0
-Author: Kshitiz Gupta
-Maintainer: Kshitiz Gupta <kshtzgupta1@berkeley.edu>
-Description: Contains a download function to download the RAM Legacy Stock Assessment Data Base, an online compilation of stock      assessment results for commercially exploited marine populations from around the world. More information about the database can be found at <http://ramlegacy.org/>.
+Authors@R: c(person("Kshitiz", "Gupta", email = "kshtzgupta1@berkeley.edu",
+  role = c("aut", "cre", "cph")), person("Carl", "Boettiger", email = "cboettig@gmail.com", role = c("aut", "cph")))
+Description: Contains functions to download and read the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found at <http://ramlegacy.org/>.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Depends: R (>= 2.10)
 LazyData: true
-URL: http://www.ramlegacy.org/
+URL: https://github.com/kshtzgupta1/ramlegacy
 BugReports: https://github.com/kshtzgupta1/ramlegacy/issues
 RoxygenNote: 6.1.0
-Imports: testthat
+Imports: testthat,
+    readxl
+Suggests:
+    covr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
