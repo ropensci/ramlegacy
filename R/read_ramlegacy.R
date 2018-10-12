@@ -1,72 +1,67 @@
-# private function to check path is valid or not
-check_path <- function(path) {
-  if (!is_string(path)) {
-    stop("`path` must be a string", call. = FALSE)
-  }
-  if (!file.exists(path)) {
-    stop("`path` does not exist: ", sQuote(path), call. = FALSE)
-  }
-  TRUE
-}
-
-
 #' @importFrom readxl excel_sheets
-#' @importFrom utils unzip
 NULL
 
-#' @title show_sheets
-#' @description Unzips the excel database present at path and displays the sheets present in it
-#' @param path Path to the zipped version of the excel database
-#' @return A character vector containing the sheet names
+#' @title show_ram_dfs
+#' @description Displays the names of dataframes in excel database specified in path
+#' @param path Path to the excel database
+#' @return A character vector containing the dataframe names
 #' @export
-show_sheets <- function(path) {
-  check_path(path)
-  return(readxl::excel_sheets(unzip(path)))
+show_ram_dfs <- function(ram_path = NULL, version = NULL) {
+  if (is.null(version)) {
+    version <- 4.3
+  } else {
+    check_version(version)
+  }
+  if (is.null(ram_path)) {
+    ram_path <- file.path(ram_dir(), paste0("v", version, ".zip"))
+  } else {
+    check_read_path(ram_path)
+  }
+  return(readxl::excel_sheets(ram_path))
 }
 
 
 #' @importFrom readxl read_excel
-#' @importFrom utils unzip
 NULL
 
 #' @title read_ramlegacy
 #' @description Reads different sheets of the excel database as tibbles
 #'
-#' @param path Path to the zipped version of the excel database
-#' @param sheet Sheet to read. Either a string (the name of a sheet), or an
-#'   integer (the position of the sheet). If not specified then defaults to the first
-#'   sheet.
-#' @param read_all If TRUE, then the function will read in all the dataframes from the database
+#' @param path Path to the the excel database
+#' @param version Version of the database that will be read in. Defaults to most recent version (4.3)
 #' @return A [tibble][tibble::tibble-package].If read_all is TRUE, then returns a list of tibbles from which user
 #' can obtain individual tibbles
 #' @export
-#' @examples
-#' # Specify sheet either by position or by name
-#' read_ramlegacy("/data/version3.0", sheet =  2)
-#' read_ramlegacy("/data/version3.0, sheet = "assessment")
-#'
-#' # Read in all the sheets as a list of tibbles
-#' read_ramlegacy("/data/version3.0", read_all = TRUE)
 
-read_ramlegacy <- function(path, sheet = NULL, read_all = FALSE) {
-  check_path(path)
-  file_unzip = unzip(path)
-  na_vec <- c("NA", "NULL","_", "none", "N/A")
-  if (read_all) {
-    sheets = show_sheets(path)
-    lst = vector("list", length(sheets))
-    i = 1
-    for (s in sheets) {
-      lst[[i]] = readxl::read_excel(path = file_unzip, sheet = s, na = na_vec)
-      i <- i+1
-    }
-    names(lst) <- sheets
-    return(lst)
+
+read_ramlegacy <- function(ram_path = NULL, version = NULL) {
+  if (is.null(version)) {
+    version <- 4.3
   } else {
-    df = readxl::read_excel(path = file_unzip, sheet = sheet,
-                            na = na_vec)
-    return(df)
+    check_version(version)
   }
+  if (is.null(ram_path)) {
+    ram_path <- file.path(ram_dir(vers = version),
+                          sprintf("RLSADB v%.1f (assessment data only).xlsx", version))
+  } else {
+    check_read_path(ram_path)
+  }
+  na_vec <- c("NA", "NULL","_", "none", "N/A")
+  sheets = readxl::excel_sheets(ram_path)
+  lst = vector("list", length(sheets))
+  i = 1
+  # read in all the dataframes
+  for (s in sheets) {
+    lst[[i]] = readxl::read_excel(path = ram_path, sheet = s, na = na_vec)
+    i <- i+1
+  }
+  names(lst) <- sheets
+
+  # write all dataframes as rdata objects
+  db_path = file.path(ram_dir(vers = version), paste0("v", as.character(version), ".RData"))
+  save(lst, file = db_path)
+  # load the dataframes
+  load(db_path)
 }
 
 
