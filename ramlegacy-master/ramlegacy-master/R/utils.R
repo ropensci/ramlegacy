@@ -105,6 +105,7 @@ det_version <- function() {
   writePath <- file.path(ram_dir(), "VERSION.txt")
   message <- sprintf("%.1f", version)
   writeLines(message, writePath)
+  return(version)
 }
 
 # Returns the version to load
@@ -122,17 +123,13 @@ check_local <- function() {
       return(latest_vers)
     }
 
-      if(num_vers == 0) {
-        return(NULL)
-      }
+    if(num_vers == 0) {
+      return(NULL)
+    }
   # get the local version number
   local_vers <- as.numeric(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
   local_vers <- sprintf("%.1f", local_vers)
-  if (local_vers < latest_vers) {
-    notify(paste0("Be informed that a newer version v",
-                  latest_vers,
-                  " of the database is available."))
-    }
+
     return(local_vers)
 }
 
