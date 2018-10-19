@@ -1,5 +1,5 @@
 completed <- function(msg){
-  packageStartupMessage(crayon::green(cli::symbol$tick), " ", msg)
+  packageStartupMessage(crayon::green(cli::symbol$smiley), " ", msg)
 }
 
 not_completed <- function(msg){
@@ -7,5 +7,5 @@ not_completed <- function(msg){
 }
 
 notify <- function(msg){
-  packageStartupMessage(crayon::blue(cli::symbol$bullet), " ", msg)
+  packageStartupMessage(crayon::blue(cli::symbol$info), " ", msg)
 }

@@ -10,10 +10,10 @@ show_ram_dfs <- function(ram_path = NULL, version = NULL) {
   if (is.null(version)) {
     version <- 4.3
   } else {
-    check_version(version)
+    check_version_arg(version)
   }
   if (is.null(ram_path)) {
-    ram_path <- file.path(ram_dir(), paste0("v", version, ".zip"))
+    ram_path <- file.path(ram_dir(), paste0("v", sprintf("%.1f", version), ".zip"))
   } else {
     check_read_path(ram_path)
   }
@@ -25,27 +25,16 @@ show_ram_dfs <- function(ram_path = NULL, version = NULL) {
 NULL
 
 #' @title read_ramlegacy
-#' @description Reads different sheets of the excel database as tibbles
+#' @description Reads different sheets of the excel database as tibbles ad
 #'
 #' @param path Path to the the excel database
 #' @param version Version of the database that will be read in. Defaults to most recent version (4.3)
 #' @return A [tibble][tibble::tibble-package].If read_all is TRUE, then returns a list of tibbles from which user
 #' can obtain individual tibbles
-#' @export
+#' @noRd
 
 
 read_ramlegacy <- function(ram_path = NULL, version = NULL) {
-  if (is.null(version)) {
-    version <- 4.3
-  } else {
-    check_version(version)
-  }
-  if (is.null(ram_path)) {
-    ram_path <- file.path(ram_dir(vers = version),
-                          sprintf("RLSADB v%.1f (assessment data only).xlsx", version))
-  } else {
-    check_read_path(ram_path)
-  }
   na_vec <- c("NA", "NULL","_", "none", "N/A")
   sheets = readxl::excel_sheets(ram_path)
   lst = vector("list", length(sheets))
@@ -58,10 +47,8 @@ read_ramlegacy <- function(ram_path = NULL, version = NULL) {
   names(lst) <- sheets
 
   # write all dataframes as rdata objects
-  db_path = file.path(ram_dir(vers = version), paste0("v", as.character(version), ".RData"))
-  save(lst, file = db_path)
-  # load the dataframes
-  load(db_path)
+  write_path <- file.path(ram_dir(vers = version), paste0("v", sprintf("%.1f", version), ".RDS"))
+  saveRDS(lst, file = write_path)
 }
 
 
