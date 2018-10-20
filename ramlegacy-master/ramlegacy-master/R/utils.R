@@ -83,7 +83,7 @@ extract_vers <- function(request) {
 }
 
 
-# determine latest version from the web
+# determine latest version from the web, return it as a string
 det_version <- function() {
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   tryCatch(req <- httr::GET(base_url),
@@ -95,42 +95,33 @@ det_version <- function() {
   )
   if (httr::http_status(req)$category == "Success") {
           version <- extract_vers(req)
-             } else {
-               version <- 4.3
-             }
+            } else {
+            version <- 4.3
+            }
 
   # write latest version as metadata to rappdirs directory
 
   version <- as.numeric(version)
   writePath <- file.path(ram_dir(), "VERSION.txt")
-  message <- sprintf("%.1f", version)
-  writeLines(message, writePath)
-  return(version)
+  vers_string <- sprintf("%.1f", version)
+  writeLines(vers_string, writePath)
+  return(vers_string)
 }
 
-# Returns the version to load
+# Returns the version (as a string) to load
 check_local <- function() {
-  # read in latest version number
-    message <- readLines(file.path(ram_dir(), "VERSION.txt"))
-    lat_vers_no <- stringr::str_extract(message, "\\d\\.\\d{1,}")
-    latest_vers <- sprintf("%.1f", as.numeric(lat_vers_no))
-
     # Get the number of versions in rappdirs
-    num_vers <- length(list.dirs(ram_dir(), recursive = FALSE))
-
-    if (num_vers > 1) {
-        warning("Multiple versions found. Loading the latest version.")
-      return(latest_vers)
-    }
-
+    num_vers <- length(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
     if(num_vers == 0) {
-      return(NULL)
+      return(0)
+    } else if(num_vers > 1) {
+      return(det_version())
+    } else {
+      # get the local version number
+      local_vers <- as.numeric(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
+      local_vers <- sprintf("%.1f", local_vers)
+      return(local_vers)
     }
-  # get the local version number
-  local_vers <- as.numeric(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
-  local_vers <- sprintf("%.1f", local_vers)
-
-    return(local_vers)
 }
 
 

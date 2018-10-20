@@ -5,7 +5,6 @@ NULL
 #' @description Displays the names of dataframes in excel database specified in path
 #' @param path Path to the excel database
 #' @return A character vector containing the dataframe names
-#' @export
 show_ram_dfs <- function(ram_path = NULL, version = NULL) {
   if (is.null(version)) {
     version <- 4.3

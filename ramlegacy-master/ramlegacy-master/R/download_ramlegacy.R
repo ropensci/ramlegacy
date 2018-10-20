@@ -15,7 +15,7 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, format = NULL) {
   if (!is.null(version)) {
     check_version_arg(version)
   } else {
-    det_vers()
+    version <- as.numeric(det_version())
   }
 
   if(is.null(format)) {
@@ -29,10 +29,8 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, format = NULL) {
     check_download_path(ram_path)
   }
 
-  ## Close all connections if function fails halfway through
-  on.exit(closeAllConnections())
   ## If there is an existing ramlegacy version ask the user
- if (version == check_local()) {
+ if (as.character(version) == check_local()) {
     if (interactive()) {
       ans <- ask("Version ", sprintf("%.1f", version), " has already been downloaded. Overwrite?")
       if (!ans) return(cat("Not overwriting. Exiting the function."))
@@ -40,13 +38,7 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, format = NULL) {
       return(cat(paste("Version ", sprintf("%.1f", version),
                        " has already been downloaded. Exiting the function.")))
     }
-  }
-
-  # Check for existing file at user specified path
-  if (interactive() && file.exists(ram_path)) {
-    ans <- ask("A file already exists in this location. Overwrite?")
-    if (!ans) return(cat("Not overwriting. Exiting the function."))
-  }
+ }
 
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
 
@@ -89,7 +81,7 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, format = NULL) {
     ## Download the zip file
     res <- httr::GET(ram_url, httr::write_disk(tmp), httr::progress("down"),
                      httr::user_agent("https://github.com/kshtzgupta1/ramlegacy"))
-    on.exit(file.remove(tmp))
+    on.exit(file.remove(tmp), add = T)
   }
 
     if(file.exists(tmp)) {
@@ -99,12 +91,16 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, format = NULL) {
       excel_file <- grep("RLSADB.*", list.files(ram_path), value = T)
       readin_path <- file.path(ram_path, excel_file)
       read_ramlegacy(readin_path, version)
+      on.exit(file.remove(readin_path), add = T)
     }
 
-  if (file.exists(ram_path)) {
+  # check if file downloaded or not
+  rds_path <- file.path(ram_dir(vers = version), paste0("v", sprintf("%.1f", version), ".RDS"))
+  if (file.exists(rds_path)) {
     completed(paste("Version", sprintf("%.1f", version), "successfully downloaded."))
   } else {
     not_completed(paste("Failed to download Version", sprintf("%.1f", version), sep = " "))
   }
+  invisible(TRUE)
 }
 
