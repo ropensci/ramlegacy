@@ -74,7 +74,7 @@ extract_vers <- function(request) {
   # Get the content
   contnt <- httr::content(request, "text")
   # Get all the a hrefs
-  ahrefs <- unlist(strinr::str_extract_all(contnt, "<a href.*"))
+  ahrefs <- unlist(stringr::str_extract_all(contnt, "<a href.*"))
   # Get the latest href
   latest_href <- tail(ahrefs, 1)
   ## Get newest version from latest_href
@@ -83,54 +83,48 @@ extract_vers <- function(request) {
 }
 
 
-# determine latest version from the web
+# determine latest version from the web, return it as a string
 det_version <- function() {
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   tryCatch(req <- httr::GET(base_url),
            error = function(e) {
              if(grepl("Timeout was reached:", e$message) | grepl("Could not resolve host:", e$message)) {
                version <- 4.3
-             } else if (http_status(req)$category == "Success") {
-               version <- extract_vers(req)
-             } else {
-               version <- 4.3
              }
            }
   )
+  if (httr::http_status(req)$category == "Success") {
+    version <- extract_vers(req)
+  } else {
+    version <- 4.3
+  }
+
   # write latest version as metadata to rappdirs directory
+
   version <- as.numeric(version)
-  fileConn <- file.path(ram_dir(), "VERSION.txt")
-  write(paste("Latest Version: ", sprintf("%.1f", version)), fileConn)
-  close(fileConn)
+  if(!dir.exists(ram_dir())) {
+    dir.create(ram_dir())
+  }
+  writePath <- file.path(ram_dir(), "VERSION.txt")
+  vers_string <- sprintf("%.1f", version)
+  writeLines(vers_string, writePath)
+  return(vers_string)
 }
 
-# Returns the version to load
+# Returns the version (as a string) to load
 check_local <- function() {
-  # read in latest version number
-    line <- readLines(con = file.path(ram_dir(), "VERSION.txt"))
-    lat_vers_no <- stringr:str_extract(line, "\\d\\.\\d{1,}")
-    latest_vers <- sprintf("%.1f", lat_vers_no)
-
-    # Get the number of versions in rappdirs
-    num_vers <- length(list.files(ram_dir()))
-
-    if (num_vers > 1) {
-        warning("Multiple versions found. Loading the latest version.")
-      return(latest_vers)
-    }
-
-      if(length(dir(ram_dir())) == 0) {
-        return(NULL)
-      }
+  # Get the number of versions in rappdirs
+  num_vers <- length(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
+  if(num_vers == 0) {
+    return(0)
+  } else if(num_vers > 1) {
+    return(det_version())
+  } else {
     # get the local version number
-  local_vers <- as.numeric(list.files(ram_dir()))
-  local_vers <- sprintf("%.1f", local_vers)
-  if (local_vers < latest_vers) {
-    notify(paste0("Be informed that a newer version v",
-                  sprintf("%.1f", latest_vers),
-                  " of the database is available."))
-    }
+    local_vers <- as.numeric(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
+    local_vers <- sprintf("%.1f", local_vers)
     return(local_vers)
+  }
 }
 
 

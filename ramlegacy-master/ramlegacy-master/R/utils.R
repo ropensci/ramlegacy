@@ -103,6 +103,10 @@ det_version <- function() {
 
   version <- as.numeric(version)
   writePath <- file.path(ram_dir(), "VERSION.txt")
+  if(!dir.exists(ram_dir())) {
+    dir.create(ram_dir())
+  }
+  writePath <- file.path(ram_dir(), "VERSION.txt")
   vers_string <- sprintf("%.1f", version)
   writeLines(vers_string, writePath)
   return(vers_string)
