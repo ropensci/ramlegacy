@@ -4,32 +4,18 @@
 \alias{download_ramlegacy}
 \title{download_ramlegacy}
 \usage{
-download_ramlegacy(path, version = 3, format = "excel",
-  quiet = FALSE, offline = FALSE)
+download_ramlegacy(version = NULL, ram_path = NULL, format = NULL)
 }
 \arguments{
-\item{path}{A character string specifying path of the location where the downloaded database should be saved}
+\item{version}{Version Number of the database. So far available versions : (1.0, 2.0, 2.5, 3.0, 4.3). If version is not specified then it defaults to most recent version 4.3.}
 
-\item{version}{Version Number of the database. So far available versions : (1.0, 2.0, 2.5, 3.0). If version is not specified then it defaults to most recent version 3.0.}
+\item{ram_path}{Local directory to the RAM Legacy database. The path is chosen by the \code{rappdirs} package and is OS specific and can be view by \code{ram_dir}.
+This path is also supplied automatically to any function that uses the RAM Legacy database. A user specified path can be set though this is not the advised approach.}
 
 \item{format}{A character string specifying the format of zipped database : excel or access. Defaults to excel version of the database. The format argument is
-Case Sensitive.}
-
-\item{quiet}{If TRUE, suppress status messages (if any), and the progress bar. Defaults to FALSE}
-
-\item{offline}{If website is offline then downloads the database from github}
-}
-\value{
-None
+case sensitive.}
 }
 \description{
-Downloads the zipped RAM Legacy Stock Assessment Data Base to a specified location
-}
-\examples{
-download_ramlegacy(path = tempdir(), version = 2.5, format = 'excel')
-
-download_ramlegacy(path = tempdir(), version = 3.0)
-
-# if version is not provided then it defaults to most recent (3.0) version
-download_ramlegacy(path = tempdir())
+Download the RAM Legacy Stock Assesment Database as R Binary object. This database contains a compilation of stock assessment results for commercially exploited marine populations from around the world
+The function will check for a existing version of the database and won't download the file if the same version is already present.
 }

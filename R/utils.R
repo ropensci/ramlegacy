@@ -27,11 +27,11 @@ check_download_path <- function(path) {
   TRUE
 }
 
-#' @title Output OS-independent path to the zipped ramlegacy database
+#' @title Output OS-independent path to the r binary object of downloaded database
 #'
 #' @description Provides the download location for \link{download_ramlegacy} in an OS independent manner.
 #'
-#' @param ... arguments potentially passed to \code{rappdirs::user_data_dir}
+#' @param vers Version Number
 #'
 #' @examples \dontrun{
 #' ram_dir()
@@ -41,17 +41,27 @@ check_download_path <- function(path) {
 #'
 #'
 ram_dir <- function(vers = NULL){
+  vers <- sprintf("%.1f", as.numeric(vers))
   rappdirs::user_data_dir("ramlegacy", version = vers)
 }
 
-## Ask for something
+## Ask for yes or no
 #' @noRd
-ask <- function(...) {
+ask_yn <- function(...) {
   choices <- c("Yes", "No")
   cat(crayon::green(paste0(...,"\n", collapse = "")))
   cli::cat_rule(col = "green")
   utils::menu(choices) == which(choices == "Yes")
 }
+
+## Ask for multiple choices
+ask_multiple <- function(msg, choices) {
+  cat(crayon::green(paste0(msg,"\n", collapse = "")))
+  cli::cat_rule(col = "green")
+  utils::menu(choices)
+}
+
+
 
 
 # Catch network timeout error or not resolve host error generated
@@ -89,40 +99,46 @@ det_version <- function() {
   tryCatch(req <- httr::GET(base_url),
            error = function(e) {
              if(grepl("Timeout was reached:", e$message) | grepl("Could not resolve host:", e$message)) {
-               version <- 4.3
+               version <- "4.3"
              }
            }
   )
   if (httr::http_status(req)$category == "Success") {
     version <- extract_vers(req)
   } else {
-    version <- 4.3
+    version <- "4.3"
   }
 
   # write latest version as metadata to rappdirs directory
 
-  version <- as.numeric(version)
+  version <- sprintf("%.1f", as.numeric(version))
   if(!dir.exists(ram_dir())) {
     dir.create(ram_dir())
   }
   writePath <- file.path(ram_dir(), "VERSION.txt")
-  vers_string <- sprintf("%.1f", version)
-  writeLines(vers_string, writePath)
-  return(vers_string)
+  writeLines(version, writePath)
+  return(version)
 }
 
 # Returns the version (as a string) to load
 check_local <- function() {
   # Get the number of versions in rappdirs
   num_vers <- length(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
+  local_vers <- dir(ram_dir(), pattern = "\\d[.0-9]{,3}")
+
   if(num_vers == 0) {
     return(0)
   } else if(num_vers > 1) {
-    return(det_version())
+    lat_vers <- sprintf("%.1f", as.numeric(det_version()))
+    if (lat_vers %in% local_vers) {
+      return(lat_vers)
+    } else {
+      return(999)
+    }
+
   } else {
     # get the local version number
-    local_vers <- as.numeric(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
-    local_vers <- sprintf("%.1f", local_vers)
+    local_vers <- sprintf("%.1f", as.numeric(local_vers))
     return(local_vers)
   }
 }
