@@ -5,19 +5,19 @@ NULL
 #' @title download_ramlegacy
 #' @description Downloads the excel version of RAM Legacy Stock Assesment Database as R Binary object to a local directory whose path
 #' is OS specific and chosen by \code{rappdirs} package. This path can be viewed by calling the function \code{ram_dir}.
-#' @param version Version Number of the database. So far available versions are 1.0, 2.0, 2.5, 3.0 and 4.3. If version argument is not specified then it defaults to most recent version 4.3.
+#' @param version Version Number of the database. If version argument is not specified then it defaults to latest version.
 #' @export
 download_ramlegacy <- function(version = NULL) {
   if (!is.null(version)) {
-    check_version_arg(version)
     version <- sprintf("%.1f", as.numeric(version))
+    check_version_arg(version)
   } else {
-    version <- det_version()
+    version <- find_version()
   }
   ram_path <- ram_dir(vers = version)
 
   ## If there is an existing ramlegacy version ask the user
-  if (version == check_local()) {
+  if (version == find_local()) {
     if (interactive()) {
       ans <- ask_yn("Version ", version, " has already been downloaded. Overwrite?")
       if (!ans) return(cat("Not overwriting. Exiting the function."))
@@ -55,9 +55,9 @@ download_ramlegacy <- function(version = NULL) {
     on.exit(file.remove(tmp), add = TRUE)
 
   if(file.exists(tmp)) {
-    notify("\nExtracting RAM Legacy Stock Assessment Database...")
+    notify("Downloaded the RAM Legacy Stock Assessment Database database. Now unzipping it...")
     utils::unzip(tmp, exdir = ram_path, overwrite = TRUE)
-    notify("\nSaving the Database as R Binary File...")
+    notify("Saving the unzipped database as R Binary File...")
     excel_file_name <- grep("RLSADB.*", list.files(ram_path), value = T)
     readin_path <- file.path(ram_path, excel_file_name)
     suppressWarnings(read_ramlegacy(readin_path, version))

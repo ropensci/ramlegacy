@@ -7,7 +7,7 @@
 load_ramlegacy(version = NULL)
 }
 \arguments{
-\item{version}{}
+\item{version}{version number of the database that should be loaded}
 }
 \value{
 None

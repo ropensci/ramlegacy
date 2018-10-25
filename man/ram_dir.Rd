@@ -2,12 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{ram_dir}
 \alias{ram_dir}
-\title{Output OS-independent path to the zipped ramlegacy database}
+\title{Output OS-independent path to the r binary object of downloaded database}
 \usage{
 ram_dir(vers = NULL)
 }
 \arguments{
-\item{...}{arguments potentially passed to \code{rappdirs::user_data_dir}}
+\item{vers}{Version Number}
 }
 \description{
 Provides the download location for \link{download_ramlegacy} in an OS independent manner.

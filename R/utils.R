@@ -1,9 +1,16 @@
 # private function to check version number
 check_version_arg <- function(version) {
-  if (!version %in% c(3, 3.0, 2.5, 2.0, 1.0, 4.3)) {
-    stop("Invalid version number", call. = FALSE)
+  latest_vers <- find_latest()
+  list_vers <- c("1.0", "2.0", "2.5", "3.0", "4.3")
+  if (!latest_vers %in% list_vers) {
+    list_vers <- c(list_vers, latest_vers)
   }
-  TRUE
+  if (!version %in% list_vers) {
+    list_vers <- paste0(c("1.0", "2.0", "2.5", "3.0", "4.3"), ",")
+    list_vers <- paste(list_vers, collapse = " ")
+    stop(paste("Invalid version number. Available versions are", list_vers), call. = FALSE)
+  }
+  invisible(TRUE)
 }
 
 # private function to check string
@@ -27,11 +34,11 @@ check_download_path <- function(path) {
   TRUE
 }
 
-#' @title Output OS-independent path to the r binary object of downloaded database
+#' @title Output OS-independent path to the downloaded database
 #'
 #' @description Provides the download location for \link{download_ramlegacy} in an OS independent manner.
 #'
-#' @param vers Version Number
+#' @param vers Version Number. Has to be specified
 #'
 #' @examples \dontrun{
 #' ram_dir()
@@ -41,7 +48,10 @@ check_download_path <- function(path) {
 #'
 #'
 ram_dir <- function(vers = NULL){
-  vers <- sprintf("%.1f", as.numeric(vers))
+  if (!is.null(vers)) {
+    vers <- sprintf("%.1f", as.numeric(vers))
+    check_version_arg(vers)
+  }
   rappdirs::user_data_dir("ramlegacy", version = vers)
 }
 
@@ -54,14 +64,14 @@ ask_yn <- function(...) {
   utils::menu(choices) == which(choices == "Yes")
 }
 
+
 ## Ask for multiple choices
+#' @noRd
 ask_multiple <- function(msg, choices) {
   cat(crayon::green(paste0(msg,"\n", collapse = "")))
   cli::cat_rule(col = "green")
   utils::menu(choices)
 }
-
-
 
 
 # Catch network timeout error or not resolve host error generated
@@ -78,23 +88,9 @@ net_check <- function(url){
            }
   )}
 
-# regex function to extract the latest version
+# regex function to find the latest version from the web, return it as a string
 #' @noRd
-extract_vers <- function(request) {
-  # Get the content
-  contnt <- httr::content(request, "text")
-  # Get all the a hrefs
-  ahrefs <- unlist(stringr::str_extract_all(contnt, "<a href.*"))
-  # Get the latest href
-  latest_href <- tail(ahrefs, 1)
-  ## Get newest version from latest_href
-  version <- stringr::str_extract(latest_href, "\\d\\.\\d{1,}")
-  return(version)
-}
-
-
-# determine latest version from the web, return it as a string
-det_version <- function() {
+find_latest <- function() {
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   tryCatch(req <- httr::GET(base_url),
            error = function(e) {
@@ -104,41 +100,46 @@ det_version <- function() {
            }
   )
   if (httr::http_status(req)$category == "Success") {
-    version <- extract_vers(req)
+    # Get the content
+    contnt <- httr::content(req, "text")
+    # Get all the a hrefs
+    ahrefs <- unlist(stringr::str_extract_all(contnt, "<a href.*"))
+    # Get the latest href
+    latest_href <- tail(ahrefs, 1)
+    ## Get newest version from latest_href
+    version <- stringr::str_extract(latest_href, "\\d\\.\\d{1,}")
   } else {
     version <- "4.3"
   }
+  return(version)
+}
 
-  # write latest version as metadata to rappdirs directory
 
-  version <- sprintf("%.1f", as.numeric(version))
+
+# write latest version as metadata to rappdirs directory
+#' @noRd
+write_version <- function() {
+  version <- sprintf("%.1f", as.numeric(find_latest()))
   if(!dir.exists(ram_dir())) {
     dir.create(ram_dir())
   }
   writePath <- file.path(ram_dir(), "VERSION.txt")
   writeLines(version, writePath)
-  return(version)
 }
 
+
 # Returns the version (as a string) to load
-check_local <- function() {
+#' @noRd
+find_local <- function() {
   # Get the number of versions in rappdirs
   num_vers <- length(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
   local_vers <- dir(ram_dir(), pattern = "\\d[.0-9]{,3}")
-
-  if(num_vers == 0) {
-    return(0)
-  } else if(num_vers > 1) {
-    lat_vers <- sprintf("%.1f", as.numeric(det_version()))
-    if (lat_vers %in% local_vers) {
-      return(lat_vers)
-    } else {
-      return(999)
-    }
-
+  latest_vers <- find_latest()
+  if (num_vers == 0) {
+    return(FALSE)
+  } else if(num_vers > 1 && latest_vers %in% local_vers) {
+      return(latest_vers)
   } else {
-    # get the local version number
-    local_vers <- sprintf("%.1f", as.numeric(local_vers))
     return(local_vers)
   }
 }

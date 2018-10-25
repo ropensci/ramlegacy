@@ -4,18 +4,12 @@
 \alias{download_ramlegacy}
 \title{download_ramlegacy}
 \usage{
-download_ramlegacy(version = NULL, ram_path = NULL, format = NULL)
+download_ramlegacy(version = NULL)
 }
 \arguments{
-\item{version}{Version Number of the database. So far available versions : (1.0, 2.0, 2.5, 3.0, 4.3). If version is not specified then it defaults to most recent version 4.3.}
-
-\item{ram_path}{Local directory to the RAM Legacy database. The path is chosen by the \code{rappdirs} package and is OS specific and can be view by \code{ram_dir}.
-This path is also supplied automatically to any function that uses the RAM Legacy database. A user specified path can be set though this is not the advised approach.}
-
-\item{format}{A character string specifying the format of zipped database : excel or access. Defaults to excel version of the database. The format argument is
-case sensitive.}
+\item{version}{Version Number of the database. So far available versions are 1.0, 2.0, 2.5, 3.0 and 4.3. If version argument is not specified then it defaults to most recent version 4.3.}
 }
 \description{
-Download the RAM Legacy Stock Assesment Database as R Binary object. This database contains a compilation of stock assessment results for commercially exploited marine populations from around the world
-The function will check for a existing version of the database and won't download the file if the same version is already present.
+Downloads the excel version of RAM Legacy Stock Assesment Database as R Binary object to a local directory whose path
+is OS specific and chosen by \code{rappdirs} package. This path can be viewed by calling the function \code{ram_dir}.
 }

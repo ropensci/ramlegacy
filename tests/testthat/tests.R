@@ -1,24 +1,14 @@
 # Includes tests for download function and
 # the auxiliary functions called by it: check_version() & check_format()
 
-context("Check download arguments")
+context("Check download_ramlegacy works")
 
-test_that("check_version with valid versions", {
-  expect_true(check_version(3))
-  expect_true(check_version(3.0))
-  expect_true(check_version(2.5))
-  expect_true(check_version(2.0))
-  expect_true(check_version(1.0))
-})
-
-
-test_that("check_version fails with invalid versions", {
-
-  expect_error(check_version(1.1))
-  expect_error(check_version(1.5))
-  expect_error(check_version(2.4))
-  expect_error(check_version(3.5))
-  expect_error(check_version(4.0))
+test_that("downloading ramlegacy fails behind a proxy server with informative error message",{
+  skip_on_cran()
+  httr::set_config(httr::use_proxy(url = "http://google.com", port = 1234), override = TRUE)
+  base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
+  expect_error(ramlegacy:::net_check(base_url), message = "Could not connect to the internet. Please check your connection settings and try again.")
+  httr::reset_config()
 })
 
 
