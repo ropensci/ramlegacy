@@ -1,7 +1,8 @@
-# private function to check version number
+# private function to check version argument
 check_version_arg <- function(version) {
   latest_vers <- find_latest()
   list_vers <- c("1.0", "2.0", "2.5", "3.0", "4.3")
+  version <- sprintf("%.1f", as.numeric(version))
   if (!latest_vers %in% list_vers) {
     list_vers <- c(list_vers, latest_vers)
   }
@@ -74,31 +75,36 @@ ask_multiple <- function(msg, choices) {
 }
 
 
-# Catch network timeout error or not resolve host error generated
-# when dealing with proxy-related connection
+# Catch 'network timeout error' or 'could not resolve host error' generated
+# when dealing with proxy-related or connection related
 # issues and fail with an informative error
 # message
 #' @noRd
-net_check <- function(url){
-  tryCatch(httr::GET(url),
+net_check <- function(url, msg = FALSE){
+  result <- tryCatch({
+    httr::GET(url),
            error = function(e) {
              if(grepl("Timeout was reached:", e$message) | grepl("Could not resolve host:", e$message)) {
-               stop("Could not connect to the internet. Please check your connection settings and try again.", call. = FALSE)
+                FALSE
              }
-           }
-  )}
+                    })
+  if (!result) {
+    if (msg) {
+      stop("Could not connect to the internet. Please check your connection settings and try again.", call. = FALSE)
+    } else {
+      return(FALSE)
+    }
+  }
+  invisible(TRUE)
+}
 
 # regex function to find the latest version from the web, return it as a string
 #' @noRd
-find_latest <- function() {
-  base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
-  tryCatch(req <- httr::GET(base_url),
-           error = function(e) {
-             if(grepl("Timeout was reached:", e$message) | grepl("Could not resolve host:", e$message)) {
-               version <- "4.3"
-             }
-           }
-  )
+find_latest <- function(url) {
+  if (!net_check(url)) {
+    return("4.3")
+  }
+  req <- GET(url)
   if (httr::http_status(req)$category == "Success") {
     # Get the content
     contnt <- httr::content(req, "text")
@@ -115,30 +121,34 @@ find_latest <- function() {
 }
 
 
-
 # write latest version as metadata to rappdirs directory
 #' @noRd
-write_version <- function() {
-  version <- sprintf("%.1f", as.numeric(find_latest()))
-  if(!dir.exists(ram_dir())) {
-    dir.create(ram_dir())
+write_version <- function(path, version) {
+  version <- sprintf("%.1f", as.numeric(version))
+  if(!dir.exists(path)) {
+    dir.create(path)
   }
-  writePath <- file.path(ram_dir(), "VERSION.txt")
+  writePath <- file.path(path, "VERSION.txt")
   writeLines(version, writePath)
 }
 
 
 # Returns the version (as a string) to load
+# find_local should return a vector of string versions instead
+# of a single string
 #' @noRd
-find_local <- function() {
+find_local <- function(path, latest_vers) {
   # Get the number of versions in rappdirs
-  num_vers <- length(dir(ram_dir(), pattern = "\\d[.0-9]{,3}"))
-  local_vers <- dir(ram_dir(), pattern = "\\d[.0-9]{,3}")
-  latest_vers <- find_latest()
+  num_vers <- length(dir(path, pattern = "\\d[.0-9]{1,3}"))
+  local_vers <- dir(path, pattern = "\\d[.0-9]{1,3}")
   if (num_vers == 0) {
     return(FALSE)
-  } else if(num_vers > 1 && latest_vers %in% local_vers) {
+  } else if(num_vers > 1) {
+    if (latest_vers %in% local_vers) {
       return(latest_vers)
+    } else {
+      local_vers <-
+    }
   } else {
     return(local_vers)
   }

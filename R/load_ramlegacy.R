@@ -2,6 +2,7 @@
 #' load_ramlegacy
 #'
 #' @param version version number of the database that should be loaded. If not specified then it defaults to the latest version.
+#' @param ram_path
 #' @return None
 #' @export
 #'

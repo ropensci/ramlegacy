@@ -3,13 +3,7 @@
 
 context("Check download_ramlegacy works")
 
-test_that("downloading ramlegacy fails behind a proxy server with informative error message",{
-  skip_on_cran()
-  httr::set_config(httr::use_proxy(url = "http://google.com", port = 1234), override = TRUE)
-  base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
-  expect_error(ramlegacy:::net_check(base_url), message = "Could not connect to the internet. Please check your connection settings and try again.")
-  httr::reset_config()
-})
+
 
 
 test_that("check_format fails with invalid formats", {

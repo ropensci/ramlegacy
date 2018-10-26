@@ -17,7 +17,7 @@ download_ramlegacy <- function(version = NULL) {
   ram_path <- ram_dir(vers = version)
 
   ## If there is an existing ramlegacy version ask the user
-  if (version == find_local()) {
+  if (version %in% find_local()) {
     if (interactive()) {
       ans <- ask_yn("Version ", version, " has already been downloaded. Overwrite?")
       if (!ans) return(cat("Not overwriting. Exiting the function."))
@@ -29,7 +29,7 @@ download_ramlegacy <- function(version = NULL) {
 
  base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   # check internet connection
-  net_check(base_url)
+  net_check(base_url, TRUE)
 
   if (version == '1.0') {
       data_url <- "RLSADB_v1.0_excel.zip"
