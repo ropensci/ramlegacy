@@ -30,7 +30,7 @@ check_format <- function(format) {
 # private function to check path is valid or not
 check_download_path <- function(path) {
   if (!is_string(path)) {
-    stop("`ram_path` must be a string", call. = FALSE)
+    stop("`path` must be a string", call. = FALSE)
   }
   TRUE
 }
@@ -80,44 +80,36 @@ ask_multiple <- function(msg, choices) {
 # issues and fail with an informative error
 # message
 #' @noRd
-net_check <- function(url, msg = FALSE){
-  result <- tryCatch({
-    httr::GET(url),
-           error = function(e) {
-             if(grepl("Timeout was reached:", e$message) | grepl("Could not resolve host:", e$message)) {
-                FALSE
-             }
-                    })
-  if (!result) {
-    if (msg) {
-      stop("Could not connect to the internet. Please check your connection settings and try again.", call. = FALSE)
-    } else {
-      return(FALSE)
-    }
-  }
-  invisible(TRUE)
+net_check <- function(url, show_error = FALSE){
+ response <- tryCatch(httr::GET(url),
+  error = function(e) {
+      if(show_error) {
+        stop("Could not connect to the internet. Please check your connection settings and try again.", call. = FALSE)
+      }
+    })
+  if(typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
 }
 
 # regex function to find the latest version from the web, return it as a string
 #' @noRd
-find_latest <- function(url) {
-  if (!net_check(url)) {
+find_latest <- function(ram_url) {
+  if (!net_check(ram_url)) {
     return("4.3")
   }
-  req <- GET(url)
-  if (httr::http_status(req)$category == "Success") {
-    # Get the content
+  req <- httr::GET(ram_url)
+  if (req$status_code == 200) {
+    # httr::GET the content
     contnt <- httr::content(req, "text")
-    # Get all the a hrefs
+    # httr::GET all the a hrefs
     ahrefs <- unlist(stringr::str_extract_all(contnt, "<a href.*"))
-    # Get the latest href
+    # httr::GET the latest href
     latest_href <- tail(ahrefs, 1)
-    ## Get newest version from latest_href
+    ## httr::GET newest version from latest_href
     version <- stringr::str_extract(latest_href, "\\d\\.\\d{1,}")
+    return(version)
   } else {
-    version <- "4.3"
+    return(version)
   }
-  return(version)
 }
 
 
@@ -138,17 +130,13 @@ write_version <- function(path, version) {
 # of a single string
 #' @noRd
 find_local <- function(path, latest_vers) {
-  # Get the number of versions in rappdirs
+  # httr::GET the number of versions in rappdirs
   num_vers <- length(dir(path, pattern = "\\d[.0-9]{1,3}"))
   local_vers <- dir(path, pattern = "\\d[.0-9]{1,3}")
   if (num_vers == 0) {
-    return(FALSE)
-  } else if(num_vers > 1) {
-    if (latest_vers %in% local_vers) {
-      return(latest_vers)
-    } else {
-      local_vers <-
-    }
+    return(NULL)
+  } else if(num_vers > 1 && latest_vers %in% local_vers) {
+    return(latest_vers)
   } else {
     return(local_vers)
   }

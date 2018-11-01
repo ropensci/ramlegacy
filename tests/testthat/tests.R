@@ -4,8 +4,6 @@
 context("Check download_ramlegacy works")
 
 
-
-
 test_that("check_format fails with invalid formats", {
   expect_error(check_format("Excel"),
                "Invalid format. Format can only be 'excel' or 'access'.")

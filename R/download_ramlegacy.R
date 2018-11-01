@@ -7,49 +7,59 @@ NULL
 #' is OS specific and chosen by \code{rappdirs} package. This path can be viewed by calling the function \code{ram_dir}.
 #' @param version Version Number of the database. If version argument is not specified then it defaults to latest version.
 #' @export
-download_ramlegacy <- function(version = NULL) {
+download_ramlegacy <- function(version = NULL, path = NULL, ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
+  latest_vers <- find_latest(ram_url)
   if (!is.null(version)) {
     version <- sprintf("%.1f", as.numeric(version))
     check_version_arg(version)
   } else {
-    version <- find_version()
+    version <- latest_vers
   }
-  ram_path <- ram_dir(vers = version)
+  if (is.null(path)) {
+    ram_path <- file.path(path, version)
+    if(!dir.exists(ram_path)) {
+      dir.create(ram_path, recursive = T)
+    }
+  } else {
+    ram_path <- path
+    check_download_path(ram_path)
+  }
 
   ## If there is an existing ramlegacy version ask the user
-  if (version %in% find_local()) {
+  if (version %in% find_local(path, latest_vers)) {
     if (interactive()) {
       ans <- ask_yn("Version ", version, " has already been downloaded. Overwrite?")
       if (!ans) return(cat("Not overwriting. Exiting the function."))
     } else {
-      return(cat(paste("Version ", version,
-                       " has already been downloaded. Exiting the function.")))
+      return(cat(paste("Version", version,
+                       "has already been downloaded. Exiting the function.")))
     }
   }
 
- base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
+
   # check internet connection
-  net_check(base_url, TRUE)
+  net_check(ram_url, TRUE)
 
   if (version == '1.0') {
-      data_url <- "RLSADB_v1.0_excel.zip"
+    data_url <- "RLSADB_v1.0_excel.zip"
   } else {
     data_url <- paste0("RLSADB_v",version,
                        "_(assessment_data_only)_excel.zip")
   }
-  ram_url <- paste(base_url, data_url, sep = "/")
-  request <- httr::GET(ram_url)
-  status <- httr::http_status(request)
-  tmp <- tempfile("ramlegacy_")
-  if (status$category != "Success") {
+  ram_url <- paste(ram_url, data_url, sep = "/")
+  # check if website is down
+  req <- httr::GET(ram_url)
+  if (req$status_code != 200) {
     if (interactive()) {
       ans <- ask_yn("www.ramlegacy.org seems to be down right now. Download from backup location?")
       if (!ans) return(cat("Not downloading. Exiting the function."))
     }
+    message("Downloading from backup location...")
     ram_url <- paste0("https://github.com/kshtzgupta1/ramlegacy-assets/raw/master/RLSADB%20v3.0%20(assessment%20data%20only).xlsx",
                     version, "%20(assessment%20data%20only).xlsx")
   }
-    ## Download the zip file
+    ## Download the zip file to temp
+    tmp <- tempfile("ramlegacy_")
     res <- httr::GET(ram_url, httr::write_disk(tmp), httr::progress("down"),
                      httr::user_agent("https://github.com/kshtzgupta1/ramlegacy"))
     on.exit(file.remove(tmp), add = TRUE)
@@ -57,11 +67,8 @@ download_ramlegacy <- function(version = NULL) {
   if(file.exists(tmp)) {
     notify("Downloaded the RAM Legacy Stock Assessment Database database. Now unzipping it...")
     utils::unzip(tmp, exdir = ram_path, overwrite = TRUE)
-    notify("Saving the unzipped database as R Binary File...")
-    excel_file_name <- grep("RLSADB.*", list.files(ram_path), value = T)
-    readin_path <- file.path(ram_path, excel_file_name)
-    suppressWarnings(read_ramlegacy(readin_path, version))
-    on.exit(file.remove(readin_path), add = T)
+    notify("Saving the unzipped database as R Binary object...")
+    suppressWarnings(read_ramlegacy(ram_path, version))
   }
 
   # check if file downloaded or not

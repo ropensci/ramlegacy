@@ -2,12 +2,12 @@
 #' load_ramlegacy
 #'
 #' @param version version number of the database that should be loaded. If not specified then it defaults to the latest version.
-#' @param ram_path
+#' @param path path to the directory where ram legacy database is stored
 #' @return None
 #' @export
 #'
 #' @examples
-load_ramlegacy <- function(version = NULL) {
+load_ramlegacy <- function(version = NULL, path) {
   if (!is.null(version)) {
     version <- sprintf("%.1f", as.numeric(version))
     check_version_arg(version)
@@ -21,12 +21,12 @@ load_ramlegacy <- function(version = NULL) {
   if (!file.exists(ram_dir(vers))) {
     stop("Error in loading: version not found")
   }
-  lst_dfs <- readRDS(read_path)
+  list_dataframes <- readRDS(read_path)
 
-  names(lst_dfs) <- paste0(names(lst_dfs), "_v", version)
+  names(list_dataframes) <- paste0(names(list_dataframes), "_v", version)
   lapply(seq_along(lst_dfs),
-         function(x) {
-           delayedAssign(names(lst_dfs)[x], lst_dfs[[x]], assign.env = .GlobalEnv)
+         function(i) {
+           delayedAssign(names(list_dataframes)[i], list_dataframes[[i]], assign.env = .GlobalEnv)
          }
   )
   invisible(TRUE)
