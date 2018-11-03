@@ -100,12 +100,15 @@ find_latest <- function(ram_url) {
   if (req$status_code == 200) {
     # httr::GET the content
     contnt <- httr::content(req, "text")
-    # httr::GET all the a hrefs
-    ahrefs <- unlist(stringr::str_extract_all(contnt, "<a href.*"))
+    # httr::GET all the links
+    m <- gregexpr("RLSADB_v[0-9]\\.[0-9]+_[()_a-zA-Z0-9]+_excel.zip",
+                  text = contnt )
+    links <- unlist(regmatches(contnt, m))
     # httr::GET the latest href
-    latest_href <- tail(ahrefs, 1)
-    ## httr::GET newest version from latest_href
-    version <- stringr::str_extract(latest_href, "\\d\\.\\d{1,}")
+    latest_link <- tail(links, 1)
+    ## httr::GET newest version from latest_link
+    m_vers <- gregexpr("\\d\\.\\d+", text = latest_link)
+    version <- unlist(regmatches(latest_link, m_vers))
     return(version)
   } else {
     return(version)

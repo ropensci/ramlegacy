@@ -7,13 +7,19 @@
 #' @export
 #'
 #' @examples
-load_ramlegacy <- function(version = NULL, path) {
+load_ramlegacy <- function(version = NULL, vers_path = NULL) {
+  ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   if (!is.null(version)) {
     version <- sprintf("%.1f", as.numeric(version))
     check_version_arg(version)
   } else {
-    version <- find_version()
+    version <- find_latest(ram_url)
     version <- sprintf("%.1f", as.numeric(version))
+  }
+  if(is.null(path)) {
+    path <- ram_dir(vers = version)
+  } else {
+    check
   }
   read_path <- file.path(ram_dir(vers = version),
                          paste0("v", version, ".RDS"))

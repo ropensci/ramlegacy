@@ -4,12 +4,12 @@ NULL
 #' @title read_ramlegacy
 #' @noRd
 
-read_ramlegacy <- function(path = NULL, version = NULL) {
-  excel_file_name <- grep("RLSADB.*", list.files(path), value = T)
-  excel_path <- file.path(path, excel_file_name)
+read_ramlegacy <- function(vers_path = NULL, version = NULL) {
+  excel_file_name <- grep("RLSADB.*\\.(xlsx|xls)", list.files(vers_path), value = T)
+  excel_file_path <- file.path(vers_path, excel_file_name)
   na_vec <- c("NA", "NULL","_", "none", "N/A", "")
-  sheets = readxl::excel_sheets(excel_path)
-  lst = vector("list", length(sheets))
+  sheets = readxl::excel_sheets(excel_file_path)
+  lst_dfs = vector("list", length(sheets))
   i = 1
   # read in all the dataframes
 
@@ -24,15 +24,16 @@ read_ramlegacy <- function(path = NULL, version = NULL) {
     } else {
       col_type_vec = NULL
     }
-      lst[[i]] = readxl::read_excel(path = excel_path, sheet = s, na = na_vec, col_types = col_type_vec)
+      lst_dfs[[i]] = readxl::read_excel(path = excel_file_path, sheet = s, na = na_vec, col_types = col_type_vec)
       i <- i+1
     }
 
-  names(lst) <- sheets
+  names(lst_dfs) <- sheets
   # write the list of all dataframes as rdata object
-  write_path <- file.path(path, paste0("v", version, ".rds"))
-  saveRDS(lst, file = write_path)
-  on.exit(file.remove(excel_path), add = T)
+  write_path <- file.path(vers_path, paste0("v", version, ".rds"))
+  saveRDS(lst_dfs, file = write_path)
+  filesToRemove <- grep(list.files(vers_path), pattern='v[0-9]\\.[0-9]+\\.rds', inv=T, value=T)
+  on.exit(unlink(file.path(vers_path, filesToRemove), recursive = T, force = T), add = T)
 }
 
 
