@@ -1,25 +1,26 @@
 .onAttach <- function(libname, pkgname) {
-  write_version()
-  latest_vers <- find_latest()
-  local_vers <- find_local()
+  latest_version <- find_latest()
+  write_version(path = ram_dir(), version = latest_version)
+  local_vers <- find_local(path = ram_dir(), latest_vers = latest_version)
   if (is.null(local_vers)) {
-    not_completed("No version of RAM Legacy Stock Assessment Database has yet been downloaded. Use function download_ramlegacy to download a version now.")
+    not_completed(paste("No version of RAM Legacy Stock Assessment Database has yet been downloaded.",
+                        "Use function download_ramlegacy to download a version now.", sep = "\n"))
   } else if (length(local_vers) > 1) {
     ask_list <- paste0(local_vers, ",")
-    display_list <- paste(choice_list, collapse = " ")
+    display_list <- paste(ask_list, collapse = " ")
     completed(paste("Found these versions", display_list))
-    ans <- sprintf("%.1f", ask_multiple("Select the version to load.", local_vers))
-    load_ramlegacy(ans)
-  } else if (local_vers == latest_vers) {
-      notify(paste("Multiple versions found including the latest one. Loading latest version",
+    ans <- ask_multiple("Select the version to load.", local_vers)
+    ans <- sprintf("%.1f", ans)
+    load_ramlegacy(version = ans)
+  } else if (local_vers == latest_version) {
+      notify(paste("Multiple versions found including the latest one.",
                           latest_vers))
-      load_ramlegacy(latest_vers)
+      load_ramlegacy(version = latest_version)
   } else {
-    notify(paste0("Loading version ", local_vers,
-                  ". Be informed that a newer version ",
-                  latest_vers,
+    notify(paste0("Be informed that a newer version ",
+                  latest_version,
                   " of the database is available."))
-    load_ramlegacy(local_vers)
+    load_ramlegacy(version = local_vers)
   }
   invisible(TRUE)
 }

@@ -23,8 +23,7 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, ram_url = "https
     vers_path <- ram_path
   }
 
-
-
+  notify("Please wait. This may take a moment..")
 
   ## If there is an existing ramlegacy version ask the user
   if (version %in% find_local(ram_path, latest_vers)) {
