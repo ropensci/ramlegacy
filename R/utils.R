@@ -71,7 +71,7 @@ ask_yn <- function(...) {
 ask_multiple <- function(msg, choices) {
   cat(crayon::green(paste0(msg,"\n", collapse = "")))
   cli::cat_rule(col = "green")
-  utils::menu(choices)
+  utils::select.list(choices)
 }
 
 

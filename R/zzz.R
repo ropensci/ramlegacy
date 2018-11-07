@@ -10,7 +10,7 @@
     display_list <- paste(ask_list, collapse = " ")
     completed(paste("Found these versions", display_list))
     ans <- ask_multiple("Select the version to load.", local_vers)
-    ans <- sprintf("%.1f", ans)
+    ans <- sprintf("%.1f", as.numeric(ans))
     load_ramlegacy(version = ans)
   } else if (local_vers == latest_version) {
       notify(paste("Multiple versions found including the latest one.",

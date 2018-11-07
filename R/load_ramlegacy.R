@@ -2,7 +2,7 @@
 #' load_ramlegacy
 #'
 #' @param version version number of the database that should be loaded. If not specified then it defaults to the latest version.
-#' @param path path to the directory where ram legacy database is stored
+#' @param path path to the local directory where ram legacy database is stored. This path can be viewed using the function \code{ram_dir}
 #' @return None
 #' @export
 #'
