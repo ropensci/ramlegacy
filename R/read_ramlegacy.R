@@ -8,7 +8,7 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
   excel_file_name <- grep("RLSADB.*\\.(xlsx|xls)", list.files(vers_path), value = T)
   excel_file_path <- file.path(vers_path, excel_file_name)
   na_vec <- c("NA", "NULL","_", "none", "N/A", "")
-  sheets = readxl::excel_sheets(excel_file_path)
+  sheets = readxl::excel_sheets(path = excel_file_path)
   lst_dfs = vector("list", length(sheets))
   i = 1
   # read in all the dataframes

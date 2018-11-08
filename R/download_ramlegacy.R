@@ -43,7 +43,6 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, ram_url = "https
 
   # check internet connection
   net_check(ram_url, show_error = TRUE)
-
   if (version == '1.0') {
     data_url <- "RLSADB_v1.0_excel.zip"
   } else {
@@ -62,27 +61,31 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL, ram_url = "https
     message("Downloading from backup location...")
     ram_url <- paste0("https://github.com/kshtzgupta1/ramlegacy-assets/raw/master/RLSADB%20v",
                     version, "%20(assessment%20data%20only).xlsx")
-  }
+    ## create path for excel file
+    excel_path <- file.path(vers_path, paste("RLSADB v", version, " (assessment data only).xlsx"))
+    download.file(ram_url, excel_path, quiet = TRUE)
+    if(file.exists(excel_path)) {
+      suppressWarnings(read_ramlegacy(vers_path = vers_path, version = version))
+    }
+  } else {
     ## Download the zip file to temp
     tmp <- tempfile("ramlegacy_")
-    f = RCurl::CFILE(tmp, mode="wb")
-    a = RCurl::curlPerform(url = ram_url, writedata = f@ref, noprogress=FALSE)
-    RCurl::close(f)
-    on.exit(file.remove(tmp), add = TRUE)
-
-  if(file.exists(tmp)) {
-    notify("Downloaded the RAM Legacy Stock Assessment Database database. Now unzipping it...")
-    utils::unzip(tmp, exdir = vers_path, overwrite = TRUE)
-    notify("Saving the unzipped database as R Binary object...")
-    suppressWarnings(read_ramlegacy(vers_path, version))
+    notify("Downloading...")
+    download.file(ram_url, tmp, quiet = TRUE)
+    if(file.exists(tmp)) {
+      notify("Downloaded the RAM Legacy Stock Assessment Database database. Now unzipping it...")
+      utils::unzip(tmp, exdir = vers_path, overwrite = TRUE)
+      notify("Saving the unzipped database as R Binary object...")
+      suppressWarnings(read_ramlegacy(vers_path = vers_path, version = version))
+    }
   }
 
   # check if file downloaded or not
   rds_path <- file.path(vers_path, paste0("v", version, ".rds"))
-  if (file.exists(vers_path)) {
+  if (file.exists(rds_path)) {
     completed(paste("Version", version, "successfully downloaded."))
   } else {
-    not_completed(paste("Failed to download Version", version, sep = " "))
+    not_completed(paste("Failed to download Version", version))
   }
   invisible(TRUE)
 }
