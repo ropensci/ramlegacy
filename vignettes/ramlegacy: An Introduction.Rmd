@@ -1,0 +1,91 @@
+---
+title: 'ramlegacy: An Introduction'
+author: "Kshitiz Gupta"
+date: "`r Sys.Date()`"
+output:
+  html_vignette:
+    keep_md: yes
+vignette: |
+  %\VignetteIndexEntry{ramlegacy_an_introduction} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## RAM Legacy Stock Assessment Database
+From the database's [website](www.ramlegacy.org):
+
+"The RAM Legacy Stock Assessment Database is a compilation of stock assessment results for commercially exploited marine populations from around the world. It is inspired by Dr. Ransom A. Myers' original [stock-recruitment database](http://www.mathstat.dal.ca/~myers/welcome.html), which is no longer being updated."
+
+Different versions of the database are available in compressed (zipped) form on the [website](www.ramlegacy.org) in two formats: **Access** (Microsoft Office Access 2007 file format)  and **Excel** (Microsoft Excel Open XML Format Spreadsheet). So far the available versions are 1.0, 2.0, 2.5, 3.0, 4.3.
+
+## About the package
+The goal of `ramlegacy` is to cache the specified version/versions of the RAM Legacy Stock Assessment Excel Database and this way save time and effort spent in re-downloading different
+versions of the database as part of any future analysis involving the data. The package also supports reading in any specified cached version of the database into the user's environment through `library(ramlegacy)` and a dedicated function called `load_ramlegacy()`. The user can always view the location to which the database is cached and read from by running `ram_dir()` and specifying its version argument. This vignette will outline a few more details about these functions and the package that will hopefully make `ramlegacy` easy to use.
+
+## Package loading
+After installation of the package when `library(load_ramlegacy)` is called for the first time `ramlegacy` checks whether any version of the database exists in the user's application data directory whose path is given by `ram_dir()`. If no version of the database is found then the user is informed about it and prompted to download a version by calling `download_ramlegacy()`.
+
+Subsequent calls to `library(ramlegacy)` read in and load the database in the user's global environment. Which version is loaded depends upon which versions have been downloaded and are present locally and whether `library(ramlegacy)` is called in an interactive session.
+Specifically, if the latest version is downloaded and cached on disk then calling `library(ramlegacy)` will load it into the user's global environment. When older version/versions are present locally along with the latest version then `library(ramlegacy)` guesses that the user wants to load the latest version and so reads in the latest version. If, however, only a single older version is present in the cache directory then calling `library(ramlegacy)` will load that older version as well as inform the user that a newer version of the database is available. Lastly, if multiple older versions are present but not the latest version then `library(ramlegacy)` does not guess which version the user wants to load and instead prompts the user to select which older version to read in:
+
+```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = F}
+# Upon installation no versions are present locally so ramlegacy
+library(ramlegacy)
+```
+
+## download_ramlegacy
+You can download any available version of the RAM Legacy Stock Assessment Excel Database through `download_ramlegacy()` and specifying the version argument:
+
+```{r, download_ramlegacy_example1, eval=FALSE, echo = T}
+# download version 1.0
+download_ramlegacy(version = "1.0")
+
+# download version 2.0
+download_ramlegacy(version = "2.0")
+
+# download version 2.5
+download_ramlegacy(version = "2.5")
+
+# download version 3.0
+download_ramlegacy(version = "3.0")
+
+# download version 4.3
+download_ramlegacy(version = "4.3")
+```
+
+If version is not specified then `download_ramlegacy` will default to downloading the
+latest version of the database:
+
+```{r, download_ramlegacy_example2, echo = T, eval = F}
+# if version not specified then defaults to latest version (currently 4.3)
+download_ramlegacy()
+```
+
+
+To enable caching behavior, before downloading a the specified version `download_ramlegacy` checks whether that version has already been downloaded. If it is then `download_ramlegacy` gives the user the option to either download again and overwrite the existing version or not download and just exit the function. After downloading the database download_ramlegacy caches it by converting it to an RDS object which can then be read in through calling `load_ramlegacy()` or `library(ramlegacy)`. `ramlegacy` package is designed to provide robust access to the RAM Legacy Stock Assessment data. As such, in case the [database's website](www.ramlegacy.org) is down `download_ramlegacy` provides the user with the option to download the data from a backup github data [repository](https://github.com/kshtzgupta1/ramlegacy-assets). Currently, backups of all available versions (1.0, 2.0, 2.5, 3.0, 4.3) are available.
+
+`download_ramlegacy` also has two other arguments: `ram_path` and `ram_url`. `ram_path` has been permanently set to the path provided by `ram_dir(vers = "version")` and `ram_url` is fixed to the URL of the database website. Please **do not modify** or **pass in any values** to these two parameters. Also, please note that `download_ramlegacy` is not a vectorized function so please don't pass in a vector of version numbers to its `version` argument.
+  
+## load_ramlegacy
+Use `load_ramlegacy` to read in all the dataframes (sheets) present in the desired version of the database. Make sure that the version you want to load was downloaded and is already present locally otherwise `load_ramlegacy` will throw an error.
+
+```{r, load_ramlegacy_example1, echo = T, eval = F}
+# load in version 3.0
+load_ramlegacy(version = 3.0)
+```
+
+Also, note that like `download_ramlegacy`, `load_ramlegacy` is not a vectorized function so please don't pass in a vector of version numbers to its `version` argument. Similar, to `download_ramlegacy`, `load_ramlegacy` has a `path` argument which has been permanently set to `ram_dir(vers = "version")`. Consequently, please **do not modify** or **pass in any values** to `path`.
+  
+## ram_dir
+To see the path where the specified *version* of database was downloaded on the user's computer, the user can call `ram_dir(vers = *version*)`. Note that this is also the location from which `load_ramlegacy` reads in the database. 
+
+For example, to see where version 4.3 of the database was downloaded you can call:
+
+```{r, ram_dir_example1}
+# view the path to which version 4.3 of the database was cached
+#ram_dir(vers = "4.3")
+```

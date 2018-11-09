@@ -2,16 +2,26 @@
 % Please edit documentation in R/load_ramlegacy.R
 \name{load_ramlegacy}
 \alias{load_ramlegacy}
-\title{load_ramlegacy}
+\title{Read-in downloaded RAM Legacy Database}
 \usage{
-load_ramlegacy(version = NULL)
+load_ramlegacy(version = NULL, path = NULL)
 }
 \arguments{
-\item{version}{version number of the database that should be loaded}
-}
-\value{
-None
+\item{version}{A character vector of length 1 specifying the version number of the
+database. So far available versions are
+1.0, 2.0, 2.5, 3.0 and 4.3. If version argument is not specified then it
+defaults to latest version (currently 4.3). Note that this function
+does not support vectorization so please \strong{don't pass in a vector of
+version numbers} to \code{version}}
+
+\item{path}{path to the local directory where the specified version of
+the RAM Legacy Stock Excel Assesment database was downloaded.
+ This path can be viewed using calling the function \code{\link{ram_dir}} and specifying
+ the version number inside the function call. This function \strong{does not} support
+ setting a user-specified path so \strong{please
+ do not pass} in a path argument to \code{path}.}
 }
 \description{
-load_ramlegacy
+Loads all the dataframes present in the specified version of the database into
+ user's global environment
 }

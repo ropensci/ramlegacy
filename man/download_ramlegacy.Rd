@@ -2,14 +2,51 @@
 % Please edit documentation in R/download_ramlegacy.R
 \name{download_ramlegacy}
 \alias{download_ramlegacy}
-\title{download_ramlegacy}
+\title{Download RAM Legacy Excel Database}
 \usage{
-download_ramlegacy(version = NULL)
+download_ramlegacy(version = NULL, ram_path = NULL,
+  ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions")
 }
 \arguments{
-\item{version}{Version Number of the database. So far available versions are 1.0, 2.0, 2.5, 3.0 and 4.3. If version argument is not specified then it defaults to most recent version 4.3.}
+\item{version}{A character vector of length 1 specifying the version number
+of the database that should be downloaded. So far available versions are 1.0,
+2.0, 2.5, 3.0 and 4.3. If the version argument is not specified then it defaults
+to latest version (currently latest version is 4.3). Note that this function
+does not support vectorization so please \strong{don't pass in a vector of
+version numbers}}
+
+\item{ram_path}{A string specifying the path of the local directory where
+database will be downloaded.
+This path is OS specific and is set to the location provided by \pkg{rappdirs}
+package. It can be viewed
+by calling \code{\link{ram_dir}}. This function \strong{does not} support
+setting a user-specified path so \strong{please
+do not pass} in a path to \code{ram_path}.}
+
+\item{ram_url}{A string. By default it is set to the url of the ramlegacy
+wordpress database website. Please \strong{do not pass} in any other url to
+ \code{ram_url}.}
 }
 \description{
-Downloads the excel version of RAM Legacy Stock Assesment Database as R Binary object to a local directory whose path
-is OS specific and chosen by \code{rappdirs} package. This path can be viewed by calling the function \code{ram_dir}.
+Downloads a specified version of RAM Legacy Stock Assesment
+ Excel Database as an RDS object to a local directory specified by \code{ram_dir}.
+ The function will check if the version requested already exists
+ and if it is then it's upto the user to download it again. The function also
+ supports
+ downloading all the versions rom [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
+ in case the database [website](www.ramlegacy.org) is down.
+}
+\examples{
+\dontrun{
+
+# If version is not specified then current latest version (4.3)
+# will be downloaded
+download_ramlegacy()
+
+# download version 1.0
+download_ramlegacy(version = "1.0")
+
+# download version 4.3
+download_ramlegacy(version = "4.3")
+}
 }

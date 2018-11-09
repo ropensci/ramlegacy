@@ -18,14 +18,14 @@ test_that("net_check errors out behind a proxy server when show_error is TRUE",{
                     })
 })
 
-test_that("net_check behaves as expected when there are no connection issues with show_error as TRUE", {
+test_that("net_check works when there are no connection issues with show_error as TRUE", {
   #skip_on_cran()
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   expect_silent(net_check(base_url, show_error = TRUE))
   expect_true(net_check(base_url, show_error = TRUE))
 })
 
-test_that("net_check behaves as expected when there are no connection issues with show_error as FALSE", {
+test_that("net_check works when there are no connection issues with show_error as FALSE", {
   #skip_on_cran()
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   expect_silent(net_check(base_url, show_error = FALSE))
@@ -34,7 +34,7 @@ test_that("net_check behaves as expected when there are no connection issues wit
 })
 
 test_that("net_check doesn't error out when there is no internet connection with show_error as FALSE", {
-without_internet({
+httptest::without_internet({
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   expect_silent(net_check(base_url, show_error = FALSE))
   expect_false(net_check(base_url, show_error = FALSE))
@@ -52,12 +52,11 @@ test_that("net_check errors out when there is no internet connection with show_e
 test_that("find_latest behaves correctly", {
   base_url <-  "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   test_url1 <- "http://httpbin.org/status/300"
-  test_url2 <- "http://httpbin.org/status/301"
   test_url3 <- "http://httpbin.org/status/404"
   test_url4 <- "http://httpbin.org/status/500"
 
   # test find_latest with no internet connection
-  without_internet({
+  httptest::without_internet({
     expect_silent(find_latest(base_url))
     expect_equal(find_latest(base_url), "4.3")
   })
@@ -68,14 +67,13 @@ test_that("find_latest behaves correctly", {
                     })
   # test find_latest behaves as expected when response has failed
   expect_equal(find_latest(test_url1), "4.3")
-  expect_equal(find_latest(test_url2), "4.3")
   expect_equal(find_latest(test_url3), "4.3")
   expect_equal(find_latest(test_url4), "4.3")
 })
 
 test_that("write_version works as expected", {
   # create temp directory as a proxy for rappdirs directory
-  test_path <- file.path(tempdir(), "ramlegacy")
+  test_path <- tempfile(tmpdir = tempdir(), pattern = "ramlegacy")
   # check test_path doesn't exist before calling write_version
   expect_false(dir.exists(test_path))
   write_version(test_path, "4.3")
@@ -115,29 +113,29 @@ test_that("write_version works as expected", {
 
 test_that("find_local behaves as expected", {
   # use tempdir to mock rappdirs directory
-  test_path <- file.path(tempdir(), "ramlegacy")
-  dir.create(test_path, showWarnings = F)
+  test_path <- tempfile(tmpdir = tempdir(), pattern = "ramlegacy")
+  dir.create(test_path, showWarnings = F, recursive = T)
   expect_null(find_local(test_path, "4.3"))
   # put a single version in this directory
-  version_path2.5 <- file.path(test_path, "2.5")
-  dir.create(version_path2.5, showWarnings = F)
+  version_path2.5 <- file.path(test_path, "2.5/v2.5.rds")
+  dir.create(version_path2.5, showWarnings = F, recursive = T)
   expect_equal(find_local(test_path, "4.3"), "2.5")
 
   # put multiple versions (not including latest) in the directory
-  #to check if it returns a vector of the versions
-  version_path1.0 <- file.path(test_path, "1.0")
-  version_path2.0 <- file.path(test_path, "2.0")
-  version_path3.0 <- file.path(test_path, "3.0")
-  dir.create(version_path1.0, showWarnings = F)
-  dir.create(version_path2.0, showWarnings = F)
-  dir.create(version_path3.0, showWarnings = F)
+  # to check if it returns a vector of the versions
+  version_path1.0 <- file.path(test_path, "1.0/v1.0.rds")
+  version_path2.0 <- file.path(test_path, "2.0/v2.0.rds")
+  version_path3.0 <- file.path(test_path, "3.0/v3.0.rds")
+  dir.create(version_path1.0, showWarnings = F, recursive = T)
+  dir.create(version_path2.0, showWarnings = F, recursive = T)
+  dir.create(version_path3.0, showWarnings = F, recursive = T)
   set1 <- unlist(strsplit(find_local(test_path, "4.3"), split = " "))
   set2 <- c("2.5", "1.0", "2.0", "3.0")
   expect_true(setequal(set1, set2))
 
   # check if it returns latest_vers when it is present in dir
-  version_path4.3 <- file.path(test_path, "4.3")
-  dir.create(version_path4.3, showWarnings = F)
+  version_path4.3 <- file.path(test_path, "4.3/v4.3.rds")
+  dir.create(version_path4.3, showWarnings = F, recursive = T)
   expect_equal(find_local(test_path, "4.3"), "4.3")
 })
 
@@ -168,5 +166,7 @@ test_that("check_version_arg fails with invalid versions", {
                "Invalid version number. Available versions are")
   expect_error(check_version_arg(4.0),
                "Invalid version number. Available versions are")
+  expect_error(check_version_arg(c("3.5", "2.0")),
+               "Please pass in only version number.")
 })
 

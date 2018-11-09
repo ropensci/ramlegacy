@@ -4,17 +4,24 @@
   local_vers <- find_local(path = ram_dir(), latest_vers = latest_version)
   if (is.null(local_vers)) {
     not_completed(paste("No version of RAM Legacy Stock Assessment Database has yet been downloaded.",
-                        "Use function download_ramlegacy to download a version now.", sep = "\n"))
+                        "Use function download_ramlegacy() to download a version now.", sep = "\n"))
   } else if (length(local_vers) > 1) {
     ask_list <- paste0(local_vers, ",")
     display_list <- paste(ask_list, collapse = " ")
-    completed(paste("Found these versions", display_list))
-    ans <- ask_multiple("Select the version to load.", local_vers)
-    ans <- sprintf("%.1f", as.numeric(ans))
-    load_ramlegacy(version = ans)
+    if (interactive()) {
+      completed(paste("Found these versions", display_list))
+      ans <- ask_multiple("Select the version to load.", local_vers)
+      ans <- sprintf("%.1f", as.numeric(ans))
+      load_ramlegacy(version = ans)
+    } else {
+      not_completed(paste(paste("Found these versions", display_list),
+                          ".Unable to determine which version to load.",
+                          "Please use load_ramlegacy() to load the desired version.",
+                          sep = "\n"))
+    }
   } else if (local_vers == latest_version) {
-      notify(paste("Multiple versions found including the latest one.",
-                          latest_vers))
+      notify(paste("Multiple versions found including the latest one:",
+                   latest_version))
       load_ramlegacy(version = latest_version)
   } else {
     notify(paste0("Be informed that a newer version ",
