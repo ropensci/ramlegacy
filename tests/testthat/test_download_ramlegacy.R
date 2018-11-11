@@ -53,7 +53,7 @@ test_that("download_ramlegacy doesn't download when requested version is already
   download_ramlegacy("3.0", temp_path)
   # call download_ramlegacy again to test behavior
   expect_is(download_ramlegacy("3.0", temp_path), "character")
-  unlink(temp_path, recursive = T)
+  unlink(temp_path, recursive = TRUE)
 })
 
 # testing download_ramlegacy downloads data from primary location

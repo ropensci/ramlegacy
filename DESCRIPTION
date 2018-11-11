@@ -29,6 +29,7 @@ Imports:
     readxl (>= 1.1.0)
 Suggests:
     covr,
+    testthat,
     httptest,
     knitr,
     rmarkdown

@@ -34,21 +34,22 @@ check_path <- function(path) {
 
 #' @title Output OS-independent path to the downloaded RAM Legacy database
 #' @name ram_dir
-#' @description Provides the download location for \link{download_ramlegacy} in an
+#' @description Provides the download location for \code{\link{download_ramlegacy}} in an
 #'  an OS independent manner. This is also the location from where \code{\link{load_ramlegacy}}
 #'  loads the database from.
 #' @param vers character, version number of the database. If NULL, then \code{ram_dir()}
-#' returns the path to the top level of the rappdirs directory.
-#'
+#' returns the path to the rappdirs directory.
+#' @export
 #' @examples
-#' # return the path to the top level of the rappdirs directory.
+#' # return the path to the rappdirs directory.
 #' ram_dir()
 #'
 #' # Returns the path to version 4.3 subdirectory of the rappdirs directory.
-#' # This is the path where version 4.3 of the database is downloaded to and read from.
-#' ram_dir(vers = "4.3")
+#' # This is the path where version 4.3 of the database is downloaded to and
+#' # read from.
+#' ram_dir(vers = '4.3')
 #'
-#' @export
+
 ram_dir <- function(vers = NULL){
   if (!is.null(vers)) {
     vers <- sprintf("%.1f", as.numeric(vers))
@@ -85,16 +86,13 @@ net_check <- function(url, show_error = FALSE){
  response <- tryCatch(httr::GET(url),
   error = function(e) {
       if(show_error) {
-        stop(paste("Could not connect to the internet.",
-                   "Please check your connection settings and try again.",
-                   sep = "\n"), call. = FALSE)
+        stop("Could not connect to the internet. Please check your connection settings and try again.",
+        call. = FALSE)
       }
     })
   if(typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
 }
 
-#' @importFrom utils tail
-NULL
 
 # regex function to find the latest version from the web, return it as a string
 #' @noRd
@@ -106,15 +104,15 @@ find_latest <- function(ram_url) {
   if (req$status_code != 200) {
     return("4.3")
   } else {
-    # httr::GET the content
+    # get the content
     contnt <- httr::content(req, "text")
-    # httr::GET all the links
+    # get all the links
     m <- gregexpr("RLSADB_v[0-9]\\.[0-9]+_[()_a-zA-Z0-9]+_excel.zip",
                   text = contnt )
     links <- unlist(regmatches(contnt, m))
-    # httr::GET the latest href
-    latest_link <- tail(links, 1)
-    ## httr::GET newest version from latest_link
+    # get the latest href
+    latest_link <- links[length(links)]
+    # get newest version from latest_link
     m_vers <- gregexpr("\\d\\.\\d+", text = latest_link)
     version <- unlist(regmatches(latest_link, m_vers))
     return(version)

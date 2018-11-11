@@ -1,9 +1,9 @@
 Kshitiz Gupta
-2018-11-09
+2018-11-10
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-\# ramlegacy
-============
+ramlegacy
+=========
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
@@ -23,9 +23,9 @@ Kshitiz Gupta
 What does `ramlegacy` do?
 -------------------------
 
--   Provides a function `download_ramlegacy`, to download all the available
+-   Provides a function `download_ramlegacy()`, to download all the available
     versions of the RAM Legacy Stock Assessment Excel Database as RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded for subsequent analysis.
--   Supports reading in the cached versions of the database through loading the package i.e. calling `library(ramlegacy)` and also by providing a function `load_ramlegacy` to load any specified version.
+-   Supports reading in the cached versions of the database through loading the package i.e. calling `library(ramlegacy)` and also by providing a function `load_ramlegacy()` to load any specified version.
 -   Provides a function `ram_dir()` to view the path where the downloaded database was saved.
 
 Installation
@@ -35,33 +35,8 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 install.packages("devtools")
-#> Installing package into '/home/kshitiz/R/x86_64-pc-linux-gnu-library/3.4'
-#> (as 'lib' is unspecified)
 library(devtools)
 install_github("kshtzgupta1/ramlegacy", message = F, warning = F)
-#> Downloading GitHub repo kshtzgupta1/ramlegacy@master
-#> 
-#>   
-   checking for file ‘/tmp/RtmprmcCUA/remotes3b813d6a5414/kshtzgupta1-ramlegacy-550e45c/DESCRIPTION’ ...
-  
-✔  checking for file ‘/tmp/RtmprmcCUA/remotes3b813d6a5414/kshtzgupta1-ramlegacy-550e45c/DESCRIPTION’
-#> ─  preparing ‘ramlegacy’:
-#> ✔  checking DESCRIPTION meta-information
-#> 
-  
-─  checking for LF line-endings in source and make files and shell scripts
-#> ─  checking for empty or unneeded directories
-#> ─  building ‘ramlegacy_0.1.0.tar.gz’
-#> 
-  
-   
-#> 
-#> Warning in readLines(f): incomplete final line found on '/home/
-#> kshitiz/.Rprofile'
-#> Installing package into '/home/kshitiz/R/x86_64-pc-linux-gnu-library/3.4'
-#> (as 'lib' is unspecified)
-#> Warning in i.p(...): installation of package '/tmp/RtmprmcCUA/
-#> file3b81676beb12/ramlegacy_0.1.0.tar.gz' had non-zero exit status
 ```
 
 Usage
@@ -79,21 +54,21 @@ When `ramlegacy` is loaded for the first time after installation of the package 
 
 ### download\_ramlegacy
 
-`download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the package. This location is also where `load_ramlegacy` will look for the downloaded database.
+`download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the [rappdirs](https://cran.r-project.org/web/packages/rappdirs/index.html) package. This location is also where `load_ramlegacy()` will look for the downloaded database.
 
 ``` r
 # downloads version 3.0
 download_ramlegacy(version = "3.0")
 ```
 
-If version is not specified then download\_ramlegacy defaults to downloading current latest version (4.3) :
+If version is not specified then `download_ramlegacy` defaults to downloading current latest version (4.3) :
 
 ``` r
 # downloads current latest version 4.3
 download_ramlegacy()
 ```
 
-To ensure that the user is able to download the data in case www.ramlegacy.org is down, the function also supports downloading all the different versions of the database from a [backup location](www.github.com/kshtzgupta1/ramlegacy-assets/) :
+To ensure that the user is able to download the data in case www.ramlegacy.org is down, the function also supports downloading all the different versions of the database from a [backup](www.github.com/kshtzgupta1/ramlegacy-assets/) location:
 
 ``` r
 # downloads version 1.0 from backup location if www.ramlegacy.org is down
@@ -114,12 +89,12 @@ load_ramlegacy()
 
 ### ram\_dir
 
-To view the exact path where the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir()` and specify the version inside it:
+To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 
 ``` r
 # downloads version 2.5
-download_ramlegacy(version = "2.5")
+download_ramlegacy(version = '2.5')
 
 # view the location where version 2.5 of the database was downloaded
-ram_dir(vers = "2.5")
+ram_dir(vers = '2.5')
 ```

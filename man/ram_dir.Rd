@@ -8,19 +8,20 @@ ram_dir(vers = NULL)
 }
 \arguments{
 \item{vers}{character, version number of the database. If NULL, then \code{ram_dir()}
-returns the path to the top level of the rappdirs directory.}
+returns the path to the rappdirs directory.}
 }
 \description{
-Provides the download location for \link{download_ramlegacy} in an
+Provides the download location for \code{\link{download_ramlegacy}} in an
  an OS independent manner. This is also the location from where \code{\link{load_ramlegacy}}
  loads the database from.
 }
 \examples{
-# return the path to the top level of the rappdirs directory.
+# return the path to the rappdirs directory.
 ram_dir()
 
 # Returns the path to version 4.3 subdirectory of the rappdirs directory.
-# This is the path where version 4.3 of the database is downloaded to and read from.
-ram_dir(vers = "4.3")
+# This is the path where version 4.3 of the database is downloaded to and
+# read from.
+ram_dir(vers = '4.3')
 
 }

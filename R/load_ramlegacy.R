@@ -17,16 +17,16 @@
 #'  do not pass} in a path argument to \code{path}.
 #' @export
 #'
-#' @examples
-#' \dontrun {
-#' # If version is not specified then current latest version (4.3) will be loaded
+#' @examples \dontrun{
+#' # If version is not specified then current latest version
+#' # (4.3) will be loaded
 #' load_ramlegacy()
 #'
 #' # load version 3.0
-#' load_ramlegacy(version = "3.0")
+#' load_ramlegacy(version = '3.0')
 #'
 #' # load version 2.5
-#' load_ramlegacy(version = "2.5)
+#' load_ramlegacy(version = '2.5')
 #' }
 
 load_ramlegacy <- function(version = NULL, path = NULL) {

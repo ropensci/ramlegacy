@@ -32,7 +32,7 @@ After installation of the package when `library(load_ramlegacy)` is called for t
 Subsequent calls to `library(ramlegacy)` read in and load the database in the user's global environment. Which version is loaded depends upon which versions have been downloaded and are present locally and whether `library(ramlegacy)` is called in an interactive session.
 Specifically, if the latest version is downloaded and cached on disk then calling `library(ramlegacy)` will load it into the user's global environment. When older version/versions are present locally along with the latest version then `library(ramlegacy)` guesses that the user wants to load the latest version and so reads in the latest version. If, however, only a single older version is present in the cache directory then calling `library(ramlegacy)` will load that older version as well as inform the user that a newer version of the database is available. Lastly, if multiple older versions are present but not the latest version then `library(ramlegacy)` does not guess which version the user wants to load and instead prompts the user to select which older version to read in:
 
-```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = F}
+```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = T}
 # Upon installation no versions are present locally so ramlegacy
 library(ramlegacy)
 ```
@@ -87,5 +87,7 @@ For example, to see where version 4.3 of the database was downloaded you can cal
 
 ```{r, ram_dir_example1}
 # view the path to which version 4.3 of the database was cached
-#ram_dir(vers = "4.3")
+ram_dir(vers = '4.3')
 ```
+
+

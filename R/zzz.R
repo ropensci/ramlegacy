@@ -3,8 +3,8 @@
   write_version(path = ram_dir(), version = latest_version)
   local_vers <- find_local(path = ram_dir(), latest_vers = latest_version)
   if (is.null(local_vers)) {
-    not_completed(paste("No version of RAM Legacy Stock Assessment Database has yet been downloaded.",
-                        "Use function download_ramlegacy() to download a version now.", sep = "\n"))
+    not_completed(paste("No version of RAM Legacy Stock Assessment Excel Database has yet been downloaded.",
+                        "Use function download_ramlegacy() to download a version now."))
   } else if (length(local_vers) > 1) {
     ask_list <- paste0(local_vers, ",")
     display_list <- paste(ask_list, collapse = " ")
@@ -17,7 +17,9 @@
       not_completed(paste(paste("Found these versions", display_list),
                           ".Unable to determine which version to load.",
                           "Please use load_ramlegacy() to load the desired version.",
-                          sep = "\n"))
+                          paste0("Also, be informed that a newer version ",
+                                 latest_version,
+                                 " of the database is available.")))
     }
   } else if (local_vers == latest_version) {
       notify(paste("Multiple versions found including the latest one:",

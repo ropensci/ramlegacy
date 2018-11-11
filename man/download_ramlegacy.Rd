@@ -28,13 +28,7 @@ wordpress database website. Please \strong{do not pass} in any other url to
  \code{ram_url}.}
 }
 \description{
-Downloads a specified version of RAM Legacy Stock Assesment
- Excel Database as an RDS object to a local directory specified by \code{ram_dir}.
- The function will check if the version requested already exists
- and if it is then it's upto the user to download it again. The function also
- supports
- downloading all the versions rom [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
- in case the database [website](www.ramlegacy.org) is down.
+Download RAM Legacy Excel Database
 }
 \examples{
 \dontrun{
