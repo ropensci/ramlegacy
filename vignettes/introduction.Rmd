@@ -1,12 +1,12 @@
 ---
-title: 'ramlegacy: An Introduction'
+title: 'Introduction to ramlegacy'
 author: "Kshitiz Gupta"
 date: "`r Sys.Date()`"
 output:
   html_vignette:
     keep_md: yes
 vignette: |
-  %\VignetteIndexEntry{ramlegacy_an_introduction} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{introduction} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

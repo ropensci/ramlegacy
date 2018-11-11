@@ -25,7 +25,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Carl Boettiger \email{cboettig@gmail.com} [copyright holder]
+  \item Carl Boettiger \email{cboettig@gmail.com} (http://orcid.org/0000-0002-1642-628X) [copyright holder]
 }
 
 }
