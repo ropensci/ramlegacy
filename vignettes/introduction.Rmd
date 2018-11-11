@@ -6,7 +6,9 @@ output:
   html_vignette:
     keep_md: yes
 vignette: |
-  %\VignetteIndexEntry{introduction} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
@@ -27,15 +29,19 @@ The goal of `ramlegacy` is to cache the specified version/versions of the RAM Le
 versions of the database as part of any future analysis involving the data. The package also supports reading in any specified cached version of the database into the user's environment through `library(ramlegacy)` and a dedicated function called `load_ramlegacy()`. The user can always view the location to which the database is cached and read from by running `ram_dir()` and specifying its version argument. This vignette will outline a few more details about these functions and the package that will hopefully make `ramlegacy` easy to use.
 
 ## Package loading
-After installation of the package when `library(load_ramlegacy)` is called for the first time `ramlegacy` checks whether any version of the database exists in the user's application data directory whose path is given by `ram_dir()`. If no version of the database is found then the user is informed about it and prompted to download a version by calling `download_ramlegacy()`.
-
-Subsequent calls to `library(ramlegacy)` read in and load the database in the user's global environment. Which version is loaded depends upon which versions have been downloaded and are present locally and whether `library(ramlegacy)` is called in an interactive session.
-Specifically, if the latest version is downloaded and cached on disk then calling `library(ramlegacy)` will load it into the user's global environment. When older version/versions are present locally along with the latest version then `library(ramlegacy)` guesses that the user wants to load the latest version and so reads in the latest version. If, however, only a single older version is present in the cache directory then calling `library(ramlegacy)` will load that older version as well as inform the user that a newer version of the database is available. Lastly, if multiple older versions are present but not the latest version then `library(ramlegacy)` does not guess which version the user wants to load and instead prompts the user to select which older version to read in:
 
 ```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = T}
 # Upon installation no versions are present locally so ramlegacy
 library(ramlegacy)
 ```
+
+After installation of the package when `library(load_ramlegacy)` is called for the first time `ramlegacy` checks whether any version of the database exists in the user's application data directory whose path is given by `ram_dir()`. If no version of the database is found then the user is informed about it and prompted to download a version by calling `download_ramlegacy()`.
+
+Subsequent calls to `library(ramlegacy)` read in and load the database in the user's global environment. Which version is loaded depends upon which versions have been downloaded and are present locally and whether `library(ramlegacy)` is called in an interactive session or non-interactive session.
+Specifically, if only a single version is present locally then calling `library(ramlegacy)` will load it into the user's global environment irrespective of whether it's the latest version or an older version. If, however, multiple versions of the database are present, the latest version among them, then `library(ramlegacy)` guesses that the user wants to load the latest version and so reads it in. It's unable to do this guessing if the latest version is not present among the multiple versions that are found locally. In such a case, if R is running interactively then `library(ramlegacy)` will prompt the user to select which older version to read otherwise, in such a situation `library(ramlegacy)` cannot select which to version to load and directs the user to use `load_ramlegacy()` to load the desired version. The decision tree-diagram below depicts the behavior of `library(ramlegacy)`:
+
+![Behavior of library(ramlegacy)](/home/kshitiz/Desktop/tree1.png){width=100%}
+
 
 ## download_ramlegacy
 You can download any available version of the RAM Legacy Stock Assessment Excel Database through `download_ramlegacy()` and specifying the version argument:

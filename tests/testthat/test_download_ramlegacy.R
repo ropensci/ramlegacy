@@ -2,7 +2,6 @@ context("Testing that download_ramlegacy works")
 
 test_that("download_ramlegacy defaults to 4.3 if version not specified", {
   skip_on_cran()
-  skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = NULL, temp_path)
   vers_path <- file.path(temp_path, "4.3")

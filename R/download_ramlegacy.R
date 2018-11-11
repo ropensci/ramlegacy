@@ -61,9 +61,6 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
     vers_path <- file.path(ram_path, version)
   }
 
-
-  notify("Please wait. This may take a while...")
-
   ## If there is an existing ramlegacy version
   # ask the user what to do in interactive mode otherwise exit
   if (version %in% find_local(ram_path, latest_vers)) {
