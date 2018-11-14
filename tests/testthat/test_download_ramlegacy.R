@@ -32,7 +32,7 @@ test_that("download_ramlegacy errors out behind a proxy server",{
 
 test_that("download_ramlegacy downloads from backup when website is down",{
   skip_on_cran()
-  #skip_on_travis()
+  skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
 
   test_url1 <- "http://httpbin.org/status/300"
@@ -93,7 +93,7 @@ test_that("download_ramlegacy downloads v2.5", {
 test_that("download_ramlegacy downloads v3.0", {
   #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
-  download_ramlegacy(vesion = "3.0", ram_path = temp_path)
+  download_ramlegacy(version = "3.0", ram_path = temp_path)
   vers_path <- file.path(temp_path, "3.0")
   rds_path <- file.path(vers_path, "v3.0.rds")
   expect_true(file.exists(rds_path))
