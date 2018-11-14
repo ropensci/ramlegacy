@@ -2,6 +2,7 @@ context("Testing that download_ramlegacy works")
 
 test_that("download_ramlegacy defaults to 4.3 if version not specified", {
   #skip_on_cran()
+  skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = NULL, temp_path)
   vers_path <- file.path(temp_path, "4.3")
@@ -30,7 +31,7 @@ test_that("download_ramlegacy errors out behind a proxy server",{
 })
 
 test_that("download_ramlegacy downloads from backup when website is down",{
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
 
@@ -48,7 +49,7 @@ test_that("download_ramlegacy downloads from backup when website is down",{
    })
 
 test_that("download_ramlegacy doesn't download when requested version is already present", {
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   # download version 3.0 for the first time
@@ -90,7 +91,7 @@ test_that("download_ramlegacy downloads v2.5", {
 })
 
 test_that("download_ramlegacy downloads v3.0", {
-  skip_on_cran()
+  #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy("3.0", temp_path)
   vers_path <- file.path(temp_path, "3.0")
@@ -112,7 +113,7 @@ test_that("download_ramlegacy downloads v4.3", {
 # testing that download_ramlegacy downloads data from backup location when
 # original location is unavailable
 test_that("download_ramlegacy downloads v1.0 from backup", {
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   test_url <- "http://httpbin.org/status/404"
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
@@ -124,7 +125,7 @@ test_that("download_ramlegacy downloads v1.0 from backup", {
 })
 
 test_that("download_ramlegacy downloads v2.0 from backup", {
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   test_url <- "http://httpbin.org/status/404"
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
@@ -136,7 +137,7 @@ test_that("download_ramlegacy downloads v2.0 from backup", {
 })
 
 test_that("download_ramlegacy downloads v2.5 from backup", {
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   test_url <- "http://httpbin.org/status/404"
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
@@ -148,7 +149,7 @@ test_that("download_ramlegacy downloads v2.5 from backup", {
 })
 
 test_that("download_ramlegacy downloads v3.0 from backup", {
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   test_url <- "http://httpbin.org/status/404"
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
@@ -160,7 +161,7 @@ test_that("download_ramlegacy downloads v3.0 from backup", {
 })
 
 test_that("download_ramlegacy downloads v4.3 from backup", {
-  #skip_on_cran()
+  skip_on_cran()
   skip_on_travis()
   test_url <- "http://httpbin.org/status/404"
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
