@@ -1,7 +1,7 @@
 context("test load_ramlegacy works as expected")
 
 test_that("load_ramlegacy actually loads version 1.0", {
-  skip_on_cran()
+  #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = 1.0, temp_path)
   # pass in the path to rds to load_ramlegacy
@@ -12,7 +12,7 @@ test_that("load_ramlegacy actually loads version 1.0", {
 })
 
 test_that("load_ramlegacy actually loads version 2.0", {
-  skip_on_cran()
+  #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = 2.0, temp_path)
   # pass in the path to rds to load_ramlegacy
@@ -23,7 +23,7 @@ test_that("load_ramlegacy actually loads version 2.0", {
 })
 
 test_that("load_ramlegacy actually loads version 2.5", {
-  skip_on_cran()
+  #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = 2.5, temp_path)
   # pass in the path to rds to load_ramlegacy
@@ -34,7 +34,7 @@ test_that("load_ramlegacy actually loads version 2.5", {
 })
 
 test_that("load_ramlegacy actually loads version 3.0", {
-  skip_on_cran()
+  #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = 3.0, temp_path)
   # pass in the path to rds to load_ramlegacy
@@ -45,7 +45,7 @@ test_that("load_ramlegacy actually loads version 3.0", {
 })
 
 test_that("load_ramlegacy actually loads version 4.3", {
-  skip_on_cran()
+  #skip_on_cran()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
   download_ramlegacy(version = 4.3, temp_path)
   # pass in the path to rds to load_ramlegacy

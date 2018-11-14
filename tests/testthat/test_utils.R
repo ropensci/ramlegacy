@@ -1,7 +1,7 @@
 context("Testing functions in utils.R")
 
 test_that("net_check doesn't error out behind a proxy server when show_error is FALSE",{
-  skip_on_cran()
+  #skip_on_cran()
   httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234),
                     {base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
                     expect_silent(net_check(base_url, show_error = FALSE))
@@ -10,7 +10,7 @@ test_that("net_check doesn't error out behind a proxy server when show_error is 
 })
 
 test_that("net_check errors out behind a proxy server when show_error is TRUE",{
-  skip_on_cran()
+  #skip_on_cran()
   httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234),
                     {base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
                     expect_error(net_check(base_url, show_error = TRUE),
@@ -19,14 +19,14 @@ test_that("net_check errors out behind a proxy server when show_error is TRUE",{
 })
 
 test_that("net_check works when there are no connection issues with show_error as TRUE", {
-  skip_on_cran()
+  #skip_on_cran()
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   expect_silent(net_check(base_url, show_error = TRUE))
   expect_true(net_check(base_url, show_error = TRUE))
 })
 
 test_that("net_check works when there are no connection issues with show_error as FALSE", {
-  skip_on_cran()
+  #skip_on_cran()
   base_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   expect_silent(net_check(base_url, show_error = FALSE))
   expect_true(net_check(base_url, show_error = FALSE))
@@ -50,7 +50,7 @@ test_that("net_check errors out when there is no internet connection with show_e
 })
 
 test_that("find_latest behaves correctly", {
-  skip_on_cran()
+  #skip_on_cran()
   base_url <-  "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
   test_url1 <- "http://httpbin.org/status/300"
   test_url3 <- "http://httpbin.org/status/404"
