@@ -4,7 +4,7 @@
 #' @description Loads all the dataframes present in the specified version of the database into
 #'  user's global environment
 #' @param version A character vector of length 1 specifying the version number of the
-#'  database. So far available versions are
+#'  database. As of November 2018 the available versions are
 #'  1.0, 2.0, 2.5, 3.0 and 4.3. If version argument is not specified then it
 #'  defaults to latest version (currently 4.3). Note that this function
 #'  does not support vectorization so please \strong{don't pass in a vector of

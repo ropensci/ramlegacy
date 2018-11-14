@@ -9,7 +9,7 @@ download_ramlegacy(version = NULL, ram_path = NULL,
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number
-of the database that should be downloaded. So far available versions are 1.0,
+of the database that should be downloaded. As of November 2018 the available versions are 1.0,
 2.0, 2.5, 3.0 and 4.3. If the version argument is not specified then it defaults
 to latest version (currently latest version is 4.3). Note that this function
 does not support vectorization so please \strong{don't pass in a vector of
@@ -28,7 +28,13 @@ wordpress database website. Please \strong{do not pass} in any other url to
  \code{ram_url}.}
 }
 \description{
-Download RAM Legacy Excel Database
+Downloads a specified version of RAM Legacy Stock Assesment
+ Excel Database as an RDS object to a local directory specified by \code{\link{ram_dir}}.
+ The function will check if the version requested already exists
+ and if it is then it's upto the user to download it again. The function also
+ supports
+ downloading all the versions rom [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
+ in case the database [website](www.ramlegacy.org) is down.
 }
 \examples{
 \dontrun{
