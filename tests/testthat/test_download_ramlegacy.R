@@ -1,6 +1,6 @@
 context("Testing that download_ramlegacy works")
 
-test_that("download_ramlegacy defaults to 4.3 if version not specified", {
+test_that("download_ramlegacy defaults to current latest version 4.3 if version not specified", {
   #skip_on_cran()
   #skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
@@ -32,7 +32,7 @@ test_that("download_ramlegacy errors out behind a proxy server",{
 
 test_that("download_ramlegacy downloads from backup when website is down",{
   skip_on_cran()
-  skip_on_travis()
+  #skip_on_travis()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
 
   test_url1 <- "http://httpbin.org/status/300"
