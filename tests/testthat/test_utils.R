@@ -172,3 +172,16 @@ test_that("check_version_arg fails with invalid versions", {
                "Please pass in only one version number.")
 })
 
+test_that("check_path works with valid paths", {
+  expect_true(check_path(path =ram_dir()))
+  expect_true(check_path(path =ram_dir(vers = 1.0)))
+  expect_true(check_path(path = ram_dir(vers = 2.0)))
+  expect_true(check_path(path = ram_dir(vers = 2.5)))
+  expect_true(check_path(path = ram_dir(vers = 3.0)))
+  expect_true(check_path(path = ram_dir(vers = 4.3)))
+  expect_true(check_path(path = tempfile(tmpdir = tempdir(), pattern = "ramlegacy")))
+})
+
+test_that("check_path errors out with invalid paths", {
+  expect_error(check_path(2.0))
+})

@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^codemeta\.json$
 ^appveyor\.yml$
 ^codecov\.yml$

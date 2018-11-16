@@ -23,10 +23,10 @@
     }
   } else if (local_vers == latest_version) {
       notify(paste("Multiple versions found including the latest one:",
-                   latest_version))
+                   latest_version, ". Loading the latest version."))
       load_ramlegacy(version = latest_version)
   } else {
-    notify(paste0("Be informed that a newer version ",
+    notify(paste0("Loading the version specified. Be informed that a newer version ",
                   latest_version,
                   " of the database is available."))
     load_ramlegacy(version = local_vers)
