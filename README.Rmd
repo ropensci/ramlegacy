@@ -1,5 +1,4 @@
 ---
-author: Kshitiz Gupta
 date: "`r Sys.Date()`"
 output: github_document
 ---
@@ -20,7 +19,7 @@ ramlegacy
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 
-[![Build Status](https://travis-ci.com/kshtzgupta1/ramlegacy.svg?branch=master)](https://travis-ci.com/kshtzgupta1/ramlegacy)
+[![Travis build status](https://travis-ci.org/kshtzgupta1/ramlegacy.svg?branch=master)](https://travis-ci.org/kshtzgupta1/ramlegacy)
 
 [![Coverage status](https://codecov.io/gh/kshtzgupta1/ramlegacy/branch/master/graph/badge.svg)](https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master)
 
