@@ -37,8 +37,8 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
   write_path <- file.path(vers_path,
                           paste0("v", version, ".rds"))
   saveRDS(lst_dfs, file = write_path)
-  filesToRemove <- grep(list.files(vers_path),
-                        pattern='v[0-9]\\.[0-9]+\\.rds', invert=TRUE, value=TRUE)
+  filesToRemove <- grep('v[0-9]\\.[0-9]+\\.rds', list.files(vers_path),
+                        invert=TRUE, value=TRUE)
   on.exit(unlink(file.path(vers_path, filesToRemove),
                  recursive = TRUE, force = TRUE), add = TRUE)
 }

@@ -5,8 +5,8 @@
 #'  user's global environment
 #' @param version A character vector of length 1 specifying the version number of the
 #'  database. As of November 2018 the available versions are
-#'  1.0, 2.0, 2.5, 3.0 and 4.3. If version argument is not specified then it
-#'  defaults to latest version (currently 4.3). Note that this function
+#'  "1.0", "2.0", "2.5", "3.0" and "4.3". If version argument is not specified then it
+#'  defaults to latest version (currently "4.3"). Note that this function
 #'  does not support vectorization so please \strong{don't pass in a vector of
 #'  version numbers} to \code{version}
 #' @param path path to the local directory where the specified version of
@@ -31,19 +31,23 @@
 
 load_ramlegacy <- function(version = NULL, path = NULL) {
   ram_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
+
   if (!is.null(version)) {
     version <- sprintf("%.1f", as.numeric(version))
     check_version_arg(version)
   } else {
     version <- find_latest(ram_url)
   }
+
   if(is.null(path)) {
     path <- file.path(ram_dir(vers = version),paste0("v", version, ".rds"))
   } else {
     check_path(path)
   }
+
   notify(paste("Loading version", version, "..."))
   # make sure version is present
+
   if (!file.exists(path)) {
     stop(paste0("Version ", version, " not found locally."))
   }
@@ -51,17 +55,25 @@ load_ramlegacy <- function(version = NULL, path = NULL) {
   # read in the list of dataframes
   list_dataframes <- readRDS(path)
 
+  # add the version number at end of all dataframe names
   names(list_dataframes) <- paste0(names(list_dataframes), "_v", version)
 
+  # assign all the dataframes to the global env
   lapply(seq_along(list_dataframes),
          function(i) {
            delayedAssign(names(list_dataframes)[i],
                          list_dataframes[[i]], assign.env = .GlobalEnv)
          })
+
+  # check whether all the dataframes are now present in the global environment
+  # through creating a boolean vecor exists_vec
   exists_vec <- unlist(lapply(names(list_dataframes),
                     function(i) {
                       exists(i, envir = .GlobalEnv)
                       }))
+
+
+  # if all the dfs are now present then notify of success
   if (all(exists_vec)) {
     completed(paste0("Version ", version, " has been successfully loaded."))
   } else {
