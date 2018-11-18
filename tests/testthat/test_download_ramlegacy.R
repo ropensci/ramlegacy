@@ -32,8 +32,8 @@ test_that("download_ramlegacy errors out behind a proxy server",{
 
 test_that("download_ramlegacy downloads from backup when website is down",{
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  #skip_on_travis()
+  #skip_on_appveyor()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
 
   test_url1 <- "http://httpbin.org/status/300"
@@ -42,9 +42,11 @@ test_that("download_ramlegacy downloads from backup when website is down",{
 
   expect_message(download_ramlegacy(version = "3.0", ram_path = temp_path, ram_url = test_url1),
                  "Downloading from backup location...")
-  expect_message(download_ramlegacy(version = "3.0", ram_path = temp_path, ram_url = test_url3),
+  unlink(temp_path, recursive = TRUE)
+  expect_message(download_ramlegacy(version = "2.0", ram_path = temp_path, ram_url = test_url3),
                  "Downloading from backup location...")
-  expect_message(download_ramlegacy(version = "3.0", ram_path = temp_path, ram_url = test_url4),
+  unlink(temp_path, recursive = TRUE)
+  expect_message(download_ramlegacy(version = "1.0", ram_path = temp_path, ram_url = test_url4),
                  "Downloading from backup location...")
   unlink(temp_path, recursive = TRUE)
    })

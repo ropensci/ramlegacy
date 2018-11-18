@@ -93,9 +93,9 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   req <- httr::GET(ram_url)
   if (req$status_code != 200) {
     if (interactive()) {
-      ans <- ask_yn(paste("www.ramlegacy.org seems to be down right now.",
-                          "Download from backup location?"))
-      if (!ans) return("Not downloading. Exiting the function.")
+     ans <- ask_yn(paste("www.ramlegacy.org seems to be down right now.",
+                      "Download from backup location?"))
+     if (!ans) return("Not downloading. Exiting the function.")
     }
     message("Downloading from backup location...")
     ram_url <- paste0("https://github.com/kshtzgupta1/ramlegacy-assets/raw/master/RLSADB%20v",
