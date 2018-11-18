@@ -88,7 +88,7 @@ test_that("write_version works as expected", {
   unlink(test_path, recursive = TRUE)
 
   # check that write_version ovewrites the latest version correctly
-  dir.create(test_path, showWarnings = F)
+  dir.create(test_path, showWarnings = FALSE, recursive = TRUE)
   file.create(txt_path)
   writeLines(txt_path, "4.3")
   write_version(test_path, "5.0")
@@ -98,7 +98,7 @@ test_that("write_version works as expected", {
   unlink(test_path, recursive = TRUE)
 
   # check the behavior of write_version when ramlegacy path is present
-  dir.create(test_path, showWarnings = FALSE)
+  dir.create(test_path, showWarnings = FALSE, recursive = TRUE)
 
   # check directory is present and created and that write_version
   # shouldn't create it

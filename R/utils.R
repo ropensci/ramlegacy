@@ -124,7 +124,7 @@ find_latest <- function(ram_url) {
 write_version <- function(path, version) {
   version <- sprintf("%.1f", as.numeric(version))
   if(!dir.exists(path)) {
-    dir.create(path)
+    dir.create(path, recursive = TRUE)
   }
   writePath <- file.path(path, "VERSION.txt")
   writeLines(version, writePath)

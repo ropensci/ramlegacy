@@ -32,7 +32,8 @@ test_that("download_ramlegacy errors out behind a proxy server",{
 
 test_that("download_ramlegacy downloads from backup when website is down",{
   skip_on_cran()
-  #skip_on_travis()
+  skip_on_travis()
+  skip_on_appveyor()
   temp_path <- tempfile(pattern = "ramlegacy", tmpdir = tempdir())
 
   test_url1 <- "http://httpbin.org/status/300"
