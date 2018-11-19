@@ -2,53 +2,48 @@ context("Testing functions in utils.R")
 
 ram_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
 
-test_that("net_check doesn't error out behind a proxy server when show_error is FALSE",{
-  #skip_on_cran()
-  httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234),
-                    {
+test_that("net_check doesn't error behind proxy server with show_error as F", {
+httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234), {
                     expect_silent(net_check(ram_url, show_error = FALSE))
-                    expect_false(net_check(ram_url, show_error = FALSE))
+                      expect_false(net_check(ram_url, show_error = FALSE))
                     })
 })
 
-test_that("net_check errors out behind a proxy server when show_error is TRUE",{
-  #skip_on_cran()
-  httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234),
-                    {
-                    expect_error(net_check(ram_url, show_error = TRUE),
-                      "Could not connect to the internet. Please check your connection settings and try again.")
-                    })
+test_that("net_check errors behind proxy server with show_error as TRUE", {
+httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234), {
+                  expect_error(net_check(ram_url, show_error = TRUE),
+                    paste("Could not connect to the internet.",
+                    "Please check your connection settings and try again."))
+                  })
 })
 
-test_that("net_check works when there are no connection issues with show_error as TRUE", {
-  #skip_on_cran()
+test_that("net_check works when no connection issues w/ show_error as TRUE", {
   expect_silent(net_check(ram_url, show_error = TRUE))
   expect_true(net_check(ram_url, show_error = TRUE))
 })
 
-test_that("net_check works when there are no connection issues with show_error as FALSE", {
-  #skip_on_cran()
+test_that("net_check works when no connection issues w/ show_error as FALSE", {
   expect_silent(net_check(ram_url, show_error = FALSE))
   expect_true(net_check(ram_url, show_error = FALSE))
-
 })
 
-test_that("net_check doesn't error when no net connection with show_error as F",{
+test_that("net_check doesn't error when no net connection w/ show_error as F", {
 httptest::without_internet({
   expect_silent(net_check(ram_url, show_error = FALSE))
   expect_false(net_check(ram_url, show_error = FALSE))
-})
+  })
 })
 
 test_that("net_check errors if no internet connection with show_error as T", {
   httptest::without_internet({
     expect_error(net_check(ram_url, show_error = TRUE),
-                 "Could not connect to the internet. Please check your connection settings and try again.")
+                 paste("Could not connect to the internet.",
+                       "Please check your connection settings and try again."))
   })
 })
 
 test_that("find_latest behaves correctly", {
-  #skip_on_cran()
+  skip_on_cran()
   test_url1 <- "http://httpbin.org/status/300"
   test_url3 <- "http://httpbin.org/status/404"
   test_url4 <- "http://httpbin.org/status/500"
@@ -70,6 +65,7 @@ test_that("find_latest behaves correctly", {
 })
 
 test_that("write_version works as expected", {
+  skip_on_cran()
   # create temp directory as a proxy for rappdirs directory
   test_path <- tempfile("ramlegacy", tempdir())
   # check test_path doesn't exist before calling write_version
@@ -109,6 +105,7 @@ test_that("write_version works as expected", {
 })
 
 test_that("find_local behaves as expected", {
+  skip_on_cran()
   # use tempdir to mock rappdirs directory
   test_path <- tempfile("ramlegacy", tempdir())
   dir.create(test_path, showWarnings = FALSE, recursive = TRUE)
@@ -136,9 +133,7 @@ test_that("find_local behaves as expected", {
   expect_equal(find_local(test_path, "4.3"), "4.3")
 })
 
-
-
-test_that("ram_dir returns a path",{
+test_that("ram_dir returns a path", {
   expect_is(ram_dir(), "character")
   expect_is(ram_dir(vers = 2.0), "character")
   expect_silent(ram_dir())
@@ -169,7 +164,7 @@ test_that("check_version_arg fails with invalid versions", {
 })
 
 test_that("check_path works with valid paths", {
-  expect_true(check_path(path =ram_dir()))
+  expect_true(check_path(path = ram_dir()))
   expect_true(check_path(path = ram_dir(vers = 1.0)))
   expect_true(check_path(path = ram_dir(vers = 2.0)))
   expect_true(check_path(path = ram_dir(vers = 2.5)))

@@ -65,7 +65,7 @@ ram_dir <- function(vers = NULL){
 #' @noRd
 ask_yn <- function(...) {
   choices <- c("Yes", "No")
-  cat(crayon::green(paste0(...,"\n", collapse = "")))
+  cat(crayon::green(paste0(..., "\n", collapse = "")))
   cli::cat_rule(col = "green")
   utils::menu(choices) == which(choices == "Yes")
 }
@@ -74,7 +74,7 @@ ask_yn <- function(...) {
 ## Ask for multiple choices
 #' @noRd
 ask_multiple <- function(msg, choices) {
-  cat(crayon::green(paste0(msg,"\n", collapse = "")))
+  cat(crayon::green(paste0(msg, "\n", collapse = "")))
   cli::cat_rule(col = "green")
   utils::select.list(choices)
 }
@@ -90,14 +90,14 @@ net_check <- function(url, show_error = FALSE){
 
   error = function(e) {
 
-      if(show_error) {
+      if (show_error) {
         stop(paste("Could not connect to the internet.",
                    "Please check your connection settings and try again."),
         call. = FALSE)
       }
     })
 
-  if(typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
+  if (typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
 
 }
 
@@ -143,11 +143,11 @@ find_latest <- function(ram_url) {
 #' @noRd
 write_version <- function(path, version) {
   version <- sprintf("%.1f", as.numeric(version))
-  if(!dir.exists(path)) {
+  if (!dir.exists(path)) {
     dir.create(path, recursive = TRUE)
   }
-  writePath <- file.path(path, "VERSION.txt")
-  writeLines(version, writePath)
+  write_path <- file.path(path, "VERSION.txt")
+  writeLines(version, write_path)
 }
 
 
@@ -171,7 +171,7 @@ find_local <- function(path, latest_vers) {
   # local version actually contains a rds file of the database
   rds_exists_vec <- unlist(lapply(potential_vers_vec, function(vers) {
     vers <- sprintf("%.1f", as.numeric(vers))
-    rds_path <- file.path(path, file.path(vers, paste0("v", vers,".rds")))
+    rds_path <- file.path(path, file.path(vers, paste0("v", vers, ".rds")))
     file.exists(rds_path)
   }))
 
@@ -186,13 +186,3 @@ find_local <- function(path, latest_vers) {
     return(vers_that_exist)
   }
 }
-
-
-
-
-
-
-
-
-
-

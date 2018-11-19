@@ -8,7 +8,7 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
   excel_file_name <- grep("RLSADB.*\\.(xlsx|xls)",
                           list.files(vers_path), value = TRUE)
   excel_file_path <- file.path(vers_path, excel_file_name)
-  na_vec <- c("NA", "NULL","_", "none", "N/A", "")
+  na_vec <- c("NA", "NULL", "_", "none", "N/A", "")
   sheets <- readxl::excel_sheets(path = excel_file_path)
 
   # read in all the dataframes
@@ -37,10 +37,8 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
   write_path <- file.path(vers_path,
                           paste0("v", version, ".rds"))
   saveRDS(lst_dfs, file = write_path)
-  filesToRemove <- grep('v[0-9]\\.[0-9]+\\.rds', list.files(vers_path),
-                        invert=TRUE, value=TRUE)
-  on.exit(unlink(file.path(vers_path, filesToRemove),
+  files_to_remove <- grep("v[0-9]\\.[0-9]+\\.rds", list.files(vers_path),
+                        invert = TRUE, value = TRUE)
+  on.exit(unlink(file.path(vers_path, files_to_remove),
                  recursive = TRUE, force = TRUE), add = TRUE)
 }
-
-

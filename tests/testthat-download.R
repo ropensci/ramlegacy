@@ -2,4 +2,4 @@ library(testthat)
 library(ramlegacy)
 
 
-test_check("ramlegacy", filter = 'download|Download')
+test_check("ramlegacy", filter = "download|Download")

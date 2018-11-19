@@ -39,8 +39,8 @@ load_ramlegacy <- function(version = NULL, path = NULL) {
     version <- find_latest(ram_url)
   }
 
-  if(is.null(path)) {
-    path <- file.path(ram_dir(vers = version),paste0("v", version, ".rds"))
+  if (is.null(path)) {
+    path <- file.path(ram_dir(vers = version), paste0("v", version, ".rds"))
   } else {
     check_path(path)
   }
@@ -81,4 +81,3 @@ load_ramlegacy <- function(version = NULL, path = NULL) {
   }
   invisible(TRUE)
 }
-

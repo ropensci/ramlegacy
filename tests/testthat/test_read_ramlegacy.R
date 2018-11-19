@@ -98,4 +98,3 @@ test_that("read_ramlegacy writes the database as RDS for v4.3", {
   expect_is(readRDS(rds_file), "list")
   unlink(rds_file, recursive = TRUE)
 })
-

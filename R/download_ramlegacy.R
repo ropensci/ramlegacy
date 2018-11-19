@@ -76,7 +76,7 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   }
 
   # create vers_path if it doesn't exist
-  if(!dir.exists(vers_path)) {
+  if (!dir.exists(vers_path)) {
     dir.create(vers_path, recursive = TRUE)
   }
 
@@ -86,10 +86,10 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   # construct url to download from
 
   # version 1.0 has a diff url from the rest
-  if (version == '1.0') {
+  if (version == "1.0") {
     data_url <- "RLSADB_v1.0_excel.zip"
   } else {
-    data_url <- paste0("RLSADB_v",version,
+    data_url <- paste0("RLSADB_v", version,
                        "_(assessment_data_only)_excel.zip")
   }
   ram_url <- paste(ram_url, data_url, sep = "/")
@@ -112,7 +112,7 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
     httr::GET(ram_url, httr::write_disk(excel_path))
 
     # read in the sheets using read_ramlegacy
-    if(file.exists(excel_path)) {
+    if (file.exists(excel_path)) {
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
 
@@ -123,7 +123,7 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
     httr::GET(ram_url, httr::write_disk(tmp))
 
     #unzip it and read it in
-    if(file.exists(tmp)) {
+    if (file.exists(tmp)) {
       notify(paste("Downloaded the RAM Legacy Stock Assessment Database.",
                    "Now unzipping it..."))
       utils::unzip(tmp, exdir = vers_path, overwrite = TRUE)
@@ -144,5 +144,3 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   invisible(TRUE)
 
 }
-
-
