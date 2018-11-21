@@ -1,7 +1,7 @@
 
 #' @name download_ramlegacy
 #' @title Download RAM Legacy Excel Database
-#' @description Downloads a specified version of RAM Legacy Stock Assesment
+#' @description Downloads a specified version of RAM Legacy Stock Assessment
 #'  Excel Database as an RDS object to a local directory specified by \code{\link{ram_dir}}.
 #'  The function will check if the version requested already exists
 #'  and if it is then it's up to the user to download it again. The function also
