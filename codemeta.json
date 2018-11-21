@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ramlegacy",
-  "description": "Contains functions to download, cache and read in\n    the RAM Legacy Stock Assessment Data Base, an online compilation of\n    stock assessment results for commercially exploited marine populations\n    from around the world. More information about the database can be\n    found at <http://ramlegacy.org/>.",
+  "description": "Contains functions to download, cache and read in Excel version of\n    the RAM Legacy Stock Assessment Data Base, an online compilation of\n    stock assessment results for commercially exploited marine populations\n    from around the world. More information about the database can be\n    found at <http://ramlegacy.org/>.",
   "name": "ramlegacy: Download and Read RAM Legacy Stock Assessment DataBase",
   "codeRepository": "https://github.com/kshtzgupta1/ramlegacy",
   "issueTracker": "https://github.com/kshtzgupta1/ramlegacy/issues",
@@ -192,11 +192,12 @@
     }
   ],
   "readme": "https://github.com/kshtzgupta1/ramlegacy/blob/master/README.md",
-  "fileSize": "118.284KB",
+  "fileSize": "119.68KB",
   "contIntegration": [
     "https://travis-ci.com/kshtzgupta1/ramlegacy",
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",
     "https://ci.appveyor.com/project/kshtzgupta1/ramlegacy"
   ],
-  "keywords": ["ramlegacy", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"]
+  "keywords": ["ramlegacy", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }

@@ -11,7 +11,7 @@ Authors@R:
              family = "Boettiger",
              role = c("aut", "cph"),
              email = "cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X"))
-Description: Contains functions to download, cache and read in
+Description: Contains functions to download, cache and read in Excel version of
     the RAM Legacy Stock Assessment Data Base, an online compilation of
     stock assessment results for commercially exploited marine populations
     from around the world. More information about the database can be

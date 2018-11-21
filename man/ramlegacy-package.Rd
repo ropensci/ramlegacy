@@ -6,7 +6,7 @@
 \alias{ramlegacy-package}
 \title{ramlegacy: Download and Read RAM Legacy Stock Assessment DataBase}
 \description{
-Contains functions to download, cache and read in
+Contains functions to download, cache and read in Excel version of
     the RAM Legacy Stock Assessment Data Base, an online compilation of
     stock assessment results for commercially exploited marine populations
     from around the world. More information about the database can be
