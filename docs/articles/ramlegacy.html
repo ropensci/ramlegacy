@@ -71,7 +71,7 @@
       <h1>Introduction to ramlegacy</h1>
                         <h4 class="author">Carl Boettiger &amp; Kshitiz Gupta</h4>
             
-            <h4 class="date">2018-12-18</h4>
+            <h4 class="date">2018-12-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/kshtzgupta1/ramlegacy/blob/master/vignettes/ramlegacy.Rmd"><code>vignettes/ramlegacy.Rmd</code></a></small>
       <div class="hidden name"><code>ramlegacy.Rmd</code></div>
@@ -85,7 +85,7 @@
 <a href="#ram-legacy-stock-assessment-database" class="anchor"></a>RAM Legacy Stock Assessment Database</h2>
 <p>From the database’s <a href="www.ramlegacy.org">website</a>:</p>
 <p>“The RAM Legacy Stock Assessment Database is a compilation of stock assessment results for commercially exploited marine populations from around the world. It is inspired by Dr. Ransom A. Myers’ original <a href="http://www.mathstat.dal.ca/~myers/welcome.html">stock-recruitment database</a>, which is no longer being updated.”</p>
-<p>Different versions of the database are available in compressed (zipped) form on the <a href="www.ramlegacy.org">website</a> in two formats: <strong>Access</strong> (Microsoft Office Access 2007 file format) and <strong>Excel</strong> (Microsoft Excel Open XML Format Spreadsheet). As of November 2018 the available versions are 1.0, 2.0, 2.5, 3.0, 4.3.</p>
+<p>Different versions of the database are available in compressed (zipped) form on the <a href="www.ramlegacy.org">website</a> in two formats: <strong>Access</strong> (Microsoft Office Access 2007 file format) and <strong>Excel</strong> (Microsoft Excel Open XML Format Spreadsheet). As of November 2018, the available versions are 1.0, 2.0, 2.5, 3.0, 4.3.</p>
 </div>
 <div id="about-the-package" class="section level2">
 <h2 class="hasAnchor">
@@ -95,13 +95,14 @@
 <div id="package-loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package-loading" class="anchor"></a>Package loading</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Upon installation no versions are present locally so ramlegacy</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ramlegacy)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ramlegacy)</code></pre></div>
 <p>After installation of the package when <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(load_ramlegacy)</a></code> is called for the first time <code>ramlegacy</code> checks whether any version of the database exists in the user’s application data directory whose path is given by <code><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/ram_dir">ram_dir()</a></code>. If no version of the database is found then the user is informed about it and prompted to download a version by calling <code><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/download_ramlegacy">download_ramlegacy()</a></code>.</p>
 <p>Subsequent calls to <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> read in and load the database in the user’s global environment. Which version is loaded depends upon which versions have been downloaded and are present locally and whether <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> is called in an interactive session or non-interactive session. Specifically, if only a single version is present locally then calling <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> will load it into the user’s global environment irrespective of whether it’s the latest version or an older version. If, however, multiple versions of the database are present, the latest version among them, then <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> guesses that the user wants to load the latest version and so reads it in. It’s unable to do this guessing if the latest version is not present among the multiple versions that are found locally. In such a case, if R is running interactively then <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> will prompt the user to select which older version to read otherwise, in such a situation <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> cannot select which to version to load and directs the user to use <code><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/load_ramlegacy">load_ramlegacy()</a></code> to load the desired version. The decision tree-diagram below depicts the behavior of <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code>:</p>
+<center>
 <div class="figure">
 <img src="tree1.png" alt="Behavior of library(ramlegacy)" style="width:100.0%"><p class="caption">Behavior of library(ramlegacy)</p>
 </div>
+</center>
 </div>
 <div id="download_ramlegacy" class="section level2">
 <h2 class="hasAnchor">
@@ -122,7 +123,7 @@
 <span class="co"># download version 4.3</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/download_ramlegacy">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"4.3"</span>)</code></pre></div>
 <p>If version is not specified then <code>download_ramlegacy</code> will default to downloading the latest version of the database:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># if version not specified then defaults to latest version (currently 4.3)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># downloads latest version (currently 4.3)</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/download_ramlegacy">download_ramlegacy</a></span>()</code></pre></div>
 <p>To enable caching behavior, before downloading a the specified version <code>download_ramlegacy</code> checks whether that version has already been downloaded. If it is then <code>download_ramlegacy</code> gives the user the option to either download again and overwrite the existing version or not download and just exit the function. After downloading the database download_ramlegacy caches it by converting it to an RDS object which can then be read in through calling <code><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/load_ramlegacy">load_ramlegacy()</a></code> or <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code>. <code>ramlegacy</code> package is designed to provide robust access to the RAM Legacy Stock Assessment data. As such, in case the <a href="www.ramlegacy.org">database’s website</a> is down <code>download_ramlegacy</code> provides the user with the option to download the data from a backup github data <a href="https://github.com/kshtzgupta1/ramlegacy-assets">repository</a>. Currently, backups of all available versions (1.0, 2.0, 2.5, 3.0, 4.3) are available.</p>
 <p><code>download_ramlegacy</code> also has two other arguments: <code>ram_path</code> and <code>ram_url</code>. <code>ram_path</code> has been permanently set to the path provided by <code><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/ram_dir">ram_dir(vers = "version")</a></code> and <code>ram_url</code> is fixed to the URL of the database website. Please <strong>do not modify</strong> or <strong>pass in any values</strong> to these two parameters. Also, please note that <code>download_ramlegacy</code> is not a vectorized function so please don’t pass in a vector of version numbers to its <code>version</code> argument.</p>
@@ -131,16 +132,16 @@
 <h2 class="hasAnchor">
 <a href="#load_ramlegacy" class="anchor"></a>load_ramlegacy</h2>
 <p>Use <code>load_ramlegacy</code> to read in all the dataframes (sheets) present in the desired version of the database. Make sure that the version you want to load was downloaded and is already present locally otherwise <code>load_ramlegacy</code> will throw an error.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load in version 3.0</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># loads in version 3.0</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/load_ramlegacy">load_ramlegacy</a></span>(<span class="dt">version =</span> <span class="fl">3.0</span>)</code></pre></div>
 <p>Also, note that like <code>download_ramlegacy</code>, <code>load_ramlegacy</code> is not a vectorized function so please don’t pass in a vector of version numbers to its <code>version</code> argument. Similar, to <code>download_ramlegacy</code>, <code>load_ramlegacy</code> has a <code>path</code> argument which has been permanently set to <code><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/ram_dir">ram_dir(vers = "version")</a></code>. Consequently, please <strong>do not modify</strong> or <strong>pass in any values</strong> to <code>path</code>.</p>
 </div>
 <div id="ram_dir" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ram_dir" class="anchor"></a>ram_dir</h2>
-<p>To see the path where the specified <em>version</em> of database was downloaded on the user’s computer, the user can call <code>ram_dir(vers = *version*)</code>. Note that this is also the location from which <code>load_ramlegacy</code> reads in the database.</p>
+<p>To see the path where the specified version of database was downloaded on the user’s computer, the user can call <code>ram_dir</code>. Note that this is also the location from which <code>load_ramlegacy</code> reads in the database.</p>
 <p>For example, to see where version 4.3 of the database was downloaded you can call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># view the path to which version 4.3 of the database was cached</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># view the path where version 4.3 of the database was cached</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/ramlegacy/topics/ram_dir">ram_dir</a></span>(<span class="dt">vers =</span> <span class="st">'4.3'</span>)</code></pre></div>
 </div>
   </div>

@@ -107,15 +107,15 @@ versions of the RAM Legacy Stock Assessment Excel Database as RDS objects. This 
 <p>You can install the development version from <a href="https://github.com/kshtzgupta1/ramlegacy">GitHub</a> with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"kshtzgupta1/ramlegacy"</span>, build_vignettes)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"kshtzgupta1/ramlegacy"</span>)</code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Please see the ramlegacy vignette for more detailed examples and additional package functionality. The vignette can be viewed by calling <code>vignette(package = "ramlegacy")</code></p>
+<p>Please see the ramlegacy <a href="https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html">vignette</a> for more detailed examples and additional package functionality. The vignette can also be viewed by calling <code>vignette(package = "ramlegacy")</code></p>
 <p>Start by loading the package using <code>library</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ramlegacy)</code></pre></div>
-<p>When <code>ramlegacy</code> is loaded for the first time after installation of the package calling <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> will prompt the user to download a version of the database using <code>download_ramlegacy()</code>. After downloading a version or multiple versions of the database the subsequent behavior of <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> will depend on which version/versions were downloaded and are present on disk as well as whether <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy vignette.</p>
+<p>When <code>ramlegacy</code> is loaded for the first time after installation of the package calling <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> will prompt the user to download a version of the database using <code>download_ramlegacy()</code>. After downloading a version or multiple versions of the database the subsequent behavior of <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> will depend on which version/versions were downloaded and are present on disk as well as whether <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy <a href="https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html">vignette.</a></p>
 <div id="download_ramlegacy" class="section level3">
 <h3 class="hasAnchor">
 <a href="#download_ramlegacy" class="anchor"></a>download_ramlegacy</h3>

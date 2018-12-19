@@ -1,0 +1,32 @@
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    intro:
+      text: Get started
+      href: articles/ramlegacy.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/kshtzgupta1/ramlegacy
+
+reference:
+- title: All functions
+  desc: ~
+  contents:
+  - '`download_ramlegacy`'
+  - '`load_ramlegacy`'
+  - '`ram_dir`'
+

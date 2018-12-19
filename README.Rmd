@@ -49,7 +49,7 @@ install_github("kshtzgupta1/ramlegacy")
 ```
 
 ## Usage
-Please see the ramlegacy vignette for more detailed examples and additional package functionality. The vignette can be viewed by calling `vignette(package = "ramlegacy")`
+Please see the ramlegacy [vignette](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality. The vignette can also be viewed by calling `vignette(package = "ramlegacy")`
 
 Start by loading the package using `library`.
 
@@ -57,7 +57,7 @@ Start by loading the package using `library`.
 library(ramlegacy)
 ```
 
-When `ramlegacy` is loaded for the first time after installation of the package calling `library(ramlegacy)` will prompt the user to download a version of the database using `download_ramlegacy()`. After downloading a version or multiple versions of the database the subsequent behavior of `library(ramlegacy)` will depend on which version/versions were downloaded and are present on disk as well as whether `library(ramlegacy)` is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy vignette. 
+When `ramlegacy` is loaded for the first time after installation of the package calling `library(ramlegacy)` will prompt the user to download a version of the database using `download_ramlegacy()`. After downloading a version or multiple versions of the database the subsequent behavior of `library(ramlegacy)` will depend on which version/versions were downloaded and are present on disk as well as whether `library(ramlegacy)` is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy [vignette.](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) 
 
 ### download_ramlegacy
 

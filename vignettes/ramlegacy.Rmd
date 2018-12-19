@@ -31,7 +31,6 @@ versions of the database as part of any future analysis involving the data. The 
 ## Package loading
 
 ```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = F}
-# Upon installation no versions are present locally so ramlegacy
 library(ramlegacy)
 ```
 
@@ -40,8 +39,11 @@ After installation of the package when `library(load_ramlegacy)` is called for t
 Subsequent calls to `library(ramlegacy)` read in and load the database in the user's global environment. Which version is loaded depends upon which versions have been downloaded and are present locally and whether `library(ramlegacy)` is called in an interactive session or non-interactive session.
 Specifically, if only a single version is present locally then calling `library(ramlegacy)` will load it into the user's global environment irrespective of whether it's the latest version or an older version. If, however, multiple versions of the database are present, the latest version among them, then `library(ramlegacy)` guesses that the user wants to load the latest version and so reads it in. It's unable to do this guessing if the latest version is not present among the multiple versions that are found locally. In such a case, if R is running interactively then `library(ramlegacy)` will prompt the user to select which older version to read otherwise, in such a situation `library(ramlegacy)` cannot select which to version to load and directs the user to use `load_ramlegacy()` to load the desired version. The decision tree-diagram below depicts the behavior of `library(ramlegacy)`:
 
+<center>
+
 ![Behavior of library(ramlegacy)](tree1.png){width=100%}
 
+</center>
 
 ## download_ramlegacy
 You can download any available version of the RAM Legacy Stock Assessment Excel Database through `download_ramlegacy()` and specifying the version argument:
@@ -67,7 +69,7 @@ If version is not specified then `download_ramlegacy` will default to downloadin
 latest version of the database:
 
 ```{r, download_ramlegacy_example2, echo = T, eval = F}
-# if version not specified then defaults to latest version (currently 4.3)
+# downloads latest version (currently 4.3)
 download_ramlegacy()
 ```
 
@@ -80,19 +82,19 @@ To enable caching behavior, before downloading a the specified version `download
 Use `load_ramlegacy` to read in all the dataframes (sheets) present in the desired version of the database. Make sure that the version you want to load was downloaded and is already present locally otherwise `load_ramlegacy` will throw an error.
 
 ```{r, load_ramlegacy_example1, echo = T, eval = F}
-# load in version 3.0
+# loads in version 3.0
 load_ramlegacy(version = 3.0)
 ```
 
 Also, note that like `download_ramlegacy`, `load_ramlegacy` is not a vectorized function so please don't pass in a vector of version numbers to its `version` argument. Similar, to `download_ramlegacy`, `load_ramlegacy` has a `path` argument which has been permanently set to `ram_dir(vers = "version")`. Consequently, please **do not modify** or **pass in any values** to `path`.
   
 ## ram_dir
-To see the path where the specified *version* of database was downloaded on the user's computer, the user can call `ram_dir(vers = *version*)`. Note that this is also the location from which `load_ramlegacy` reads in the database. 
+To see the path where the specified version of database was downloaded on the user's computer, the user can call `ram_dir`. Note that this is also the location from which `load_ramlegacy` reads in the database. 
 
 For example, to see where version 4.3 of the database was downloaded you can call:
 
 ```{r, ram_dir_example1, echo = T, eval = F}
-# view the path to which version 4.3 of the database was cached
+# view the path where version 4.3 of the database was cached
 ram_dir(vers = '4.3')
 ```
 
