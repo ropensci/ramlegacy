@@ -8,7 +8,7 @@ ram_dir(vers = NULL)
 }
 \arguments{
 \item{vers}{character, version number of the database. As of November 2018,
-the availabl versions are "1.0", "2.0", "2.5", "3.0" and "4.3". If version
+the available versions are "1.0", "2.0", "2.5", "3.0" and "4.3". If version
 is not specified the \code{ram_dir()} returns the path to the rappdirs directory.}
 }
 \description{

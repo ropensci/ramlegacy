@@ -103,7 +103,8 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
      if (!ans) return("Not downloading. Exiting the function.")
     }
     message("Downloading from backup location...")
-    bckup_url <- "https://github.com/kshtzgupta1/ramlegacy-assets/raw/master/RLSADB%20v"
+    bckup_url <- paste0("https://github.com/kshtzgupta1/",
+                        "ramlegacy-assets/raw/master/RLSADB%20v")
     ram_url <- paste0(bckup_url, version, "%20(assessment%20data%20only).xlsx")
     # create path for excel file
     excel_path <- file.path(vers_path,
