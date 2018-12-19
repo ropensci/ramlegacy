@@ -83,7 +83,7 @@ Use `load_ramlegacy` to read in all the dataframes (sheets) present in the desir
 
 ```{r, load_ramlegacy_example1, echo = T, eval = F}
 # loads in version 3.0
-load_ramlegacy(version = 3.0)
+load_ramlegacy(version = "3.0"")
 ```
 
 Also, note that like `download_ramlegacy`, `load_ramlegacy` is not a vectorized function so please don't pass in a vector of version numbers to its `version` argument. Similar, to `download_ramlegacy`, `load_ramlegacy` has a `path` argument which has been permanently set to `ram_dir(vers = "version")`. Consequently, please **do not modify** or **pass in any values** to `path`.
@@ -95,7 +95,7 @@ For example, to see where version 4.3 of the database was downloaded you can cal
 
 ```{r, ram_dir_example1, echo = T, eval = F}
 # view the path where version 4.3 of the database was cached
-ram_dir(vers = '4.3')
+ram_dir(vers = "4.3")
 ```
 
 
