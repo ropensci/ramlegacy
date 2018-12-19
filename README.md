@@ -28,7 +28,7 @@ You can install the development version from [GitHub](https://github.com/kshtzgu
 ``` r
 install.packages("devtools")
 library(devtools)
-install_github("kshtzgupta1/ramlegacy", build_vignettes)
+install_github("kshtzgupta1/ramlegacy")
 ```
 
 Usage
