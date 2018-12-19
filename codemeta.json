@@ -14,10 +14,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.4",
+    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.4 (2018-03-15)",
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
   "author": [
     {
       "@type": "Person",
@@ -192,7 +192,7 @@
     }
   ],
   "readme": "https://github.com/kshtzgupta1/ramlegacy/blob/master/README.md",
-  "fileSize": "119.68KB",
+  "fileSize": "246.38KB",
   "contIntegration": [
     "https://travis-ci.com/kshtzgupta1/ramlegacy",
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",

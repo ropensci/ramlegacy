@@ -8,11 +8,13 @@ ram_dir(vers = NULL)
 }
 \arguments{
 \item{vers}{character, version number of the database. As of November 2018,
-the available versions are "1.0", "2.0", "2.5", "3.0" and "4.3". If version
+the availabl versions are "1.0", "2.0", "2.5", "3.0" and "4.3". If version
 is not specified the \code{ram_dir()} returns the path to the rappdirs directory.}
 }
 \description{
-Output OS-independent path to the downloaded RAM Legacy database
+Provides the download location for \code{\link{download_ramlegacy}}
+ in an  OS independent manner. This is also the location from where
+ \code{\link{load_ramlegacy}} loads the database from.
 }
 \examples{
 # return the path to the rappdirs directory.

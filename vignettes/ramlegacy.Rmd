@@ -1,6 +1,6 @@
 ---
 title: 'Introduction to ramlegacy'
-author: "Kshitiz Gupta"
+author: "Carl Boettiger & Kshitiz Gupta" 
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: |
@@ -22,7 +22,7 @@ From the database's [website](www.ramlegacy.org):
 
 "The RAM Legacy Stock Assessment Database is a compilation of stock assessment results for commercially exploited marine populations from around the world. It is inspired by Dr. Ransom A. Myers' original [stock-recruitment database](http://www.mathstat.dal.ca/~myers/welcome.html), which is no longer being updated."
 
-Different versions of the database are available in compressed (zipped) form on the [website](www.ramlegacy.org) in two formats: **Access** (Microsoft Office Access 2007 file format)  and **Excel** (Microsoft Excel Open XML Format Spreadsheet). As of November 2018 the available versions are 1.0, 2.0, 2.5, 3.0, 4.3.
+Different versions of the database are available in compressed (zipped) form on the [website](www.ramlegacy.org) in two formats: **Access** (Microsoft Office Access 2007 file format)  and **Excel** (Microsoft Excel Open XML Format Spreadsheet). As of November 2018, the available versions are 1.0, 2.0, 2.5, 3.0, 4.3.
 
 ## About the package
 The goal of `ramlegacy` is to cache the specified version/versions of the RAM Legacy Stock Assessment Excel Database and this way save time and effort spent in re-downloading different
@@ -30,7 +30,7 @@ versions of the database as part of any future analysis involving the data. The 
 
 ## Package loading
 
-```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = T}
+```{r packages, warning=FALSE, message=FALSE, echo = TRUE, eval = F}
 # Upon installation no versions are present locally so ramlegacy
 library(ramlegacy)
 ```
@@ -91,7 +91,7 @@ To see the path where the specified *version* of database was downloaded on the 
 
 For example, to see where version 4.3 of the database was downloaded you can call:
 
-```{r, ram_dir_example1}
+```{r, ram_dir_example1, echo = T, eval = F}
 # view the path to which version 4.3 of the database was cached
 ram_dir(vers = '4.3')
 ```

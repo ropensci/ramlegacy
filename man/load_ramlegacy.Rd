@@ -15,7 +15,7 @@ does not support vectorization so please \strong{don't pass in a vector of
 version numbers} to \code{version}}
 
 \item{path}{path to the local directory where the specified version of
-the RAM Legacy Stock Excel Assessment database was downloaded.
+the RAM Legacy Stock Excel Assesment database was downloaded.
  This path can be viewed using calling the function \code{\link{ram_dir}} and specifying
  the version number inside the function call. This function \strong{does not} support
  setting a user-specified path so \strong{please

@@ -20,6 +20,7 @@
 /home/kshitiz/Desktop/ramlegacy/appveyor.yml="25C0A3FE"
 /home/kshitiz/Desktop/ramlegacy/codecov.yml="F0DD671E"
 /home/kshitiz/Desktop/ramlegacy/codemeta.json="5B1212E4"
+/home/kshitiz/Desktop/ramlegacy/docs/articles/ramlegacy.html="3D67FD9C"
 /home/kshitiz/Desktop/ramlegacy/man/download_ramlegacy.Rd="97EA82D1"
 /home/kshitiz/Desktop/ramlegacy/man/load_ramlegacy.Rd="1DFA1A5"
 /home/kshitiz/Desktop/ramlegacy/man/ram_dir.Rd="3C076EF5"
@@ -31,4 +32,5 @@
 /home/kshitiz/Desktop/ramlegacy/tests/testthat/test_load_ramlegacy.R="88EAA20A"
 /home/kshitiz/Desktop/ramlegacy/tests/testthat/test_read_ramlegacy.R="1F97C1D7"
 /home/kshitiz/Desktop/ramlegacy/tests/testthat/test_utils.R="47AC7443"
+/home/kshitiz/Desktop/ramlegacy/vignettes/ramlegacy.Rmd="4AFD7034"
 /home/kshitiz/Downloads/hw5_old.ipynb="91974E3B"
