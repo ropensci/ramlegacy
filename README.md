@@ -3,7 +3,7 @@
 ramlegacy
 =========
 
-[![Travis Build Status](https://travis-ci.com/kshtzgupta1/ramlegacy.svg?branch=master)](https://travis-ci.com/kshtzgupta1/ramlegacy) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/kshtzgupta1/ramlegacy?branch=master&svg=true)](https://ci.appveyor.com/project/kshtzgupta1/ramlegacy) [![Coverage status](https://codecov.io/gh/kshtzgupta1/ramlegacy/branch/master/graph/badge.svg)](https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master) [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Travis Build Status](https://travis-ci.com/kshtzgupta1/ramlegacy.svg?branch=master)](https://travis-ci.com/kshtzgupta1/ramlegacy) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/kshtzgupta1/ramlegacy?branch=master&svg=true)](https://ci.appveyor.com/project/kshtzgupta1/ramlegacy) [![Coverage status](https://codecov.io/gh/kshtzgupta1/ramlegacy/branch/master/graph/badge.svg)](https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master) [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip) [![](https://badges.ropensci.org/264_status.svg)](https://github.com/ropensci/software-review/issues/264)
 
 -   **Authors**: Kshitiz Gupta, [Carl Boettiger](http://www.carlboettiger.info/)
 -   **License**: [MIT](http://opensource.org/licenses/MIT)
@@ -75,7 +75,7 @@ After the specified version of the database has been downloaded through `downloa
 # load version 3.0
 load_ramlegacy(version = "3.0")
 
-# loads current latest version 4.3
+# loads the latest version (currently 4.3)
 load_ramlegacy()
 ```
 
@@ -85,10 +85,10 @@ To view the exact path where a certain version of the database was downloaded an
 
 ``` r
 # downloads version 2.5
-download_ramlegacy(version = '2.5')
+download_ramlegacy(version = "2.5")
 
-# view the location where version 2.5 of the database was downloaded
-ram_dir(vers = '2.5')
+# view the location where version 2.5 of the database was downloaded and cached
+ram_dir(vers = "2.5")
 ```
 
 Similar Projects
