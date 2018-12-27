@@ -10,7 +10,7 @@ ramlegacy
 -   [Package source code on Github](https://github.com/kshtzgupta1/ramlegacy)
 -   [**Submit Bugs and feature requests**](https://github.com/kshtzgupta1/ramlegacy/issues)
 
-`ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](www.ramlegacy.org)
+`ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](http://ramlegacy.org)
 
 What does `ramlegacy` do?
 -------------------------
@@ -60,7 +60,7 @@ If version is not specified then `download_ramlegacy` defaults to downloading cu
 download_ramlegacy()
 ```
 
-To ensure that the user is able to download the data in case www.ramlegacy.org is down, the function also supports downloading all the different versions of the database from a [backup](www.github.com/kshtzgupta1/ramlegacy-assets/) location:
+To ensure that the user is able to download the data in case www.ramlegacy.org is down, the function also supports downloading all the different versions of the database from a [backup](https://www.github.com/kshtzgupta1/ramlegacy-assets/) location:
 
 ``` r
 # downloads version 1.0 from backup location if www.ramlegacy.org is down
