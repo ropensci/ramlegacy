@@ -19,7 +19,7 @@
 #' @examples
 #' \dontrun{
 #' # If version is not specified then current latest version
-#' # (4.3) will be loaded
+#' # (4.4) will be loaded
 #' load_ramlegacy()
 #'
 #' # load version 3.0
