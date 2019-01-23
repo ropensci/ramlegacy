@@ -8,11 +8,10 @@
 #'  supports downloading all the versions from [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
 #'  in case the database [website](www.ramlegacy.org) is down.
 #' @param version A character vector of length 1 specifying the version number
-#'  of the database that should be downloaded. As of November 2018 the available versions are "1.0",
-#'  "2.0", "2.5", "3.0" and "4.3". If the version argument is not specified then it defaults
-#'  to latest version (currently latest version is "4.3"). Note that this function
-#'  does not support vectorization so please \strong{don't pass in a vector of
-#'  version numbers}
+#'  of the database that should be downloaded. As of January 2019, the available versions are "1.0",
+#'  "2.0", "2.5", "3.0", "4.3", and "4.4". If the version argument is not specified then it defaults
+#'  to latest version (currently latest version is "4.4"). If you want to download multiple versions please
+#'  download them one at a time as passing them all at once will throw an error.
 #' @param ram_path A string specifying the path of the local directory where
 #'  database will be downloaded.
 #'  This path is OS specific and is set to the location provided by \pkg{rappdirs}
@@ -66,12 +65,16 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   # ask the user what to do in interactive mode otherwise exit
   if (version %in% find_local(ram_path, latest_vers)) {
     if (interactive()) {
-      ans <- ask_yn("Version ", version, " has already been downloaded.",
-                    "Overwrite?")
+      ans <- ask_yn(
+        "Version ", version, " has already been downloaded.",
+        "Overwrite?"
+      )
       if (!ans) return("Not overwriting. Exiting the function.")
     } else {
-      return(paste(paste("Version", version, "has already been downloaded."),
-                   "Exiting the function."))
+      return(paste(
+        paste("Version", version, "has already been downloaded."),
+        "Exiting the function."
+      ))
     }
   }
 
@@ -89,8 +92,10 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   if (version == "1.0") {
     data_url <- "RLSADB_v1.0_excel.zip"
   } else {
-    data_url <- paste0("RLSADB_v", version,
-                       "_(assessment_data_only)_excel.zip")
+    data_url <- paste0(
+      "RLSADB_v", version,
+      "_(assessment_data_only)_excel.zip"
+    )
   }
   ram_url <- paste(ram_url, data_url, sep = "/")
 
@@ -98,17 +103,23 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   req <- httr::GET(ram_url)
   if (req$status_code != 200) {
     if (interactive()) {
-     ans <- ask_yn(paste("www.ramlegacy.org seems to be down right now.",
-                      "Download from backup location?"))
-     if (!ans) return("Not downloading. Exiting the function.")
+      ans <- ask_yn(paste(
+        "www.ramlegacy.org seems to be down right now.",
+        "Download from backup location?"
+      ))
+      if (!ans) return("Not downloading. Exiting the function.")
     }
     message("Downloading from backup location...")
-    bckup_url <- paste0("https://github.com/kshtzgupta1/",
-                        "ramlegacy-assets/raw/master/RLSADB%20v")
+    bckup_url <- paste0(
+      "https://github.com/kshtzgupta1/",
+      "ramlegacy-assets/raw/master/RLSADB%20v"
+    )
     ram_url <- paste0(bckup_url, version, "%20(assessment%20data%20only).xlsx")
     # create path for excel file
-    excel_path <- file.path(vers_path,
-                  paste("RLSADB v", version, " (assessment data only).xlsx"))
+    excel_path <- file.path(
+      vers_path,
+      paste("RLSADB v", version, " (assessment data only).xlsx")
+    )
     # download
     httr::GET(ram_url, httr::write_disk(excel_path))
 
@@ -116,22 +127,22 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
     if (file.exists(excel_path)) {
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
-
   } else {
     ## Download the zip file from database website to temp
     tmp <- tempfile("ramlegacy_")
     notify("Downloading...")
     httr::GET(ram_url, httr::write_disk(tmp))
 
-    #unzip it and read it in
+    # unzip it and read it in
     if (file.exists(tmp)) {
-      notify(paste("Downloaded the RAM Legacy Stock Assessment Database.",
-                   "Now unzipping it..."))
+      notify(paste(
+        "Downloaded the RAM Legacy Stock Assessment Database.",
+        "Now unzipping it..."
+      ))
       utils::unzip(tmp, exdir = vers_path, overwrite = TRUE)
       notify("Saving the unzipped database as R Binary object...")
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
-
   }
 
   # check if file downloaded or not
@@ -143,5 +154,4 @@ ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions") {
   }
 
   invisible(TRUE)
-
 }

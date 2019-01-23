@@ -8,14 +8,13 @@ load_ramlegacy(version = NULL, path = NULL)
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number of the
-database. As of November 2018 the available versions are
-"1.0", "2.0", "2.5", "3.0" and "4.3". If version argument is not specified then it
-defaults to latest version (currently "4.3"). Note that this function
-does not support vectorization so please \strong{don't pass in a vector of
-version numbers} to \code{version}}
+database. As of January 2019, the available versions are
+"1.0", "2.0", "2.5", "3.0", "4.3", and "4.4". If version argument is not specified then it
+defaults to latest version (currently "4.4"). If you want to load multiple versions please
+load them one at a time as passing them all at once will throw an error.}
 
 \item{path}{path to the local directory where the specified version of
-the RAM Legacy Stock Excel Assesment database was downloaded.
+the RAM Legacy Stock Excel Assessment Database was downloaded.
  This path can be viewed using calling the function \code{\link{ram_dir}} and specifying
  the version number inside the function call. This function \strong{does not} support
  setting a user-specified path so \strong{please
@@ -32,9 +31,10 @@ Loads all the dataframes present in the specified version of the database into
 load_ramlegacy()
 
 # load version 3.0
-load_ramlegacy(version = '3.0')
+load_ramlegacy(version = "3.0")
 
 # load version 2.5
-load_ramlegacy(version = '2.5')
+load_ramlegacy(version = "2.5")
 }
+
 }

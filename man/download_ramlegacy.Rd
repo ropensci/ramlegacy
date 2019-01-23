@@ -9,11 +9,10 @@ download_ramlegacy(version = NULL, ram_path = NULL,
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number
-of the database that should be downloaded. As of November 2018 the available versions are "1.0",
-"2.0", "2.5", "3.0" and "4.3". If the version argument is not specified then it defaults
-to latest version (currently latest version is "4.3"). Note that this function
-does not support vectorization so please \strong{don't pass in a vector of
-version numbers}}
+of the database that should be downloaded. As of January 2019, the available versions are "1.0",
+"2.0", "2.5", "3.0", "4.3", and "4.4". If the version argument is not specified then it defaults
+to latest version (currently latest version is "4.4"). If you want to download multiple versions please
+download them one at a time as passing them all at once will throw an error.}
 
 \item{ram_path}{A string specifying the path of the local directory where
 database will be downloaded.

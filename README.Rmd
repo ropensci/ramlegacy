@@ -48,8 +48,10 @@ library(devtools)
 install_github("kshtzgupta1/ramlegacy")
 ```
 
+To ensure that the vignette is installed along with the package make sure to remove `--no-build-vignettes` from the `build_opts` in `install_github`
+
 ## Usage
-Please see the ramlegacy [vignette](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality. The vignette can also be viewed by calling `vignette(package = "ramlegacy")`
+Please see the ramlegacy [vignette](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality. 
 
 Start by loading the package using `library`.
 

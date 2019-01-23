@@ -23,8 +23,10 @@ test_that("read_ramlegacy writes the database as RDS for v1.0", {
 
 test_that("read_ramlegacy writes the database as RDS for v2.0", {
   skip_on_cran()
-  vers_url <- paste0("RLSADB_v", "2.0",
-                     "_(assessment_data_only)_excel.zip")
+  vers_url <- paste0(
+    "RLSADB_v", "2.0",
+    "_(assessment_data_only)_excel.zip"
+  )
   url2 <- paste(ram_url, vers_url, sep = "/")
   # test v1.0
   temp_db_path <- file.path(tempfile("ramlegacy", tempdir()), "2.0")
@@ -43,8 +45,10 @@ test_that("read_ramlegacy writes the database as RDS for v2.0", {
 
 test_that("read_ramlegacy writes the database as RDS for v2.5", {
   skip_on_cran()
-  vers_url <- paste0("RLSADB_v", "2.5",
-                     "_(assessment_data_only)_excel.zip")
+  vers_url <- paste0(
+    "RLSADB_v", "2.5",
+    "_(assessment_data_only)_excel.zip"
+  )
   url2.5 <- paste(ram_url, vers_url, sep = "/")
   temp_db_path <- file.path(tempfile("ramlegacy", tempdir()), "2.5")
   dir.create(temp_db_path, showWarnings = FALSE, recursive = TRUE)
@@ -62,8 +66,10 @@ test_that("read_ramlegacy writes the database as RDS for v2.5", {
 
 test_that("read_ramlegacy writes the database as RDS for v3.0", {
   skip_on_cran()
-  vers_url <- paste0("RLSADB_v", "3.0",
-                     "_(assessment_data_only)_excel.zip")
+  vers_url <- paste0(
+    "RLSADB_v", "3.0",
+    "_(assessment_data_only)_excel.zip"
+  )
   url3 <- paste(ram_url, vers_url, sep = "/")
   temp_db_path <- file.path(tempfile("ramlegacy", tempdir()), "3.0")
   dir.create(temp_db_path, showWarnings = FALSE, recursive = TRUE)
@@ -81,8 +87,10 @@ test_that("read_ramlegacy writes the database as RDS for v3.0", {
 
 test_that("read_ramlegacy writes the database as RDS for v4.3", {
   skip_on_cran()
-  vers_url <- paste0("RLSADB_v", "4.3",
-                     "_(assessment_data_only)_excel.zip")
+  vers_url <- paste0(
+    "RLSADB_v", "4.3",
+    "_(assessment_data_only)_excel.zip"
+  )
   url4.3 <- paste(ram_url, vers_url, sep = "/")
   # test v1.0
   temp_db_path <- file.path(tempfile("ramlegacy", tempdir()), "4.3")

@@ -15,8 +15,10 @@ check_version_arg <- function(version) {
   if (!version %in% list_vers) {
     list_vers <- paste0(c("1.0", "2.0", "2.5", "3.0", "4.3"), ",")
     list_vers <- paste(list_vers, collapse = " ")
-    stop(paste("Invalid version number. Available versions are",
-               list_vers), call. = FALSE)
+    stop(paste(
+      "Invalid version number. Available versions are",
+      list_vers
+    ), call. = FALSE)
   }
   invisible(TRUE)
 }
@@ -39,8 +41,8 @@ check_path <- function(path) {
 #' @description Provides the download location for \code{\link{download_ramlegacy}}
 #'  in an  OS independent manner. This is also the location from where
 #'  \code{\link{load_ramlegacy}} loads the database from.
-#' @param vers character, version number of the database. As of November 2018,
-#' the availabl versions are "1.0", "2.0", "2.5", "3.0" and "4.3". If version
+#' @param vers character, version number of the database. As of January 2019,
+#' the available versions are "1.0", "2.0", "2.5", "3.0", "4.3", and "4.4" . If version
 #' is not specified the \code{ram_dir()} returns the path to the rappdirs directory.
 #' @export
 #' @examples
@@ -50,10 +52,8 @@ check_path <- function(path) {
 #' # Returns the path to version 4.3 subdirectory of the rappdirs directory.
 #' # This is the path where version 4.3 of the database is downloaded to and
 #' # read from.
-#' ram_dir(vers = '4.3')
-#'
-
-ram_dir <- function(vers = NULL){
+#' ram_dir(vers = "4.3")
+ram_dir <- function(vers = NULL) {
   if (!is.null(vers)) {
     vers <- sprintf("%.1f", as.numeric(vers))
     check_version_arg(vers)
@@ -84,21 +84,21 @@ ask_multiple <- function(msg, choices) {
 # when dealing with proxy-related or connection related
 # issues and fail with an informative error message
 #' @noRd
-net_check <- function(url, show_error = FALSE){
-
- response <- tryCatch(httr::GET(url),
-
-  error = function(e) {
-
+net_check <- function(url, show_error = FALSE) {
+  response <- tryCatch(httr::GET(url),
+    error = function(e) {
       if (show_error) {
-        stop(paste("Could not connect to the internet.",
-                   "Please check your connection settings and try again."),
-        call. = FALSE)
+        stop(paste(
+          "Could not connect to the internet.",
+          "Please check your connection settings and try again."
+        ),
+        call. = FALSE
+        )
       }
-    })
+    }
+  )
 
   if (typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
-
 }
 
 
@@ -135,7 +135,7 @@ find_latest <- function(ram_url) {
       version <- potential_latest_vers
     }
   }
-    return(version)
+  return(version)
 }
 
 

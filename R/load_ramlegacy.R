@@ -4,31 +4,31 @@
 #' @description Loads all the dataframes present in the specified version of the database into
 #'  user's global environment
 #' @param version A character vector of length 1 specifying the version number of the
-#'  database. As of November 2018 the available versions are
-#'  "1.0", "2.0", "2.5", "3.0" and "4.3". If version argument is not specified then it
-#'  defaults to latest version (currently "4.3"). Note that this function
-#'  does not support vectorization so please \strong{don't pass in a vector of
-#'  version numbers} to \code{version}
+#'  database. As of January 2019, the available versions are
+#'  "1.0", "2.0", "2.5", "3.0", "4.3", and "4.4". If version argument is not specified then it
+#'  defaults to latest version (currently "4.4"). If you want to load multiple versions please
+#'  load them one at a time as passing them all at once will throw an error.
 #' @param path path to the local directory where the specified version of
-#' the RAM Legacy Stock Excel Assesment database was downloaded.
+#' the RAM Legacy Stock Excel Assessment Database was downloaded.
 #'  This path can be viewed using calling the function \code{\link{ram_dir}} and specifying
 #'  the version number inside the function call. This function \strong{does not} support
 #'  setting a user-specified path so \strong{please
 #'  do not pass} in a path argument to \code{path}.
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' # If version is not specified then current latest version
 #' # (4.3) will be loaded
 #' load_ramlegacy()
 #'
 #' # load version 3.0
-#' load_ramlegacy(version = '3.0')
+#' load_ramlegacy(version = "3.0")
 #'
 #' # load version 2.5
-#' load_ramlegacy(version = '2.5')
+#' load_ramlegacy(version = "2.5")
 #' }
-
+#'
 load_ramlegacy <- function(version = NULL, path = NULL) {
   ram_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
 
@@ -59,18 +59,24 @@ load_ramlegacy <- function(version = NULL, path = NULL) {
   names(list_dataframes) <- paste0(names(list_dataframes), "_v", version)
 
   # assign all the dataframes to the global env
-  lapply(seq_along(list_dataframes),
-         function(i) {
-           delayedAssign(names(list_dataframes)[i],
-                         list_dataframes[[i]], assign.env = .GlobalEnv)
-         })
+  lapply(
+    seq_along(list_dataframes),
+    function(i) {
+      delayedAssign(names(list_dataframes)[i],
+        list_dataframes[[i]],
+        assign.env = .GlobalEnv
+      )
+    }
+  )
 
   # check whether all the dataframes are now present in the global environment
   # through creating a boolean vecor exists_vec
-  exists_vec <- unlist(lapply(names(list_dataframes),
-                    function(i) {
-                      exists(i, envir = .GlobalEnv)
-                      }))
+  exists_vec <- unlist(lapply(
+    names(list_dataframes),
+    function(i) {
+      exists(i, envir = .GlobalEnv)
+    }
+  ))
 
 
   # if all the dfs are now present then notify of success
