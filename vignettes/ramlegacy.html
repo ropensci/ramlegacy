@@ -102,11 +102,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p>The RAM Legacy Stock Assessment Database is a compilation of stock assessment results for commercially exploited marine populations from around the world. It is inspired by Dr. Ransom A. Myers’ original <a href="http://www.mathstat.dal.ca/~myers/welcome.html">stock-recruitment database</a>, which is no longer being updated.&quot;</p>
 </blockquote>
-<p>Different versions of the database are available in compressed (zipped) form on the <a href="www.ramlegacy.org">website</a> in two formats: <strong>Access</strong> (Microsoft Office Access 2007 file format) and <strong>Excel</strong> (Microsoft Excel Open XML Format Spreadsheet). As of November 2018, the available versions are 1.0, 2.0, 2.5, 3.0, 4.3.</p>
+<p>Different versions of the database are available in compressed (zipped) form on the <a href="www.ramlegacy.org">website</a> in two formats: <strong>Access</strong> (Microsoft Office Access 2007 file format) and <strong>Excel</strong> (Microsoft Excel Open XML Format Spreadsheet). As of January 2019, the available versions are 1.0, 2.0, 2.5, 3.0, 4.3, and 4.4.</p>
 </div>
 <div id="about-the-package" class="section level2">
 <h2>About the package</h2>
 <p>The goal of <code>ramlegacy</code> is to cache the specified version/versions of the RAM Legacy Stock Assessment Excel Database and this way save time and effort spent in re-downloading different versions of the database as part of any future analysis involving the data. The package also supports reading in any specified cached version of the database into the user’s environment through <code>library(ramlegacy)</code> and a dedicated function called <code>load_ramlegacy()</code>. The user can always view the location to which the database is cached and read from by running <code>ram_dir()</code> and specifying its version argument. This vignette will outline a few more details about these functions and the package that will hopefully make <code>ramlegacy</code> easy to use.</p>
+</div>
+<div id="package-installation" class="section level2">
+<h2>Package Installation</h2>
+<p>You can install the development version from <a href="https://github.com/kshtzgupta1/ramlegacy">GitHub</a> with the <code>install_github</code> function available in <code>devtools</code> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;kshtzgupta1/ramlegacy&quot;</span>)</code></pre></div>
+<p>To ensure that the vignette is installed along with the package make sure to remove <code>--no-build-vignettes</code> from the <code>build_opts</code> in <code>install_github</code></p>
 </div>
 <div id="package-loading" class="section level2">
 <h2>Package loading</h2>
@@ -141,14 +149,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># downloads latest version (currently 4.3)</span>
 <span class="kw">download_ramlegacy</span>()</code></pre></div>
 <p>To enable caching behavior, before downloading a the specified version <code>download_ramlegacy</code> checks whether that version has already been downloaded. If it is then <code>download_ramlegacy</code> gives the user the option to either download again and overwrite the existing version or not download and just exit the function. After downloading the database download_ramlegacy caches it by converting it to an RDS object which can then be read in through calling <code>load_ramlegacy()</code> or <code>library(ramlegacy)</code>. <code>ramlegacy</code> package is designed to provide robust access to the RAM Legacy Stock Assessment data. As such, in case the <a href="www.ramlegacy.org">database’s website</a> is down <code>download_ramlegacy</code> provides the user with the option to download the data from a backup github data <a href="https://github.com/kshtzgupta1/ramlegacy-assets">repository</a>. Currently, backups of all available versions (1.0, 2.0, 2.5, 3.0, 4.3) are available.</p>
-<p><code>download_ramlegacy</code> also has two other arguments: <code>ram_path</code> and <code>ram_url</code>. <code>ram_path</code> has been permanently set to the path provided by <code>ram_dir(vers = &quot;version&quot;)</code> and <code>ram_url</code> is fixed to the URL of the database website. Please <strong>do not modify</strong> or <strong>pass in any values</strong> to these two parameters. Also, please note that <code>download_ramlegacy</code> is not a vectorized function so please don’t pass in a vector of version numbers to its <code>version</code> argument.</p>
+<p><code>download_ramlegacy</code> also has two other arguments: <code>ram_path</code> and <code>ram_url</code>. <code>ram_path</code> has been permanently set to the path provided by <code>ram_dir(vers = &quot;version&quot;)</code> and <code>ram_url</code> is fixed to the URL of the database website. Please <strong>do not modify</strong> or <strong>pass in any values</strong> to these two parameters. If you want to download multiple versions please download them one at a time as passing them all at once will throw an error.</p>
 </div>
 <div id="load_ramlegacy" class="section level2">
 <h2>load_ramlegacy</h2>
 <p>Use <code>load_ramlegacy</code> to read in all the dataframes (sheets) present in the desired version of the database. Make sure that the version you want to load was downloaded and is already present locally otherwise <code>load_ramlegacy</code> will throw an error.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># loads in version 3.0</span>
 <span class="kw">load_ramlegacy</span>(<span class="dt">version =</span> <span class="st">&quot;3.0&quot;&quot;)</span></code></pre></div>
-<p>Also, note that like <code>download_ramlegacy</code>, <code>load_ramlegacy</code> is not a vectorized function so please don’t pass in a vector of version numbers to its <code>version</code> argument. Similar, to <code>download_ramlegacy</code>, <code>load_ramlegacy</code> has a <code>path</code> argument which has been permanently set to <code>ram_dir(vers = &quot;version&quot;)</code>. Consequently, please <strong>do not modify</strong> or <strong>pass in any values</strong> to <code>path</code>.</p>
+<p>In case in you want to load multiple versions please load them one at a time as passing them all at once will throw an error. Similar, to <code>download_ramlegacy</code>, <code>load_ramlegacy</code> has a <code>path</code> argument which has been permanently set to <code>ram_dir(vers = &quot;version&quot;)</code>. Consequently, please <strong>do not modify</strong> or <strong>pass in any values</strong> to <code>path</code>.</p>
 </div>
 <div id="ram_dir" class="section level2">
 <h2>ram_dir</h2>

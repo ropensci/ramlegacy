@@ -4,6 +4,11 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+## ---- eval = FALSE, echo = TRUE------------------------------------------
+#  install.packages("devtools")
+#  library(devtools)
+#  install_github("kshtzgupta1/ramlegacy")
+
 ## ----packages, warning=FALSE, message=FALSE, echo = TRUE, eval = F-------
 #  library(ramlegacy)
 

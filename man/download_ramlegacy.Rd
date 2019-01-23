@@ -37,7 +37,7 @@ Downloads a specified version of RAM Legacy Stock Assessment
 \examples{
 \dontrun{
 
-# If version is not specified then current latest version (4.3)
+# If version is not specified then current latest version (4.4)
 # will be downloaded
 download_ramlegacy()
 
