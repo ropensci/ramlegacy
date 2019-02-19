@@ -192,12 +192,51 @@
     }
   ],
   "readme": "https://github.com/kshtzgupta1/ramlegacy/blob/master/README.md",
-  "fileSize": "246.38KB",
   "contIntegration": [
     "https://travis-ci.com/kshtzgupta1/ramlegacy",
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",
     "https://ci.appveyor.com/project/kshtzgupta1/ramlegacy"
   ],
   "keywords": ["ramlegacy", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "contributor": [
+    {
+      "@type": "Organization",
+      "name": "RAM Legacy Stock Assessment Database"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2012",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Carl",
+          "familyName": "Boettiger",
+          "email": "cboettig@ropensci.org"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Duncan",
+          "familyName": "Temple Lang"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Peter",
+          "familyName": "Wainwright"
+        }
+      ],
+      "name": "rfishbase: exploring, manipulating and visualizing {FishBase} data from R",
+      "url": "http://dx.doi.org/10.1111/j.1095-8649.2012.03464.x",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2012",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "Journal of Fish Biology"
+        }
+      }
+    }
+  ]
 }

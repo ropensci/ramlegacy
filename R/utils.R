@@ -116,10 +116,12 @@ net_check <- function(url, show_error = FALSE) {
 
 find_latest_net_check <- function() {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
-  tryCatch({httr::GET(ram_url, httr::accept("application/vnd.scemaorg.ld+json"))},
+  is_work <- TRUE
+  res <- tryCatch({httr::GET(ram_url, httr::accept("application/vnd.schemaorg.ld+json"))},
                        error = function(e) {
-                         return(FALSE)
-                       }, finally = {return(TRUE)})
+                         is_work <<- FALSE
+                       })
+  return(is_work)
   }
 
 # regex function to find the latest version from the ram website
