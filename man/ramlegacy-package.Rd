@@ -28,5 +28,10 @@ Authors:
   \item Carl Boettiger \email{cboettig@gmail.com} (http://orcid.org/0000-0002-1642-628X) [copyright holder]
 }
 
+Other contributors:
+\itemize{
+  \item RAM Legacy Stock Assessment Database [contributor]
+}
+
 }
 \keyword{internal}

@@ -5,7 +5,7 @@
 \title{Download RAM Legacy Excel Database}
 \usage{
 download_ramlegacy(version = NULL, ram_path = NULL,
-  ram_url = "https://depts.washington.edu/ramlegac/wordpress/databaseVersions")
+  ram_url = "https://doi.org/10.5281/zenodo.2542918")
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number
@@ -22,9 +22,9 @@ by calling \code{\link{ram_dir}}. This function \strong{does not} support
 setting a user-specified path so \strong{please
 do not pass} in a path to \code{ram_path}.}
 
-\item{ram_url}{A string. By default it is set to the url of the ramlegacy
-wordpress database website. Please \strong{do not pass} in any other url to
- \code{ram_url}.}
+\item{ram_url}{A string. By default it is set to the url of zenodo.
+Please \strong{do not pass} in any other url to
+\code{ram_url}.}
 }
 \description{
 Downloads a specified version of RAM Legacy Stock Assessment
