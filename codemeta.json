@@ -5,8 +5,8 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ramlegacy",
-  "description": "Contains functions to download, cache and read in Excel version of\n    the RAM Legacy Stock Assessment Data Base, an online compilation of\n    stock assessment results for commercially exploited marine populations\n    from around the world. More information about the database can be\n    found at <http://ramlegacy.org/>.",
-  "name": "ramlegacy: Download and Read RAM Legacy Stock Assessment DataBase",
+  "description": "Contains functions to download, cache and read in Excel version of\n    the RAM Legacy Stock Assessment Data Base, an online compilation of\n    stock assessment results for commercially exploited marine populations\n    from around the world. More information about the database can be\n    found at <http://ramlegacy.org/>.\n    Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge\n    base and status of commercially exploited marine species with the RAM Legacy Stock\n    Assessment Database. Fish and Fisheries 13 (4) 380-398.\n    <doi:10.1111/j.1467-2979.2011.00435.x.>",
+  "name": "ramlegacy: Download And Read RAM Legacy Stock Assessment DataBase",
   "codeRepository": "https://github.com/kshtzgupta1/ramlegacy",
   "issueTracker": "https://github.com/kshtzgupta1/ramlegacy/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -197,9 +197,13 @@
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",
     "https://ci.appveyor.com/project/kshtzgupta1/ramlegacy"
   ],
-  "keywords": ["ramlegacy", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
+  "keywords": ["ramlegacy", "fish", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
   "developmentStatus": "https://www.repostatus.org/#wip",
   "contributor": [
+    {
+      "@type": "Organization",
+      "name": "RAM Legacy Stock Assessment Database"
+    },
     {
       "@type": "Organization",
       "name": "RAM Legacy Stock Assessment Database"
@@ -208,35 +212,42 @@
   "citation": [
     {
       "@type": "ScholarlyArticle",
-      "datePublished": "2012",
+      "datePublished": "2011",
       "author": [
         {
           "@type": "Person",
-          "givenName": "Carl",
-          "familyName": "Boettiger",
-          "email": "cboettig@ropensci.org"
+          "givenName": "Daniel",
+          "familyName": "Ricard"
         },
         {
           "@type": "Person",
-          "givenName": "Duncan",
-          "familyName": "Temple Lang"
+          "givenName": "Cóilín",
+          "familyName": "Minto"
         },
         {
           "@type": "Person",
-          "givenName": "Peter",
-          "familyName": "Wainwright"
+          "givenName": ["Olaf", "P."],
+          "familyName": "Jensen"
+        },
+        {
+          "@type": "Person",
+          "givenName": ["Julia", "K."],
+          "familyName": "Baum"
         }
       ],
-      "name": "rfishbase: exploring, manipulating and visualizing {FishBase} data from R",
-      "url": "http://dx.doi.org/10.1111/j.1095-8649.2012.03464.x",
+      "name": "Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database.",
+      "identifier": "10.1111/j.1467-2979.2011.00435.x",
+      "@id": "https://doi.org/10.1111/j.1467-2979.2011.00435.x",
+      "sameAs": "https://doi.org/10.1111/j.1467-2979.2011.00435.x",
       "isPartOf": {
         "@type": "PublicationIssue",
-        "datePublished": "2012",
+        "datePublished": "2011",
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
-          "name": "Journal of Fish Biology"
+          "name": "Fish and Fisheries"
         }
       }
     }
-  ]
+  ],
+  "releaseNotes": "https://github.com/kshtzgupta1/ramlegacy/blob/master/NEWS.md"
 }

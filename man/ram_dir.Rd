@@ -2,9 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{ram_dir}
 \alias{ram_dir}
-\title{Output OS-independent path to the downloaded RAM Legacy database}
+\title{Output OS-independent path to the rappdirs directory on user's computer where
+the RAM Legacy database is downloaded by default}
 \usage{
-ram_dir(version = NULL)
+ram_dir(vers = NULL)
 }
 \arguments{
 \item{version}{character, version number of the database. As of January 2019,

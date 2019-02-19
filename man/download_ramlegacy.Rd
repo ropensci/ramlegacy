@@ -28,11 +28,11 @@ Please \strong{do not pass} in any other url to
 }
 \description{
 Downloads a specified version of RAM Legacy Stock Assessment
- Excel Database as an RDS object to a local directory specified by \code{\link{ram_dir}}.
+ Excel Database and as an RDS object to a local directory specified by \code{\link{ram_dir}}.
  The function will check if the version requested already exists
  and if it is then it's up to the user to download it again. The function also
- supports downloading all the versions from [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
- in case the database [website](www.ramlegacy.org) is down.
+ supports downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
+ [a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)
 }
 \examples{
 \dontrun{

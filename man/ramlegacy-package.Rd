@@ -11,14 +11,23 @@ Contains functions to download, cache and read in Excel version of
     stock assessment results for commercially exploited marine populations
     from around the world. More information about the database can be
     found at <http://ramlegacy.org/>.
+    Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge
+    base and status of commercially exploited marine species with the RAM Legacy Stock
+    Assessment Database. Fish and Fisheries 13 (4) 380-398.
+    <doi:10.1111/j.1467-2979.2011.00435.x.>
+}
+\references{
+Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012)
+Evaluating the knowledge base and status of commercially exploited marine
+species with the RAM Legacy Stock Assessment Database.
+Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>
 }
 \seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/kshtzgupta1/ramlegacy}
-  \item Report bugs at \url{https://github.com/kshtzgupta1/ramlegacy/issues}
-}
+\url{www.ramlegacy.org}
 
+\url{www.https://github.com/kshtzgupta1/ramlegacy}
+
+\url{www.https://github.com/kshtzgupta1/ramlegacy/issues}
 }
 \author{
 \strong{Maintainer}: Kshitiz Gupta \email{kshtzgupta1@berkeley.edu} [copyright holder]
@@ -30,7 +39,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item RAM Legacy Stock Assessment Database [contributor]
+  \item RAM Legacy Stock Assessment Database [contributor, data contributor]
 }
 
 }

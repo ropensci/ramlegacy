@@ -4,7 +4,7 @@
 \alias{load_ramlegacy}
 \title{Read-in downloaded RAM Legacy Database}
 \usage{
-load_ramlegacy(version = NULL, path = NULL)
+load_ramlegacy(version = NULL, ram_path = NULL)
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number of the
@@ -13,16 +13,16 @@ database. As of January 2019, the available versions are
 defaults to latest version (currently "4.4"). If you want to load multiple versions please
 load them one at a time as passing them all at once will throw an error.}
 
-\item{path}{path to the local directory where the specified version of
+\item{ram_path}{path to the local directory where the specified version of
 the RAM Legacy Stock Excel Assessment Database was downloaded.
- This path can be viewed using calling the function \code{\link{ram_dir}} and specifying
+ By default this path is set to can be viewed using calling the function \code{\link{ram_dir}} and specifying
  the version number inside the function call. This function \strong{does not} support
  setting a user-specified path so \strong{please
  do not pass} in a path argument to \code{path}.}
 }
 \description{
-Loads all the dataframes present in the specified version of the database into
- user's global environment
+Returns a list of all the dataframes present in the specified
+ version of the database.
 }
 \examples{
 \dontrun{
