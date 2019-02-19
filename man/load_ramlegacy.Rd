@@ -4,30 +4,33 @@
 \alias{load_ramlegacy}
 \title{Read-in downloaded RAM Legacy Database}
 \usage{
-load_ramlegacy(version = NULL, ram_path = NULL)
+load_ramlegacy(version = NULL, dfs = NULL, ram_path = NULL)
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number of the
-database. As of January 2019, the available versions are
-"1.0", "2.0", "2.5", "3.0", "4.3", and "4.4". If version argument is not specified then it
-defaults to latest version (currently "4.4"). If you want to load multiple versions please
+database. As of February 2019, the available versions are "1.0", "2.0", "2.5", "3.0", "4.3",
+"4.40", "4.41" and "4.44". If version argument is not specified then it defaults to latest version
+(currently "4.44"). If you want to load multiple versions please
 load them one at a time as passing them all at once will throw an error.}
+
+\item{dfs}{A character vector specifying the names of the dataframes to load from a certain version}
 
 \item{ram_path}{path to the local directory where the specified version of
 the RAM Legacy Stock Excel Assessment Database was downloaded.
- By default this path is set to can be viewed using calling the function \code{\link{ram_dir}} and specifying
- the version number inside the function call. This function \strong{does not} support
- setting a user-specified path so \strong{please
- do not pass} in a path argument to \code{path}.}
+By default this path is set to within the rapddirs directory and can be viewed using calling the function
+\code{\link{ram_dir}} and specifying the version number inside.
+Although this is not the \strong{recommended} approach \code{load_ramlegacy} supports reading in the
+ database's dataframes from a user-specified path provided that the database is present
+ at the specified path as an rds object.}
 }
 \description{
-Returns a list of all the dataframes present in the specified
+Returns a specific dataframe or a list of all the dataframes present in the specified
  version of the database.
 }
 \examples{
 \dontrun{
 # If version is not specified then current latest version
-# (4.4) will be loaded
+# (4.44) will be loaded
 load_ramlegacy()
 
 # load version 3.0

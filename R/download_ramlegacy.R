@@ -8,25 +8,22 @@
 #'  supports downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
 #'  [a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)
 #' @param version A character vector of length 1 specifying the version number
-#'  of the database that should be downloaded. As of January 2019, the available versions are "1.0",
-#'  "2.0", "2.5", "3.0", "4.3", and "4.4". If the version argument is not specified then it defaults
-#'  to latest version (currently latest version is "4.4"). If you want to download multiple versions please
+#'  of the database that should be downloaded. As of Feb 2019, the available versions are "1.0",
+#'  "2.0", "2.5", "3.0", "4.3", "4.40", "4.41", and "4.44". If the version argument is not specified then it defaults
+#'  to latest version (currently latest version is "4.44"). If you want to download multiple versions please
 #'  download them one at a time as passing them all at once will throw an error.
 #' @param ram_path A string specifying the path of the local directory where
-#'  database will be downloaded.
-#'  This path is OS specific and is set to the location provided by \pkg{rappdirs}
-#'  package. It can be viewed
-#'  by calling \code{\link{ram_dir}}. This function \strong{does not} support
-#'  setting a user-specified path so \strong{please
-#'  do not pass} in a path to \code{ram_path}.
-#' @param ram_url A string. By default it is set to the url of zenodo.
+#'  database will be downloaded. By default this path is set to the location provided by \pkg{rappdirs}
+#'  package and can be viewed by calling \code{\link{ram_dir}}. Although, this is not the \strong{recommended}
+#'  approach \code{download_ramlegacy} supports downloading to a user-specified path.
+#' @param ram_url A string. By default it is set to the zenodo url of the database.
 #'  Please \strong{do not pass} in any other url to
 #'  \code{ram_url}.
 #' @export
 #' @examples
 #' \dontrun{
 #'
-#' # If version is not specified then current latest version (4.4)
+#' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
 #' download_ramlegacy()
 #'

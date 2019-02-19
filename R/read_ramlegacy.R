@@ -82,9 +82,6 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
     names(final_lst_dfs) <- c(sheets, "metadata", "MostUsedTimeSeries")
   }
 
-  # append the version number
-  names(final_lst_dfs) <- paste0(names(final_lst_dfs), "_v", version)
-
   # write final_lst_dfs as rdata object
   write_path <- file.path(
     vers_path,
