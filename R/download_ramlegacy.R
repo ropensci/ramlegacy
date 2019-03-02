@@ -19,6 +19,8 @@
 #' @param ram_url A string. By default it is set to the zenodo url of the database.
 #'  Please \strong{do not pass} in any other url to
 #'  \code{ram_url}.
+#'  @param overwrite If TRUE, user will not encounter the usual interactive prompt confirming whether they want
+#'  overwrite the version present locally.
 #' @export
 #' @examples
 #' \dontrun{
@@ -34,7 +36,7 @@
 #' download_ramlegacy(version = "4.3")
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
-ram_url = "https://doi.org/10.5281/zenodo.2542918") {
+ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE) {
 
   # user_path, a boolean flag set to FALSE by default
   user_path <- FALSE
@@ -67,18 +69,20 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918") {
   ## Provided that the path is not set by user if
   # there is an existing ramlegacy version
   # ask the user what to do in interactive mode otherwise exit
-  if (version %in% find_local(ram_path) & !user_path) {
-    if (interactive()) {
-      ans <- ask_yn(
-        "Version ", version, " has already been downloaded.",
-        "Overwrite?"
-      )
-      if (!ans) return("Not overwriting. Exiting the function.")
-    } else {
-      return(paste(
-        paste("Version", version, "has already been downloaded."),
-        "Exiting the function."
-      ))
+  if (!overwrite) {
+    if (version %in% find_local(ram_path) & !user_path) {
+      if (interactive()) {
+        ans <- ask_yn(
+          "Version ", version, " has already been downloaded.",
+          "Overwrite?"
+        )
+        if (!ans) return("Not overwriting. Exiting the function.")
+      } else {
+        return(notify(paste(
+          paste("Version", version, "has already been downloaded."),
+          "Exiting the function."
+        )))
+      }
     }
   }
 
