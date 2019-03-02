@@ -8,7 +8,9 @@
 #'  "4.40", "4.41" and "4.44". If version argument is not specified then it defaults to latest version
 #'  (currently "4.44"). If you want to load multiple versions please
 #'  load them one at a time as passing them all at once will throw an error.
-#' @param tables A character vector specifying the names of the dataframes to load from a certain version
+#' @param tables A character vector specifying the names of particular dataframes to load from a
+#'  certain version. If not specified then a list containing all the dataframes within the requested version
+#'  is returned.
 #' @param ram_path path to the local directory where the specified version of
 #' the RAM Legacy Stock Excel Assessment Database was downloaded.
 #' By default this path is set to within the rapddirs directory and can be viewed using calling the function
