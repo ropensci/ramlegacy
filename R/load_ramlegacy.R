@@ -2,14 +2,16 @@
 #' @name load_ramlegacy
 #' @family ram
 #' @title Read-in downloaded RAM Legacy Database
-#' @description Returns a specific dataframe or a list of all the dataframes present in the specified
-#'  version of the database.
+#' @description Returns a list of specific dataframes or a list of all the dataframes present in the
+#'  requested version of the database.
 #' @param version A character vector of length 1 specifying the version number of the
 #'  database. As of February 2019, the available versions are "1.0", "2.0", "2.5", "3.0", "4.3",
 #'  "4.40", "4.41" and "4.44". If version argument is not specified then it defaults to latest version
 #'  (currently "4.44"). If you want to load multiple versions please
 #'  load them one at a time as passing them all at once will throw an error.
-#' @param dfs A character vector specifying the names of the dataframes to load from a certain version
+#' @param tables A character vector specifying the names of particular dataframes to load from a
+#'  certain version. If not specified then a list containing all the dataframes within the requested version
+#'  is returned
 #' @param ram_path path to the local directory where the specified version of
 #' the RAM Legacy Stock Excel Assessment Database was downloaded.
 #' By default this path is set to within the rapddirs directory and can be viewed using calling the function
@@ -34,6 +36,15 @@
 #'
 load_ramlegacy <- function(version = NULL, dfs = NULL, ram_path = NULL) {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
+
+  # define print method for ramlist class
+
+  print.ramlist <- function(x){
+    cat(x$header,"\n\n")
+    cat("Values: ", sprintf("%s: %s", names(x$const), x$const), "\n\n")
+    cat("Data:\n")
+    print(x$data, ...)
+  }
 
   if (!is.null(version)) {
     # ensure that the version is properly formatted
@@ -69,6 +80,7 @@ load_ramlegacy <- function(version = NULL, dfs = NULL, ram_path = NULL) {
   }
 
   list_dataframes <- readRDS(rds_path)
+
   if (!is.null(dfs)) {
     listToReturn <- vector("list", length(dfs))
     for (i in seq_along(1:length(dfs))) {
@@ -82,8 +94,10 @@ load_ramlegacy <- function(version = NULL, dfs = NULL, ram_path = NULL) {
       }
     }
     names(listToReturn) <- dfs
+    class(listToReturn) <- "ramlist"
     return(listToReturn)
   } else {
+    class(list_dataframes) <- "ramlist"
     return(list_dataframes)
   }
 }
