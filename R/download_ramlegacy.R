@@ -14,12 +14,12 @@
 #'  download them one at a time as passing them all at once will throw an error.
 #' @param ram_path A string specifying the path of the local directory where
 #'  database will be downloaded. By default this path is set to the location provided by \pkg{rappdirs}
-#'  package and can be viewed by calling \code{\link{ram_dir}}. Although, this is not the \strong{recommended}
+#'  package and can be viewed by calling \code{\link{ram_dir}}. Although this is not the \strong{recommended}
 #'  approach \code{download_ramlegacy} supports downloading to a user-specified path.
 #' @param ram_url A string. By default it is set to the zenodo url of the database.
 #'  Please \strong{do not pass} in any other url to
 #'  \code{ram_url}.
-#'  @param overwrite If TRUE, user will not encounter the usual interactive prompt confirming whether they want
+#' @param overwrite If TRUE, user will not encounter the usual interactive prompt confirming whether they want
 #'  overwrite the version present locally.
 #' @export
 #' @examples

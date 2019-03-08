@@ -4,7 +4,7 @@
 \alias{load_ramlegacy}
 \title{Read-in downloaded RAM Legacy Database}
 \usage{
-load_ramlegacy(version = NULL, dfs = NULL, ram_path = NULL)
+load_ramlegacy(version = NULL, tables = NULL, ram_path = NULL)
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number of the
@@ -13,7 +13,9 @@ database. As of February 2019, the available versions are "1.0", "2.0", "2.5", "
 (currently "4.44"). If you want to load multiple versions please
 load them one at a time as passing them all at once will throw an error.}
 
-\item{dfs}{A character vector specifying the names of the dataframes to load from a certain version}
+\item{tables}{A character vector specifying the names of particular dataframes to load from a
+certain version. If not specified then a list containing all the dataframes within the requested version
+is returned}
 
 \item{ram_path}{path to the local directory where the specified version of
 the RAM Legacy Stock Excel Assessment Database was downloaded.
@@ -24,8 +26,8 @@ Although this is not the \strong{recommended} approach \code{load_ramlegacy} sup
  at the specified path as an rds object.}
 }
 \description{
-Returns a specific dataframe or a list of all the dataframes present in the specified
- version of the database.
+Returns a list of specific dataframes or a list of all the dataframes present in the
+ requested version of the database.
 }
 \examples{
 \dontrun{
@@ -41,3 +43,4 @@ load_ramlegacy(version = "2.5")
 }
 
 }
+\concept{ram}

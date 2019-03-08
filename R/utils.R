@@ -189,3 +189,15 @@ find_local <- function(path) {
   vers_that_exist <- potential_vers_vec[rds_exists_vec]
   return(vers_that_exist)
 }
+
+#' @export
+print.ramlist <- function(x, ...) {
+  cat(" Number of tables: ", length(x), "\n")
+  for (i in seq_along(1:length(x))) {
+    tbl_i_dim <- dim(x[[i]])
+    tbl_i_name <- names(x)[i]
+    num_rows <- tbl_i_dim[1]
+    num_cols <- tbl_i_dim[2]
+    cat(paste0("'", tbl_i_name, "':  ",  num_rows, " obs. of ", num_cols, " variables"), "\n")
+  }
+}

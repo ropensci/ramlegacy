@@ -34,17 +34,11 @@
 #' load_ramlegacy(version = "2.5")
 #' }
 #'
-load_ramlegacy <- function(version = NULL, dfs = NULL, ram_path = NULL) {
+load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
 
   # define print method for ramlist class
 
-  print.ramlist <- function(x){
-    cat(x$header,"\n\n")
-    cat("Values: ", sprintf("%s: %s", names(x$const), x$const), "\n\n")
-    cat("Data:\n")
-    print(x$data, ...)
-  }
 
   if (!is.null(version)) {
     # ensure that the version is properly formatted
@@ -81,23 +75,23 @@ load_ramlegacy <- function(version = NULL, dfs = NULL, ram_path = NULL) {
 
   list_dataframes <- readRDS(rds_path)
 
-  if (!is.null(dfs)) {
-    listToReturn <- vector("list", length(dfs))
-    for (i in seq_along(1:length(dfs))) {
+  if (!is.null(tables)) {
+    listToReturn <- vector("list", length(tables))
+    for (i in seq_along(1:length(tables))) {
       # construct df name
-      df_name <- dfs[i]
-      if (grepl("\\.data", dfs[i])) {
+      df_name <- tables[i]
+      if (grepl("\\.data", tables[i])) {
         MostUsedTimeSeries <- list_dataframes[[26]]
         listToReturn[[i]]  <- MostUsedTimeSeries[[df_name]]
       } else {
         listToReturn[[i]] <- list_dataframes[[df_name]]
       }
     }
-    names(listToReturn) <- dfs
-    class(listToReturn) <- "ramlist"
+    names(listToReturn) <- tables
+    class(listToReturn) <- c("ramlist", class(listToReturn))
     return(listToReturn)
   } else {
-    class(list_dataframes) <- "ramlist"
+    class(list_dataframes) <- c("ramlist", class(list_dataframes))
     return(list_dataframes)
   }
 }
