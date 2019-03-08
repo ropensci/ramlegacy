@@ -70,19 +70,19 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   }
 
   list_dataframes <- readRDS(rds_path)
-  if (!is.null(dfs)) {
-    listToReturn <- vector("list", length(dfs))
-    for (i in seq_along(1:length(dfs))) {
+  if (!is.null(tables)) {
+    listToReturn <- vector("list", length(tables))
+    for (i in seq_along(1:length(tables))) {
       # construct df name
-      df_name <- dfs[i]
-      if (grepl("\\.data", dfs[i])) {
+      df_name <- tables[i]
+      if (grepl("\\.data", tables[i])) {
         MostUsedTimeSeries <- list_dataframes[[26]]
         listToReturn[[i]]  <- MostUsedTimeSeries[[df_name]]
       } else {
         listToReturn[[i]] <- list_dataframes[[df_name]]
       }
     }
-    names(listToReturn) <- dfs
+    names(listToReturn) <- tables
     return(listToReturn)
   } else {
     return(list_dataframes)
