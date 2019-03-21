@@ -5,8 +5,8 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ramlegacy",
-  "description": "Contains functions to download, cache and read in Excel version of\n    the RAM Legacy Stock Assessment Data Base, an online compilation of\n    stock assessment results for commercially exploited marine populations\n    from around the world. More information about the database can be\n    found at <http://ramlegacy.org/>.",
-  "name": "ramlegacy: Download and Read RAM Legacy Stock Assessment DataBase",
+  "description": "Contains functions to download, cache and read in Excel version of the\n    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment\n    results for commercially exploited marine populations from around the world. More\n    information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,\n    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and\n    status of commercially exploited marine species with the RAM Legacy Stock Assessment\n    Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>.",
+  "name": "ramlegacy: Download And Read RAM Legacy Stock Assessment DataBase",
   "codeRepository": "https://github.com/kshtzgupta1/ramlegacy",
   "issueTracker": "https://github.com/kshtzgupta1/ramlegacy/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -189,15 +189,77 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     }
   ],
   "readme": "https://github.com/kshtzgupta1/ramlegacy/blob/master/README.md",
-  "fileSize": "246.38KB",
   "contIntegration": [
     "https://travis-ci.com/kshtzgupta1/ramlegacy",
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",
     "https://ci.appveyor.com/project/kshtzgupta1/ramlegacy"
   ],
-  "keywords": ["ramlegacy", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "keywords": ["ramlegacy", "fish", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "contributor": [
+    {
+      "@type": "Organization",
+      "name": "RAM Legacy Stock Assessment Database"
+    },
+    {
+      "@type": "Organization",
+      "name": "RAM Legacy Stock Assessment Database"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2011",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Daniel",
+          "familyName": "Ricard"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Cóilín",
+          "familyName": "Minto"
+        },
+        {
+          "@type": "Person",
+          "givenName": ["Olaf", "P."],
+          "familyName": "Jensen"
+        },
+        {
+          "@type": "Person",
+          "givenName": ["Julia", "K."],
+          "familyName": "Baum"
+        }
+      ],
+      "name": "Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database.",
+      "identifier": "10.1111/j.1467-2979.2011.00435.x",
+      "@id": "https://doi.org/10.1111/j.1467-2979.2011.00435.x",
+      "sameAs": "https://doi.org/10.1111/j.1467-2979.2011.00435.x",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2011",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "Fish and Fisheries"
+        }
+      }
+    }
+  ],
+  "releaseNotes": "https://github.com/kshtzgupta1/ramlegacy/blob/master/NEWS.md"
 }

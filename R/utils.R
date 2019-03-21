@@ -3,25 +3,36 @@ check_version_arg <- function(version) {
   if (length(version) != 1) {
     stop("Please pass in only one version number.")
   }
-  latest_vers <- find_latest()
-  list_vers <- c("1.0", "2.0", "2.5", "3.0", "4.3")
 
-  # make sure version is formatted correctly
-  version <- sprintf("%.1f", as.numeric(version))
-
-  if (!latest_vers %in% list_vers) {
-    list_vers <- c(list_vers, latest_vers)
-  }
-  if (!version %in% list_vers) {
-    list_vers <- paste0(c("1.0", "2.0", "2.5", "3.0", "4.3"), ",")
-    list_vers <- paste(list_vers, collapse = " ")
+  if (version < "4.4"){
+    old_vers <- c("1.0", "2.0", "2.5", "3.0", "4.3")
+    if(!version %in% old_vers) {
     stop(paste(
-      "Invalid version number. Available versions are",
-      list_vers
-    ), call. = FALSE)
+      "Invalid version number."), call. = FALSE)
+    }
+  } else {
+    new_vers <- c("4.40", "4.41", "4.44")
+    if (!version %in% new_vers) {
+    stop(paste(
+      "Invalid version number."), call. = FALSE)
+    }
   }
   invisible(TRUE)
 }
+
+# private function to format version argument
+fmt_version <- function(version) {
+  if (typeof(version) == "character") {
+    version <- as.numeric(version)
+  }
+  if (version < 4.4) {
+    version <- sprintf("%.1f", version)
+  } else {
+    version <- sprintf("%.2f", version)
+  }
+  return(version)
+}
+
 
 # private function to check string
 is_string <- function(x) {
@@ -36,7 +47,8 @@ check_path <- function(path) {
   TRUE
 }
 
-#' @title Output OS-independent path to the downloaded RAM Legacy database
+#' @title Output OS-independent path to the rappdirs directory on user's computer where
+#' the RAM Legacy database is downloaded by default
 #' @name ram_dir
 #' @description Provides the download location for \code{\link{download_ramlegacy}}
 #'  in an  OS independent manner. This is also the location from where
@@ -55,7 +67,7 @@ check_path <- function(path) {
 #' ram_dir(vers = "4.3")
 ram_dir <- function(vers = NULL) {
   if (!is.null(vers)) {
-    vers <- sprintf("%.1f", as.numeric(vers))
+    version <- fmt_version(vers)
     check_version_arg(vers)
   }
   rappdirs::user_data_dir("ramlegacy", version = vers)
@@ -85,6 +97,7 @@ ask_multiple <- function(msg, choices) {
 # issues and fail with an informative error message
 #' @noRd
 net_check <- function(url, show_error = FALSE) {
+
   response <- tryCatch(httr::GET(url),
     error = function(e) {
       if (show_error) {
@@ -101,59 +114,49 @@ net_check <- function(url, show_error = FALSE) {
   if (typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
 }
 
-
+find_latest_net_check <- function() {
+  ram_url <- "https://doi.org/10.5281/zenodo.2542918"
+  is_work <- TRUE
+  res <- tryCatch({httr::GET(ram_url, httr::accept("application/vnd.schemaorg.ld+json"))},
+                       error = function(e) {
+                         is_work <<- FALSE
+                       })
+  return(is_work)
+  }
 
 # regex function to find the latest version from the ram website
 #' @noRd
 find_latest <- function(ram_url) {
 
-  # if there is connection issue then default to 4.3
-  if (!net_check(ram_url)) {
-    return("4.3")
+  # if there is connection issue then default to 4.44
+  if (!find_latest_net_check()) {
+    return("4.44")
   }
 
-  req <- httr::GET(ram_url)
+  # set version to 4.44 if retrieving fails for some reason
+  vers <- "4.44"
 
-  # set version to return if fails
-  version <- "4.3"
-
+  # perform content negotiation to get it in json
+  req <- httr::GET(ram_url, httr::accept("application/vnd.schemaorg.ld+json"))
   # try to get latest version
   if (req$status_code == 200) {
-    # get the content
-    contnt <- httr::content(req, "text")
-    # get all the links
-    m <- gregexpr("RLSADB_v[0-9]\\.[0-9]+_[()_a-zA-Z0-9]+_excel.zip", contnt)
-    links <- unlist(regmatches(contnt, m))
-    # get the latest link
-    latest_link <- links[length(links)]
-    # get newest version from latest_link
-    m_vers <- gregexpr("\\d\\.\\d+", text = latest_link)
-    potential_latest_vers <- unlist(regmatches(latest_link, m_vers))
-    # check the validity of potential_latest_vers
-    if (nchar(potential_latest_vers) == 3) {
-      # overwrite default version with the latest version
-      version <- potential_latest_vers
-    }
+    # get the content as text
+    contnt <- httr::content(req, as = "text")
+    # parse the text as json
+    json_text <- jsonlite::parse_json(contnt)
+    # get the name from json_text
+    json_name <- json_text$name
+    # get newest version the json_name
+    m_vers <- gregexpr("\\d\\.\\d+", text = json_name)
+    vers <- unlist(regmatches(json_name, m_vers))
   }
-  return(version)
+  return(vers)
 }
 
 
-# write latest version as metadata (text file) to rappdirs directory
+# Returns the versions present locally by checking local rappdirs directory
 #' @noRd
-write_version <- function(path, version) {
-  version <- sprintf("%.1f", as.numeric(version))
-  if (!dir.exists(path)) {
-    dir.create(path, recursive = TRUE)
-  }
-  write_path <- file.path(path, "VERSION.txt")
-  writeLines(version, write_path)
-}
-
-
-# Returns the version/versions to load by checking local rappdirs directory
-#' @noRd
-find_local <- function(path, latest_vers) {
+find_local <- function(path) {
 
   # get the number of subdirectories in rappdirs directory
   num_dirs <- length(dir(path, pattern = "^[0-9]\\.[0-9]{1,2}$"))
@@ -164,25 +167,25 @@ find_local <- function(path, latest_vers) {
 
   # a vector containing all the subdirectories inside rappdirs directory
   # they are all potential local versions
-  potential_vers_vec <- dir(path, pattern = "^[0-9]\\.[0-9]{1,2}$")
+  potential_vers_vec <- dir(path, pattern = "^[0-9]\\.[0-9]{1,}$")
 
   # check if these directories (potential local versions) contain rds file
   # and create rds_exists_vec, a boolean vector indicating whether the potential
   # local version actually contains a rds file of the database
   rds_exists_vec <- unlist(lapply(potential_vers_vec, function(vers) {
-    vers <- sprintf("%.1f", as.numeric(vers))
-    rds_path <- file.path(path, file.path(vers, paste0("v", vers, ".rds")))
+    vers <- fmt_version(vers)
+    if (vers < "4.4") {
+      rds_path <- file.path(path, file.path(vers, paste0("v", vers, ".rds")))
+    } else {
+      path1 <- file.path(path, file.path(vers))
+      path2 <- file.path(path1, paste0("RLSADB v", vers))
+      path3 <- file.path(path2, "DB Files With Assessment Data")
+      rds_path <- file.path(path3, paste0("v", vers, ".rds"))
+    }
     file.exists(rds_path)
   }))
 
   # these are the versions that actually exist since they contain rds files
   vers_that_exist <- potential_vers_vec[rds_exists_vec]
-
-  # if latest version among the multiple version found locally then return the
-  # latest version for loading
-  if (latest_vers %in% vers_that_exist) {
-    return(latest_vers)
-  } else {
-    return(vers_that_exist)
-  }
+  return(vers_that_exist)
 }
