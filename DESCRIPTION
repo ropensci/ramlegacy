@@ -3,16 +3,24 @@ Package: ramlegacy
 Title: Download And Read RAM Legacy Stock Assessment DataBase
 Version: 0.1.0
 Authors@R: 
-    c(person(given = "Kshitiz",
-             family = "Gupta",
-             role = c("aut", "cre", "cph"),
-             email = "kshtzgupta1@berkeley.edu"),
-      person(given = "Carl",
+    c(person(given = "Carl",
              family = "Boettiger",
              role = c("aut", "cph"),
              email = "cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X"),
+     person(given = "Kshitiz",
+             family = "Gupta",
+             role = c("aut", "cre", "cph"),
+             email = "kshtzgupta1@berkeley.edu"),
+     person(given = "Sam",
+            family = "Albers",
+            role = c("rev"),
+            email = "sam.albers@gmail.com", comment = "https://orcid.org/0000-0002-9270-7884"),
+     person(given = "Jamie",
+            family = "Afflerbach",
+            role = c("rev"),
+            email = "afflerbach@nceas.ucsb.edu", comment = "https://orcid.org/0000-0002-5215-9342"),     
       person(given = "RAM Legacy Stock Assessment Database",
-      role = c("ctb", "dtc")))
+      role = "dtc"))
 Description: Contains functions to download, cache and read in Excel version of the
     RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment
     results for commercially exploited marine populations from around the world. More
@@ -30,8 +38,7 @@ Imports:
     crayon (>= 1.3.4),
     httr (>= 1.3.1),
     rappdirs (>= 0.3.1),
-    readxl (>= 1.1.0),
-    jsonlite
+    readxl (>= 1.1.0)
 Suggests:
     covr,
     testthat,
