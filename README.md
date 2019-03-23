@@ -71,26 +71,26 @@ download_ramlegacy(version = "4.3")
 
 ### load\_ramlegacy
 
-After the specified version of the database has been downloaded through `download_ramlegacy`, in addition to calling `library(ramlegacy)` to read in the database we can call `load_ramlegacy()` to do the same thing. That is, calling `load_ramlegacy` makes all the dataframes present in the database become available in the user's global environment. Note that `load_ramlegacy()` does not support vectorization and can only load and read in one version at a time. If version is not specified then `load_ramlegacy` defaults to loading the latest version (currently 4.3) :
+After the specified version of the database has been downloaded through `download_ramlegacy`, `load_ramlegacy` can be used to return a list of particular dataframes or all the dataframes present within the database. If version is not specified then `load_ramlegacy` defatults to the latest version (currently 4.44)  :
 
-``` r
-# load version 3.0
-load_ramlegacy(version = "3.0")
+```{r, load_ramlegacy_example1, echo = T, eval = F}
+# returns a list containing area and bioparams tables from version 4.44 database
+load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 
-# loads the latest version (currently 4.3)
+# the latest version (currently 4.44)
 load_ramlegacy()
 ```
 
 ### ram\_dir
 
-To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
+To view the exact local path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 
 ``` r
-# downloads version 2.5
-download_ramlegacy(version = "2.5")
+# downloads version 4.44
+download_ramlegacy(version = "4.44")
 
-# view the location where version 2.5 of the database was downloaded and cached
-ram_dir(vers = "2.5")
+# view the location where version 4.44 of the database was downloaded and cached
+ram_dir(vers = "4.44")
 ```
 
 Similar Projects
@@ -105,6 +105,10 @@ Citation
 
 Use of the RAM Legacy Stock Assessment Database is subject to a [Fair Use Policy.](http://ramlegacy.marinebiodiversity.ca/ram-legacy-stock-assessment-database/ram-legacy-stock-assessment-database-fair-use-policy)
 
-Please cite the RAM Legacy Stock Assessment Database as follows:
+Please cite the paper associated with RAM Legacy Stock Assessment Database as follows:
 
 Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2013) Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database. Fish and Fisheries 13 (4) 380-398. DOI: 10.1111/j.1467-2979.2011.00435.x
+
+If you are using any of the older versions(1.0, 2.0, 2.5, 3.0, 4.3) then please cite the paper.
+
+If you are using any of the latest versions(4.40¸ 4.41, 4.44) then please cite the paper and see the zenodo doi for instructions to add the relevant citation for the latest versions.
