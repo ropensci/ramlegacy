@@ -44,7 +44,7 @@ load_ramlegacy(version = "2.5")
 
 }
 \seealso{
-Other ram: \code{\link{download_ramlegacy}},
+Other ramlegacy functions: \code{\link{download_ramlegacy}},
   \code{\link{ram_dir}}
 }
-\concept{ram}
+\concept{ramlegacy functions}

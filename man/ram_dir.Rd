@@ -26,7 +26,7 @@ ram_dir()
 ram_dir(vers = "4.3")
 }
 \seealso{
-Other ram: \code{\link{download_ramlegacy}},
+Other ramlegacy functions: \code{\link{download_ramlegacy}},
   \code{\link{load_ramlegacy}}
 }
-\concept{ram}
+\concept{ramlegacy functions}

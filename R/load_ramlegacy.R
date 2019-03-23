@@ -1,7 +1,7 @@
 
 
 #' @name load_ramlegacy
-#' @family ram
+#' @family ramlegacy functions
 #' @title Read-in downloaded RAM Legacy Database
 #' @description Returns a list of specific dataframes or a list of all the dataframes present in the
 #'  requested version of the database.

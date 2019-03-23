@@ -51,7 +51,7 @@ check_path <- function(path) {
 #' @title Output OS-independent path to the rappdirs directory on user's computer where
 #' the RAM Legacy database is downloaded by default
 #' @name ram_dir
-#' @family ram
+#' @family ramlegacy functions
 #' @description Provides the download location for \code{\link{download_ramlegacy}}
 #'  in an  OS independent manner. This is also the location from where
 #'  \code{\link{load_ramlegacy}} loads the database from.

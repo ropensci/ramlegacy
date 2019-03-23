@@ -24,7 +24,7 @@ approach \code{download_ramlegacy} supports downloading to a user-specified path
 Please \strong{do not pass} in any other url to
 \code{ram_url}.}
 
-\item{overwrite}{If TRUE, user will not encounter the usual interactive prompt confirming whether they want
+\item{overwrite}{If TRUE, user will not encounter the interactive prompt that confirms whether to
 overwrite the version present locally.}
 
 \item{quiet}{If TRUE, suppress status messages}
@@ -47,12 +47,12 @@ download_ramlegacy()
 # download version 1.0
 download_ramlegacy(version = "1.0")
 
-# download version 4.3
-download_ramlegacy(version = "4.3")
+# download version 4.40
+download_ramlegacy(version = "4.40")
 }
 }
 \seealso{
-Other ram: \code{\link{load_ramlegacy}},
+Other ramlegacy functions: \code{\link{load_ramlegacy}},
   \code{\link{ram_dir}}
 }
-\concept{ram}
+\concept{ramlegacy functions}

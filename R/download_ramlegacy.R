@@ -1,6 +1,6 @@
 
 #' @name download_ramlegacy
-#' @family ram
+#' @family ramlegacy functions
 #' @title Download RAM Legacy Excel Database
 #' @description Downloads a specified version of RAM Legacy Stock Assessment
 #'  Excel Database and as an RDS object to a local directory specified by \code{\link{ram_dir}}.
@@ -20,7 +20,7 @@
 #' @param ram_url A string. By default it is set to the zenodo url of the database.
 #' Please \strong{do not pass} in any other url to
 #' \code{ram_url}.
-#' @param overwrite If TRUE, user will not encounter the usual interactive prompt confirming whether they want
+#' @param overwrite If TRUE, user will not encounter the interactive prompt that confirms whether to
 #' overwrite the version present locally.
 #' @param quiet If TRUE, suppress status messages
 #' @export
@@ -34,19 +34,19 @@
 #' # download version 1.0
 #' download_ramlegacy(version = "1.0")
 #'
-#' # download version 4.3
-#' download_ramlegacy(version = "4.3")
+#' # download version 4.40
+#' download_ramlegacy(version = "4.40")
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
 ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = FALSE) {
+
+  #NOTE About Zenodo url: According to the Zenodo website this DOI will always resolve to the latest url.
 
   # check internet connection and throw error if there is a connection issue
   net_check(ram_url, show_error = TRUE)
 
   # user_path, a boolean flag set to FALSE by default
   user_path <- FALSE
-
-  # According to the Zenodo website this DOI will always resolve to the latest url.
 
   # Get the latest version from the ram_url
   latest_vers <- find_latest(ram_url)
