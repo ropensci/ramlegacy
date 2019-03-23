@@ -37,7 +37,9 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item RAM Legacy Stock Assessment Database [contributor, data contributor]
+  \item Sam Albers \email{sam.albers@gmail.com} (https://orcid.org/0000-0002-9270-7884) [reviewer]
+  \item Jamie Afflerbach \email{afflerbach@nceas.ucsb.edu} (https://orcid.org/0000-0002-5215-9342) [reviewer]
+  \item RAM Legacy Stock Assessment Database [data contributor]
 }
 
 }
