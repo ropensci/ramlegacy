@@ -3,6 +3,7 @@ check_version_arg <- function(version) {
   if (length(version) != 1) {
     stop("Please pass in only one version number.")
   }
+  version <- fmt_version(version)
 
   if (version < "4.4"){
     old_vers <- c("1.0", "2.0", "2.5", "3.0", "4.3")
@@ -50,6 +51,7 @@ check_path <- function(path) {
 #' @title Output OS-independent path to the rappdirs directory on user's computer where
 #' the RAM Legacy database is downloaded by default
 #' @name ram_dir
+#' @family ram
 #' @description Provides the download location for \code{\link{download_ramlegacy}}
 #'  in an  OS independent manner. This is also the location from where
 #'  \code{\link{load_ramlegacy}} loads the database from.
@@ -61,13 +63,12 @@ check_path <- function(path) {
 #' # return the path to the rappdirs directory.
 #' ram_dir()
 #'
-#' # Returns the path to version 4.3 subdirectory of the rappdirs directory.
-#' # This is the path where version 4.3 of the database is downloaded to and
+#' # Returns the path of the location where version 4.3 of the database is downloaded to and
 #' # read from.
 #' ram_dir(vers = "4.3")
 ram_dir <- function(vers = NULL) {
   if (!is.null(vers)) {
-    version <- fmt_version(vers)
+    vers <- fmt_version(vers)
     check_version_arg(vers)
   }
   rappdirs::user_data_dir("ramlegacy", version = vers)
@@ -114,41 +115,27 @@ net_check <- function(url, show_error = FALSE) {
   if (typeof(response) == "list") invisible(TRUE) else invisible(FALSE)
 }
 
-find_latest_net_check <- function() {
-  ram_url <- "https://doi.org/10.5281/zenodo.2542918"
-  is_work <- TRUE
-  res <- tryCatch({httr::GET(ram_url, httr::accept("application/vnd.schemaorg.ld+json"))},
-                       error = function(e) {
-                         is_work <<- FALSE
-                       })
-  return(is_work)
-  }
 
 # regex function to find the latest version from the ram website
 #' @noRd
 find_latest <- function(ram_url) {
 
-  # if there is connection issue then default to 4.44
-  if (!find_latest_net_check()) {
-    return("4.44")
-  }
-
   # set version to 4.44 if retrieving fails for some reason
   vers <- "4.44"
 
-  # perform content negotiation to get it in json
-  req <- httr::GET(ram_url, httr::accept("application/vnd.schemaorg.ld+json"))
-  # try to get latest version
-  if (req$status_code == 200) {
-    # get the content as text
-    contnt <- httr::content(req, as = "text")
-    # parse the text as json
-    json_text <- jsonlite::parse_json(contnt)
-    # get the name from json_text
-    json_name <- json_text$name
-    # get newest version the json_name
-    m_vers <- gregexpr("\\d\\.\\d+", text = json_name)
-    vers <- unlist(regmatches(json_name, m_vers))
+  # make sure there are no connection issues
+  if (net_check(ram_url, show_error = F)) {
+    req <- httr::GET(ram_url)
+    # try to get latest version
+    if (req$status_code == 200) {
+      # get the content
+      contnt <- httr::content(req, "text")
+      # get the text within the title tag
+      m <- gregexpr("<title>.*</title>", contnt)
+      title_text <- unlist(regmatches(contnt, m))
+      m_vers <- gregexpr("\\d\\.\\d{1,3}", text = title_text)
+      vers <- unlist(regmatches(title_text, m_vers))
+    }
   }
   return(vers)
 }

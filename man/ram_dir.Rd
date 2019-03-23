@@ -21,8 +21,12 @@ Provides the download location for \code{\link{download_ramlegacy}}
 # return the path to the rappdirs directory.
 ram_dir()
 
-# Returns the path to version 4.3 subdirectory of the rappdirs directory.
-# This is the path where version 4.3 of the database is downloaded to and
+# Returns the path of the location where version 4.3 of the database is downloaded to and
 # read from.
 ram_dir(vers = "4.3")
 }
+\seealso{
+Other ram: \code{\link{download_ramlegacy}},
+  \code{\link{load_ramlegacy}}
+}
+\concept{ram}

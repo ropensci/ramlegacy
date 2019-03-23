@@ -6,7 +6,7 @@
 \usage{
 download_ramlegacy(version = NULL, ram_path = NULL,
   ram_url = "https://doi.org/10.5281/zenodo.2542918",
-  overwrite = FALSE)
+  overwrite = FALSE, quiet = FALSE)
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number
@@ -26,6 +26,8 @@ Please \strong{do not pass} in any other url to
 
 \item{overwrite}{If TRUE, user will not encounter the usual interactive prompt confirming whether they want
 overwrite the version present locally.}
+
+\item{quiet}{If TRUE, suppress status messages}
 }
 \description{
 Downloads a specified version of RAM Legacy Stock Assessment
@@ -49,3 +51,8 @@ download_ramlegacy(version = "1.0")
 download_ramlegacy(version = "4.3")
 }
 }
+\seealso{
+Other ram: \code{\link{load_ramlegacy}},
+  \code{\link{ram_dir}}
+}
+\concept{ram}
