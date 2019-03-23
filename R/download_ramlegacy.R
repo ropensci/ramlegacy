@@ -122,7 +122,7 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
 
     # download the older version and convert the excel database to rds file in
     # user's rappdirs directory using read_ramlegacy
-    httr::GET(ram_url, httr::write_disk(excel_path))
+    httr::GET(ram_url, httr::write_disk(excel_path, overwrite = T))
 
     if (file.exists(excel_path)) {
       if (!quiet) {

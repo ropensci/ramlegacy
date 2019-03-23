@@ -15,7 +15,7 @@ load them one at a time as passing them all at once will throw an error.}
 
 \item{tables}{A character vector specifying the names of particular dataframes to load from a
 certain version. If not specified then a list containing all the dataframes within the requested version
-is returned}
+is returned.}
 
 \item{ram_path}{path to the local directory where the specified version of
 the RAM Legacy Stock Excel Assessment Database was downloaded.

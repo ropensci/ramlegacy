@@ -11,7 +11,7 @@
 #'  load them one at a time as passing them all at once will throw an error.
 #' @param tables A character vector specifying the names of particular dataframes to load from a
 #'  certain version. If not specified then a list containing all the dataframes within the requested version
-#'  is returned
+#'  is returned.
 #' @param ram_path path to the local directory where the specified version of
 #' the RAM Legacy Stock Excel Assessment Database was downloaded.
 #' By default this path is set to within the rapddirs directory and can be viewed using calling the function
@@ -74,7 +74,6 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   }
 
   list_dataframes <- readRDS(rds_path)
-
   if (!is.null(tables)) {
     listToReturn <- vector("list", length(tables))
     for (i in seq_along(1:length(tables))) {

@@ -71,15 +71,12 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
     for (i in c(1:31)) {
       MostUsedTimeSeries[[i]] <- temp_lst_dfs[[ts_df_names[i]]]
     }
-    # assign names and append the version number at the end for most used ts dfs
-    names(MostUsedTimeSeries) <-  paste0(ts_df_names, "_v", version)
+
 
     # store metadata and MostUsedTimeSeries in final_lst_dfs
     final_lst_dfs[[25]] <- metadata_df
     final_lst_dfs[[26]] <- MostUsedTimeSeries
 
-    # assign names to all the dataframes in final_lst_dfs
-    names(final_lst_dfs) <- c(sheets, "metadata", "MostUsedTimeSeries")
   }
 
   # write final_lst_dfs as rdata object
