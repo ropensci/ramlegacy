@@ -66,7 +66,7 @@ To enable caching behavior, before downloading a the specified version `download
 `download_ramlegacy` also has three other arguments: `ram_path`, `ram_url`, and `quiet`. By default `ram_path` has been set to a location provided by the rappdirs package and can be viewed by calling `ram_dir(vers = "version")`. Although this is not the recommended approach download_ramlegacy supports downloading to a user-specified path. `ram_url` is fixed to the zenodo URL of the database. Please do not **pass in any other url** to ram_url. By default, `download_ramlegacy` after it is called keeps the user updated of the download progress through status messages. Setting `quiet` to TRUE enables the user suppress all status messages.
   
 ## load_ramlegacy
-Use `load_ramlegacy` to obtain a list of particular dataframes or of all the dataframes present in the desired version of the database. Make sure that the version you want to load was downloaded and is already present locally otherwise `load_ramlegacy` will throw an error.
+`load_ramlegacy` can be used to obtain a list of particular dataframes and passed in to the `tables` argument. To get a list of all the dataframes within a specific version of the database set tables = NULLired version of the database. Make sure that the version you want to load was downloaded and is already present locally otherwise `load_ramlegacy` will throw an error. 
 
 ```{r, load_ramlegacy_example1, echo = T, eval = F}
 # returns a list containing area and bioparams tables from version 4.44 database
