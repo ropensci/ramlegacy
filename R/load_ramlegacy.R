@@ -1,8 +1,10 @@
 
+
 #' @name load_ramlegacy
+#' @family ram
 #' @title Read-in downloaded RAM Legacy Database
-#' @description Returns a specific dataframe or a list of all the dataframes present in the specified
-#'  version of the database.
+#' @description Returns a list of specific dataframes or a list of all the dataframes present in the
+#'  requested version of the database.
 #' @param version A character vector of length 1 specifying the version number of the
 #'  database. As of February 2019, the available versions are "1.0", "2.0", "2.5", "3.0", "4.3",
 #'  "4.40", "4.41" and "4.44". If version argument is not specified then it defaults to latest version
@@ -35,6 +37,9 @@
 #'
 load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
+
+  # define print method for ramlist class
+
 
   if (!is.null(version)) {
     # ensure that the version is properly formatted
@@ -83,8 +88,10 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
       }
     }
     names(listToReturn) <- tables
+    class(listToReturn) <- c("ramlist", class(listToReturn))
     return(listToReturn)
   } else {
+    class(list_dataframes) <- c("ramlist", class(list_dataframes))
     return(list_dataframes)
   }
 }
