@@ -10,15 +10,15 @@ ramlegacy
 -   [Package source code on Github](https://github.com/kshtzgupta1/ramlegacy)
 -   [**Submit Bugs and feature requests**](https://github.com/kshtzgupta1/ramlegacy/issues)
 
-`ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](http://ramlegacy.org)
+`ramlegacy` is an R package that supports caching and reading in different versions (including older ones) of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](http://ramlegacy.org)
 
 What does `ramlegacy` do?
 -------------------------
 
 -   Provides a function `download_ramlegacy()`, to download all the available
     versions of the RAM Legacy Stock Assessment Excel Database as RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded for subsequent analysis.
--   Supports reading in the cached versions of the database through loading the package i.e. calling `library(ramlegacy)` and also by providing a function `load_ramlegacy()` to load any specified version.
--   Provides a function `ram_dir()` to view the path where the downloaded database was saved.
+-   Supports reading in specified dataframes from any particular cached version of the database through a function called `load_ramlegacy()`
+-   Provides a function `ram_dir()` to view the path where the downloaded database is saved.
 
 Installation
 ------------
@@ -44,8 +44,6 @@ Start by loading the package using `library`.
 library(ramlegacy)
 ```
 
-When `ramlegacy` is loaded for the first time after installation of the package calling `library(ramlegacy)` will prompt the user to download a version of the database using `download_ramlegacy()`. After downloading a version or multiple versions of the database the subsequent behavior of `library(ramlegacy)` will depend on which version/versions were downloaded and are present on disk as well as whether `library(ramlegacy)` is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy [vignette.](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html)
-
 ### download\_ramlegacy
 
 `download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the [rappdirs](https://cran.r-project.org/web/packages/rappdirs/index.html) package. This location is also where `load_ramlegacy()` will look for the downloaded database.
@@ -55,23 +53,17 @@ When `ramlegacy` is loaded for the first time after installation of the package 
 download_ramlegacy(version = "3.0")
 ```
 
-If version is not specified then `download_ramlegacy` defaults to downloading current latest version (4.3) :
+If version is not specified then `download_ramlegacy` defaults to downloading the latest version :
 
 ``` r
-# downloads current latest version 4.3
+# downloads current latest version 4.44
 download_ramlegacy()
 ```
 
-To ensure that the user is able to download the data in case www.ramlegacy.org is down, the function also supports downloading all the different versions of the database from a [backup](https://www.github.com/kshtzgupta1/ramlegacy-assets/) location:
-
-``` r
-# downloads version 1.0 from backup location if www.ramlegacy.org is down
-download_ramlegacy(version = "4.3")
-```
 
 ### load\_ramlegacy
 
-After the specified version of the database has been downloaded through `download_ramlegacy`, `load_ramlegacy` can be used to return a list of particular dataframes or all the dataframes present within the database. If version is not specified then `load_ramlegacy` defatults to the latest version (currently 4.44)  :
+After the specified version of the database has been downloaded through `download_ramlegacy`, `load_ramlegacy` can be used to return a list of particular dataframes within the database. To get a list of all the dataframes within a specific version of the database set `tables` = NULL.  If If version is not specified then `load_ramlegacy` defaults to the latest version (currently 4.44)  :
 
 ```{r, load_ramlegacy_example1, echo = T, eval = F}
 # returns a list containing area and bioparams tables from version 4.44 database
