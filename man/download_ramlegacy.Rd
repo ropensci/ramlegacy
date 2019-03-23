@@ -5,7 +5,8 @@
 \title{Download RAM Legacy Excel Database}
 \usage{
 download_ramlegacy(version = NULL, ram_path = NULL,
-  ram_url = "https://doi.org/10.5281/zenodo.2542918")
+  ram_url = "https://doi.org/10.5281/zenodo.2542918",
+  overwrite = FALSE, quiet = FALSE)
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number
@@ -16,12 +17,17 @@ download them one at a time as passing them all at once will throw an error.}
 
 \item{ram_path}{A string specifying the path of the local directory where
 database will be downloaded. By default this path is set to the location provided by \pkg{rappdirs}
-package and can be viewed by calling \code{\link{ram_dir}}. Although, this is not the \strong{recommended}
+package and can be viewed by calling \code{\link{ram_dir}}. Although this is not the \strong{recommended}
 approach \code{download_ramlegacy} supports downloading to a user-specified path.}
 
 \item{ram_url}{A string. By default it is set to the zenodo url of the database.
 Please \strong{do not pass} in any other url to
 \code{ram_url}.}
+
+\item{overwrite}{If TRUE, user will not encounter the usual interactive prompt confirming whether they want
+overwrite the version present locally.}
+
+\item{quiet}{If TRUE, suppress status messages}
 }
 \description{
 Downloads a specified version of RAM Legacy Stock Assessment
@@ -45,3 +51,8 @@ download_ramlegacy(version = "1.0")
 download_ramlegacy(version = "4.3")
 }
 }
+\seealso{
+Other ram: \code{\link{load_ramlegacy}},
+  \code{\link{ram_dir}}
+}
+\concept{ram}

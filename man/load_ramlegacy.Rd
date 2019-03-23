@@ -26,8 +26,8 @@ Although this is not the \strong{recommended} approach \code{load_ramlegacy} sup
  at the specified path as an rds object.}
 }
 \description{
-Returns a specific dataframe or a list of all the dataframes present in the specified
- version of the database.
+Returns a list of specific dataframes or a list of all the dataframes present in the
+ requested version of the database.
 }
 \examples{
 \dontrun{
@@ -43,3 +43,8 @@ load_ramlegacy(version = "2.5")
 }
 
 }
+\seealso{
+Other ram: \code{\link{download_ramlegacy}},
+  \code{\link{ram_dir}}
+}
+\concept{ram}

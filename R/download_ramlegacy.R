@@ -1,5 +1,6 @@
 
 #' @name download_ramlegacy
+#' @family ram
 #' @title Download RAM Legacy Excel Database
 #' @description Downloads a specified version of RAM Legacy Stock Assessment
 #'  Excel Database and as an RDS object to a local directory specified by \code{\link{ram_dir}}.
@@ -14,11 +15,14 @@
 #'  download them one at a time as passing them all at once will throw an error.
 #' @param ram_path A string specifying the path of the local directory where
 #'  database will be downloaded. By default this path is set to the location provided by \pkg{rappdirs}
-#'  package and can be viewed by calling \code{\link{ram_dir}}. Although, this is not the \strong{recommended}
+#'  package and can be viewed by calling \code{\link{ram_dir}}. Although this is not the \strong{recommended}
 #'  approach \code{download_ramlegacy} supports downloading to a user-specified path.
 #' @param ram_url A string. By default it is set to the zenodo url of the database.
-#'  Please \strong{do not pass} in any other url to
-#'  \code{ram_url}.
+#' Please \strong{do not pass} in any other url to
+#' \code{ram_url}.
+#' @param overwrite If TRUE, user will not encounter the usual interactive prompt confirming whether they want
+#' overwrite the version present locally.
+#' @param quiet If TRUE, suppress status messages
 #' @export
 #' @examples
 #' \dontrun{
@@ -34,7 +38,10 @@
 #' download_ramlegacy(version = "4.3")
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
-ram_url = "https://doi.org/10.5281/zenodo.2542918") {
+ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = FALSE) {
+
+  # check internet connection and throw error if there is a connection issue
+  net_check(ram_url, show_error = TRUE)
 
   # user_path, a boolean flag set to FALSE by default
   user_path <- FALSE
@@ -67,18 +74,20 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918") {
   ## Provided that the path is not set by user if
   # there is an existing ramlegacy version
   # ask the user what to do in interactive mode otherwise exit
-  if (version %in% find_local(ram_path) & !user_path) {
-    if (interactive()) {
-      ans <- ask_yn(
-        "Version ", version, " has already been downloaded.",
-        "Overwrite?"
-      )
-      if (!ans) return("Not overwriting. Exiting the function.")
-    } else {
-      return(paste(
-        paste("Version", version, "has already been downloaded."),
-        "Exiting the function."
-      ))
+  if (!overwrite) {
+    if (version %in% find_local(ram_path) & !user_path) {
+      if (interactive()) {
+        ans <- ask_yn(
+          "Version ", version, " has already been downloaded.",
+          "Overwrite?"
+        )
+        if (!ans) return("Not overwriting. Exiting the function.")
+      } else {
+        return(notify(paste(
+          paste("Version", version, "has already been downloaded."),
+          "Exiting the function."
+        )))
+      }
     }
   }
 
@@ -87,12 +96,11 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918") {
     dir.create(vers_path, recursive = TRUE)
   }
 
-  # check internet connection and throw error if there is a connection issue
-  net_check(ram_url, show_error = TRUE)
-
 
   # notify the user
-  notify("Downloading...this may take a while")
+  if(!quiet) {
+    notify("Downloading...this may take a while")
+  }
 
   # constructing different urls and downloading depending on whether old
   # or recent version
@@ -117,7 +125,9 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918") {
     httr::GET(ram_url, httr::write_disk(excel_path, overwrite = T))
 
     if (file.exists(excel_path)) {
-      notify("Finished downloading. Saving the database as RDS object...")
+      if (!quiet) {
+        notify("Finished downloading. Saving the database as RDS object...")
+      }
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
 
@@ -136,12 +146,16 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918") {
 
     # unzip it and read it in
     if (file.exists(tmp)) {
-      notify(paste(
-        "Finished Downloading.",
-        "Now unzipping it..."
-      ))
+      if (!quiet) {
+        notify(paste(
+          "Finished Downloading.",
+          "Now unzipping it..."
+        ))
+      }
       utils::unzip(tmp, exdir = vers_path, overwrite = TRUE)
-      notify("Saving the unzipped database as RDS object...")
+      if (!quiet) {
+        notify("Saving the unzipped database as RDS object...")
+      }
       vers_path <- file.path(vers_path, paste0("RLSADB v", version))
       vers_path <- file.path(vers_path, "DB Files With Assessment Data")
       suppressWarnings(read_ramlegacy(vers_path, version))
