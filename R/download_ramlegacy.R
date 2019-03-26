@@ -38,7 +38,8 @@
 #' download_ramlegacy(version = "4.40")
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
-ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = FALSE) {
+ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE,
+quiet = FALSE) {
 
   #NOTE About Zenodo url: According to the Zenodo website this DOI will always resolve to the latest url.
 
@@ -128,7 +129,8 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
 
     if (file.exists(excel_path)) {
       if (!quiet) {
-        notify(paste0("Finished downloading v", version, ". Saving the database as RDS object..."))
+        notify(paste0("Finished downloading v", version,
+                      ". Saving the database as RDS object..."))
       }
       suppressWarnings(read_ramlegacy(vers_path, version))
     }

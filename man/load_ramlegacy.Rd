@@ -30,18 +30,10 @@ Returns a list of specific dataframes or a list of all the dataframes present in
  requested version of the database.
 }
 \examples{
-\dontrun{
+\donttest{
 # If version is not specified then current latest version
-# (4.44) will be loaded
-load_ramlegacy()
-
-# load version 3.0
-load_ramlegacy(version = "3.0")
-
-# load version 2.5
-load_ramlegacy(version = "2.5")
+# returns a list containing area and bioparams tables from version 4.44 database
 }
-
 }
 \seealso{
 Other ramlegacy functions: \code{\link{download_ramlegacy}},

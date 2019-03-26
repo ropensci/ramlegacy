@@ -38,7 +38,7 @@ Downloads a specified version of RAM Legacy Stock Assessment
  [a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)
 }
 \examples{
-\dontrun{
+\donttest{
 
 # If version is not specified then current latest version (4.44)
 # will be downloaded

@@ -10,14 +10,12 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
   # Get the names of all the dataframes present in the excel database
   excel_file <- grep("RLSADB.*\\.(xlsx|xls)",
                      list.files(vers_path),
-                     value = TRUE
-  )
+                     value = TRUE)
   excel_path <- file.path(vers_path, excel_file)
   na_vec <- c("NA", "NULL", "_", "none", "N/A", "")
-  print(excel_path)
   sheets <- readxl::excel_sheets(excel_path)
 
-  # for older versions read in the all the sheets from the excel file and then save the
+  # for older versions read in the all the sheets from the excel file, save the
   # list of dfs as an rds object.
   if (version < 4.40) {
 

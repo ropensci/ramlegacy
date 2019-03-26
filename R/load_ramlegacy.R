@@ -45,11 +45,13 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   if (is.null(ram_path)) {
 
     if (version < "4.40") {
-      rds_path <- file.path(ram_dir(vers = version), paste0("v", version, ".rds"))
+      rds_path <- file.path(ram_dir(vers = version),
+                            paste0("v", version, ".rds"))
 
       } else {
 
-      rds_path <- file.path(ram_dir(vers = version), paste0("RLSADB v", version))
+      rds_path <- file.path(ram_dir(vers = version),
+                            paste0("RLSADB v", version))
       rds_path <- file.path(rds_path, "DB Files With Assessment Data")
       rds_path <- file.path(rds_path, paste0("v", version, ".rds"))
 
@@ -70,7 +72,7 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   list_dataframes <- readRDS(rds_path)
   if (!is.null(tables)) {
     listToReturn <- vector("list", length(tables))
-    for (i in seq_along(1:length(tables))) {
+    for (i in seq_len(length(tables))) {
       # construct df name
       df_name <- tables[i]
       if (grepl("\\.data", tables[i])) {
