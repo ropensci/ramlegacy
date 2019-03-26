@@ -14,6 +14,7 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
   )
   excel_path <- file.path(vers_path, excel_file)
   na_vec <- c("NA", "NULL", "_", "none", "N/A", "")
+  print(excel_path)
   sheets <- readxl::excel_sheets(excel_path)
 
   # for older versions read in the all the sheets from the excel file and then save the
