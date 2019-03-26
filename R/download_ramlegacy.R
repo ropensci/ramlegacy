@@ -75,12 +75,13 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
   # there is an existing ramlegacy version
   # ask the user what to do in interactive mode otherwise exit
   if (!overwrite) {
-    if (version %in% find_local(ram_path) & !user_path) {
-      if (interactive()) {
-        ans <- ask_yn(
-          "Version ", version, " has already been downloaded.",
-          "Overwrite?"
-        )
+    if (!user_path) {
+      if (version %in% find_local(ram_path)) {
+        if (interactive()) {
+          ans <- ask_yn(
+            "Version ", version, " has already been downloaded.",
+            "Overwrite?"
+          )
         if (!ans) return("Not overwriting. Exiting the function.")
       } else {
         return(notify(paste(
@@ -88,6 +89,7 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
           "Exiting the function."
         )))
       }
+    }
     }
   }
 
@@ -126,7 +128,7 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
 
     if (file.exists(excel_path)) {
       if (!quiet) {
-        notify("Finished downloading. Saving the database as RDS object...")
+        notify(paste0("Finished downloading v", version, ". Saving the database as RDS object..."))
       }
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
@@ -160,7 +162,6 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
       vers_path <- file.path(vers_path, "DB Files With Assessment Data")
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
-  }
 
   # check if file downloaded or not
   rds_path <- file.path(vers_path, paste0("v", version, ".rds"))
@@ -168,6 +169,7 @@ ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE, quiet = F
     completed(paste("Version", version, "successfully downloaded."))
   } else {
     not_completed(paste("Failed to download Version", version))
+  }
   }
 
   invisible(TRUE)
