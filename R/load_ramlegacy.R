@@ -23,18 +23,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # If version is not specified then current latest version
-#' # (4.44) will be loaded
-#' load_ramlegacy()
-#'
-#' # load version 3.0
-#' load_ramlegacy(version = "3.0")
-#'
-#' # load version 2.5
-#' load_ramlegacy(version = "2.5")
+#' # returns a list containing area and bioparams tables from version 4.44 database
+# load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 #' }
-#'
 load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
 

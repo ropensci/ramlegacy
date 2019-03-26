@@ -1,7 +1,7 @@
 context("Testing that download_ramlegacy works")
 
 test_that("defaults to curr. latest version 4.44 if version not specified", {
-  #skip_on_cran()
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy(NULL, temp_path)
   vers_path <- file.path(temp_path, "4.44")
@@ -27,7 +27,7 @@ test_that("download_ramlegacy errors when there is no internet", {
 })
 
 test_that("download_ramlegacy errors out behind a proxy server", {
-  #skip_on_cran()
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   httr::with_config(
     httr::use_proxy(url = "http://google.com", port = 1234),
@@ -43,6 +43,7 @@ test_that("download_ramlegacy errors out behind a proxy server", {
 })
 
 test_that("Overwrites existing download when overwrite = TRUE", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   # download version 4.44 for the first time
   download_ramlegacy("4.44", temp_path)
@@ -53,7 +54,7 @@ test_that("Overwrites existing download when overwrite = TRUE", {
 
 # testing download_ramlegacy downloads older version 1.0
 test_that("download_ramlegacy downloads v1.0", {
-  #skip_on_cran()
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("1.0", temp_path)
   vers_path <- file.path(temp_path, "1.0")

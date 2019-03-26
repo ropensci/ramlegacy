@@ -25,7 +25,7 @@
 #' @param quiet If TRUE, suppress status messages
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
