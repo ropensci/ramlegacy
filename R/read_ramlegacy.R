@@ -76,6 +76,9 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
     final_lst_dfs[[25]] <- metadata_df
     final_lst_dfs[[26]] <- MostUsedTimeSeries
 
+    final_lst_dfs[[26]] <- ts_df_names
+    names(final_lst_dfs) <- c(sheets, "metadata", "MostUsedTimeSeries")
+
   }
 
   # write final_lst_dfs as rdata object

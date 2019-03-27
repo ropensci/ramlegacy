@@ -181,11 +181,23 @@ find_local <- function(path) {
 print.ramlist <- function(x, ...) {
   cat(" Number of tables: ", length(x), "\n")
   for (i in seq_len(length(x))) {
-    tbl_i_dim <- dim(x[[i]])
-    tbl_i_name <- names(x)[i]
-    num_rows <- tbl_i_dim[1]
-    num_cols <- tbl_i_dim[2]
-    cat(paste0("'", tbl_i_name, "':  ",  num_rows,
-               " obs. of ", num_cols, " variables"), "\n")
+    if (typeof(x[[i]]) != double) {
+      tbl_i_dim <- dim(x[[i]])
+      tbl_i_name <- names(x)[i]
+      num_rows <- tbl_i_dim[1]
+      num_cols <- tbl_i_dim[2]
+      cat(paste0("'", tbl_i_name, "':  ",  num_rows,
+                 " obs. of ", num_cols, " variables"), "\n")
+    } else {
+      lst_dfs <- x[[i]]
+      for (j in seq_len(length(lst_dfs))) {
+          tbl_j_dim <- dim(lst_dfs[[j]])
+          tbl_j_name <- names(lst_dfs)[j]
+          num_rows <- tbl_i_dim[1]
+          num_cols <- tbl_i_dim[2]
+          cat(paste0("'", tbl_i_name, "':  ",  num_rows,
+                     " obs. of ", num_cols, " variables"), "\n")
+    }
+  }
   }
 }
