@@ -180,22 +180,27 @@ find_local <- function(path) {
 #' @export
 print.ramlist <- function(x, ...) {
   cat(" Number of tables: ", length(x), "\n")
-  for (i in seq_len(length(x))) {
-    if (typeof(x[[i]]) != double) {
-      tbl_i_dim <- dim(x[[i]])
-      tbl_i_name <- names(x)[i]
+  cat("======================================", "\n")
+  for (nme in names(x)) {
+    if (nme != "most.used.time.series") {
+      tbl_i_dim <- dim(x[[nme]])
       num_rows <- tbl_i_dim[1]
       num_cols <- tbl_i_dim[2]
-      cat(paste0("'", tbl_i_name, "':  ",  num_rows,
+      cat(paste0("'", nme, "':  ",  num_rows,
                  " obs. of ", num_cols, " variables"), "\n")
     } else {
-      lst_dfs <- x[[i]]
+      lst_dfs <- x[[nme]]
+      cat("\n")
+      cat("----------------------------------------------------------", "\n")
+      cat('"most.used.time.series": list of following tables:', "\n")
+      cat('----------------------------------------------------------', "\n")
+      cat("\n")
       for (j in seq_len(length(lst_dfs))) {
           tbl_j_dim <- dim(lst_dfs[[j]])
           tbl_j_name <- names(lst_dfs)[j]
-          num_rows <- tbl_i_dim[1]
-          num_cols <- tbl_i_dim[2]
-          cat(paste0("'", tbl_i_name, "':  ",  num_rows,
+          num_rows <- tbl_j_dim[1]
+          num_cols <- tbl_j_dim[2]
+          cat(paste0("'", tbl_j_name, "':  ",  num_rows,
                      " obs. of ", num_cols, " variables"), "\n")
     }
   }

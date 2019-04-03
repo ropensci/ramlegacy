@@ -1,7 +1,5 @@
 context("test load_ramlegacy works as expected")
 
-
-
 test_that("load_ramlegacy works as expected when particular dataframes are requested for older version", {
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("1.0", temp_path)
@@ -10,7 +8,6 @@ test_that("load_ramlegacy works as expected when particular dataframes are reque
   lst_dfs <- load_ramlegacy("1.0", c("area", "bioparams"))
   expect_equal(length(lst_dfs), 2)
   expect_true(typeof(lst_dfs[[1]] == "list"))
-
 })
 
 test_that("load_ramlegacy works as expected when particular dataframes are requested for newer version", {

@@ -1,5 +1,3 @@
-
-
 #' @name load_ramlegacy
 #' @family ramlegacy functions
 #' @title Read-in downloaded RAM Legacy Database
@@ -30,8 +28,7 @@
 load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
 
-  # define print method for ramlist class
-
+  # convert names to lowercase
 
   if (!is.null(version)) {
     # ensure that the version is properly formatted
@@ -69,21 +66,25 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   }
 
   list_dataframes <- readRDS(rds_path)
+
   if (!is.null(tables)) {
+    tables <- tolower(tables)
     listToReturn <- vector("list", length(tables))
     for (i in seq_len(length(tables))) {
       # construct df name
       df_name <- tables[i]
       if (grepl("\\.data", tables[i])) {
-        MostUsedTimeSeries <- list_dataframes[[26]]
-        listToReturn[[i]]  <- MostUsedTimeSeries[[df_name]]
+        most.used.time.series <- list_dataframes[[26]]
+        listToReturn[[i]]  <- most.used.time.series[[df_name]]
       } else {
         listToReturn[[i]] <- list_dataframes[[df_name]]
       }
     }
+
     names(listToReturn) <- tables
     class(listToReturn) <- c("ramlist", class(listToReturn))
     return(listToReturn)
+
   } else {
     class(list_dataframes) <- c("ramlist", class(list_dataframes))
     return(list_dataframes)

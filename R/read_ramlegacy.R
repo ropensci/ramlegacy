@@ -39,7 +39,7 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
           sheet = s, na = na_vec, col_types = col_type_vec
         )
       })
-
+      sheets <- tolower(sheets)
       names(final_lst_dfs) <- sheets
 
     # For newer version, read in the data frames from the
@@ -63,21 +63,21 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
     }
     #
     metadata_df <- temp_lst_dfs[["metadata"]]
-    MostUsedTimeSeries <- vector("list", 31)
+    most.used.time.series <- vector("list", 31)
     # get the names of these most used time series dfs
     ts_df_names <- grep("\\.data", names(temp_lst_dfs), perl=TRUE, value=TRUE)
     # store them in the list MostUsedTimeSeries
     for (i in c(1:31)) {
-      MostUsedTimeSeries[[i]] <- temp_lst_dfs[[ts_df_names[i]]]
+      most.used.time.series[[i]] <- temp_lst_dfs[[ts_df_names[i]]]
     }
 
 
     # store metadata and MostUsedTimeSeries in final_lst_dfs
     final_lst_dfs[[25]] <- metadata_df
-    final_lst_dfs[[26]] <- MostUsedTimeSeries
+    final_lst_dfs[[26]] <- most.used.time.series
 
-    final_lst_dfs[[26]] <- ts_df_names
-    names(final_lst_dfs) <- c(sheets, "metadata", "MostUsedTimeSeries")
+    names(final_lst_dfs[[26]]) <- tolower(ts_df_names)
+    names(final_lst_dfs) <- c(tolower(sheets), "metadata", "most.used.time.series")
 
   }
 
