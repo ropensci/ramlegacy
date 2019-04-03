@@ -21,31 +21,31 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Kshitiz",
-      "familyName": "Gupta",
-      "email": "kshtzgupta1@berkeley.edu"
-    },
-    {
-      "@type": "Person",
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com",
       "@id": "http://orcid.org/0000-0002-1642-628X"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Kshitiz",
+      "familyName": "Gupta",
+      "email": "kshtzgupta1@berkeley.edu"
     }
   ],
   "copyrightHolder": [
     {
       "@type": "Person",
-      "givenName": "Kshitiz",
-      "familyName": "Gupta",
-      "email": "kshtzgupta1@berkeley.edu"
-    },
-    {
-      "@type": "Person",
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com",
       "@id": "http://orcid.org/0000-0002-1642-628X"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Kshitiz",
+      "familyName": "Gupta",
+      "email": "kshtzgupta1@berkeley.edu"
     }
   ],
   "maintainer": [
@@ -189,18 +189,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "jsonlite",
-      "name": "jsonlite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     }
   ],
   "readme": "https://github.com/kshtzgupta1/ramlegacy/blob/master/README.md",
@@ -212,10 +200,6 @@
   "keywords": ["ramlegacy", "fish", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
   "developmentStatus": "https://www.repostatus.org/#wip",
   "contributor": [
-    {
-      "@type": "Organization",
-      "name": "RAM Legacy Stock Assessment Database"
-    },
     {
       "@type": "Organization",
       "name": "RAM Legacy Stock Assessment Database"
@@ -261,5 +245,6 @@
       }
     }
   ],
-  "releaseNotes": "https://github.com/kshtzgupta1/ramlegacy/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/kshtzgupta1/ramlegacy/blob/master/NEWS.md",
+  "fileSize": "129.668KB"
 }
