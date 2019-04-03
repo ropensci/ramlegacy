@@ -5,29 +5,32 @@ test_that("load_ramlegacy works as expected when particular dataframes are reque
   download_ramlegacy("1.0", temp_path)
   vers_path <- file.path(temp_path, "1.0")
   rds_path <- file.path(vers_path, "v1.0.rds")
-  lst_dfs <- load_ramlegacy("1.0", c("area", "bioparams"))
+  lst_dfs <- load_ramlegacy("1.0", tables = c("area", "bioparams"), ram_path = rds_path)
   expect_equal(length(lst_dfs), 2)
-  expect_true(typeof(lst_dfs[[1]] == "list"))
+  expect_true(is.data.frame(lst_dfs[[1]]))
 })
 
 test_that("load_ramlegacy works as expected when particular dataframes are requested for newer version", {
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.44", temp_path)
   vers_path <- file.path(temp_path, "4.44")
-  rds_path <- file.path(vers_path, "v4.44.rds")
-  lst_dfs <- load_ramlegacy("4.44", c("area", "bioparams"))
+  dir_path <- file.path(vers_path, paste0("RLSADB v", version))
+  subdir_path <- file.path(dir_path, "DB Files With Assessment Data")
+  rds_path <- file.path(subdir_path, "v4.44.rds")
+  lst_dfs <- load_ramlegacy("4.44", tables = c("area", "bioparams"), ram_path = rds_path)
   expect_equal(length(lst_dfs), 2)
-  expect_true(typeof(lst_dfs[[1]] == "list"))
+  expect_true(is.data.frame(lst_dfs[[2]]))
 })
 
 test_that("load_ramlegacy works as expected when all dataframes are requested for newer version", {
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.44", temp_path)
   vers_path <- file.path(temp_path, "4.44")
-  rds_path <- file.path(vers_path, "v4.44.rds")
-  lst_dfs <- load_ramlegacy("4.44", c("area", "bioparams"))
+  subdir_path <- file.path(vers_path, "DB Files With Assessment Data")
+  rds_path <- file.path(subdir_path, "v4.44.rds")
+  lst_dfs <- load_ramlegacy("4.44", ram_path = rds_path)
   expect_equal(length(lst_dfs), 26)
-  expect_true(typeof(lst_dfs[[1]] == "list"))
+  expect_true(is.data.frame(lst_dfs[[1]]))
 })
 
 test_that("load_ramlegacy works as expected when all dataframes are requested for older version", {
@@ -35,9 +38,9 @@ test_that("load_ramlegacy works as expected when all dataframes are requested fo
   download_ramlegacy("4.3", temp_path)
   vers_path <- file.path(temp_path, "4.3")
   rds_path <- file.path(vers_path, "v4.3.rds")
-  lst_dfs <- load_ramlegacy("4.3", c("area", "bioparams"))
+  lst_dfs <- load_ramlegacy("4.3", ram_path = rds_path)
   expect_equal(length(lst_dfs), 24)
-  expect_true(typeof(lst_dfs[[1]] == "list"))
+  expect_true(is.data.frame(lst_dfs[[1]]))
 })
 
 
