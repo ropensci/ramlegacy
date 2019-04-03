@@ -8,4 +8,3 @@
 #' @seealso \url{www.https://github.com/kshtzgupta1/ramlegacy/issues}
 
 "_PACKAGE"
-

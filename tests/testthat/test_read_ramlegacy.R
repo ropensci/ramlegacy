@@ -1,6 +1,6 @@
 context("Checking read_ramlegacy works as expected")
 
-in_url<-"https://zenodo.org/record/2542919/files/RLSADB%20v4.44.zip?download=1"
+in_url <- "https://zenodo.org/record/2542919/files/RLSADB%20v4.44.zip?download=1"
 
 test_that("read_ramlegacy writes the database as RDS for v4.44", {
   skip_on_cran()

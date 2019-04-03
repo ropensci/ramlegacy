@@ -5,17 +5,19 @@ check_version_arg <- function(version) {
   }
   version <- fmt_version(version)
 
-  if (version < "4.4"){
+  if (version < "4.4") {
     old_vers <- c("1.0", "2.0", "2.5", "3.0", "4.3")
-    if(!version %in% old_vers) {
-    stop(paste(
-      "Invalid version number."), call. = FALSE)
+    if (!version %in% old_vers) {
+      stop(paste(
+        "Invalid version number."
+      ), call. = FALSE)
     }
   } else {
     new_vers <- c("4.40", "4.41", "4.44")
     if (!version %in% new_vers) {
-    stop(paste(
-      "Invalid version number."), call. = FALSE)
+      stop(paste(
+        "Invalid version number."
+      ), call. = FALSE)
     }
   }
   invisible(TRUE)
@@ -62,7 +64,7 @@ check_path <- function(path) {
 #' @examples
 #' # return the path to the rappdirs directory.
 #' ram_dir()
-#'
+#' 
 #' # Returns the path of the location where version 4.3 of the database is downloaded to and
 #' # read from.
 #' ram_dir(vers = "4.3")
@@ -98,7 +100,6 @@ ask_multiple <- function(msg, choices) {
 # issues and fail with an informative error message
 #' @noRd
 net_check <- function(url, show_error = FALSE) {
-
   response <- tryCatch(httr::GET(url),
     error = function(e) {
       if (show_error) {
@@ -186,23 +187,27 @@ print.ramlist <- function(x, ...) {
       tbl_i_dim <- dim(x[[nme]])
       num_rows <- tbl_i_dim[1]
       num_cols <- tbl_i_dim[2]
-      cat(paste0("'", nme, "':  ",  num_rows,
-                 " obs. of ", num_cols, " variables"), "\n")
+      cat(paste0(
+        "'", nme, "':  ", num_rows,
+        " obs. of ", num_cols, " variables"
+      ), "\n")
     } else {
       lst_dfs <- x[[nme]]
       cat("\n")
       cat("----------------------------------------------------------", "\n")
       cat('"most.used.time.series": list of following tables:', "\n")
-      cat('----------------------------------------------------------', "\n")
+      cat("----------------------------------------------------------", "\n")
       cat("\n")
       for (j in seq_len(length(lst_dfs))) {
-          tbl_j_dim <- dim(lst_dfs[[j]])
-          tbl_j_name <- names(lst_dfs)[j]
-          num_rows <- tbl_j_dim[1]
-          num_cols <- tbl_j_dim[2]
-          cat(paste0("'", tbl_j_name, "':  ",  num_rows,
-                     " obs. of ", num_cols, " variables"), "\n")
+        tbl_j_dim <- dim(lst_dfs[[j]])
+        tbl_j_name <- names(lst_dfs)[j]
+        num_rows <- tbl_j_dim[1]
+        num_cols <- tbl_j_dim[2]
+        cat(paste0(
+          "'", tbl_j_name, "':  ", num_rows,
+          " obs. of ", num_cols, " variables"
+        ), "\n")
+      }
     }
-  }
   }
 }

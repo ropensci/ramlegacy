@@ -42,7 +42,7 @@ test_that("net_check errors if no internet connection with show_error as T", {
 })
 
 test_that("find_latest behaves correctly", {
-  #skip_on_cran()
+  # skip_on_cran()
   test_url1 <- "http://httpbin.org/status/300"
   test_url3 <- "http://httpbin.org/status/404"
   test_url4 <- "http://httpbin.org/status/500"

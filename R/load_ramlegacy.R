@@ -39,26 +39,23 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   }
 
   if (is.null(ram_path)) {
-
     if (version < "4.40") {
-      rds_path <- file.path(ram_dir(vers = version),
-                            paste0("v", version, ".rds"))
-
-      } else {
-
-      rds_path <- file.path(ram_dir(vers = version),
-                            paste0("RLSADB v", version))
+      rds_path <- file.path(
+        ram_dir(vers = version),
+        paste0("v", version, ".rds")
+      )
+    } else {
+      rds_path <- file.path(
+        ram_dir(vers = version),
+        paste0("RLSADB v", version)
+      )
       rds_path <- file.path(rds_path, "DB Files With Assessment Data")
       rds_path <- file.path(rds_path, paste0("v", version, ".rds"))
-
-      }
-
+    }
   } else {
-
     check_path(ram_path)
     rds_path <- ram_path
-
-    }
+  }
 
   # make sure version is present
   if (!file.exists(rds_path)) {
@@ -75,7 +72,7 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
       df_name <- tables[i]
       if (grepl("\\.data", tables[i])) {
         most.used.time.series <- list_dataframes[[26]]
-        listToReturn[[i]]  <- most.used.time.series[[df_name]]
+        listToReturn[[i]] <- most.used.time.series[[df_name]]
       } else {
         listToReturn[[i]] <- list_dataframes[[df_name]]
       }
@@ -84,7 +81,6 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
     names(listToReturn) <- tables
     class(listToReturn) <- c("ramlist", class(listToReturn))
     return(listToReturn)
-
   } else {
     class(list_dataframes) <- c("ramlist", class(list_dataframes))
     return(list_dataframes)

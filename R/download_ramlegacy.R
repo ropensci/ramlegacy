@@ -26,22 +26,22 @@
 #' @export
 #' @examples
 #' \donttest{
-#'
+#' 
 #' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
 #' download_ramlegacy()
-#'
+#' 
 #' # download version 1.0
 #' download_ramlegacy(version = "1.0")
-#'
+#' 
 #' # download version 4.40
 #' download_ramlegacy(version = "4.40")
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
-ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE,
-quiet = FALSE) {
+                               ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE,
+                               quiet = FALSE) {
 
-  #NOTE About Zenodo url: According to the Zenodo website this DOI will always resolve to the latest url.
+  # NOTE About Zenodo url: According to the Zenodo website this DOI will always resolve to the latest url.
 
   # check internet connection and throw error if there is a connection issue
   net_check(ram_url, show_error = TRUE)
@@ -83,14 +83,14 @@ quiet = FALSE) {
             "Version ", version, " has already been downloaded.",
             "Overwrite?"
           )
-        if (!ans) return("Not overwriting. Exiting the function.")
-      } else {
-        return(notify(paste(
-          paste("Version", version, "has already been downloaded."),
-          "Exiting the function."
-        )))
+          if (!ans) return("Not overwriting. Exiting the function.")
+        } else {
+          return(notify(paste(
+            paste("Version", version, "has already been downloaded."),
+            "Exiting the function."
+          )))
+        }
       }
-    }
     }
   }
 
@@ -101,7 +101,7 @@ quiet = FALSE) {
 
 
   # notify the user
-  if(!quiet) {
+  if (!quiet) {
     notify("Downloading...this may take a while")
   }
 
@@ -129,20 +129,22 @@ quiet = FALSE) {
 
     if (file.exists(excel_path)) {
       if (!quiet) {
-        notify(paste0("Finished downloading v", version,
-                      ". Saving the database as RDS object..."))
+        notify(paste0(
+          "Finished downloading v", version,
+          ". Saving the database as RDS object..."
+        ))
       }
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
-
   } else {
-
     vers_doi_vec <- c("2542935", "2542927", "2542919")
     names(vers_doi_vec) <- c("4.40", "4.41", "4.44")
     # construct the download url
     doi <- unname(vers_doi_vec[version])
-    ram_url <- paste0("https://zenodo.org/record/", doi,
-                     "/files/RLSADB%20v", version, ".zip?download=1")
+    ram_url <- paste0(
+      "https://zenodo.org/record/", doi,
+      "/files/RLSADB%20v", version, ".zip?download=1"
+    )
 
     ## Download the zip file from zenodo website to temp
     tmp <- tempfile("ramlegacy_")
@@ -165,13 +167,13 @@ quiet = FALSE) {
       suppressWarnings(read_ramlegacy(vers_path, version))
     }
 
-  # check if file downloaded or not
-  rds_path <- file.path(vers_path, paste0("v", version, ".rds"))
-  if (file.exists(rds_path)) {
-    completed(paste("Version", version, "successfully downloaded."))
-  } else {
-    not_completed(paste("Failed to download Version", version))
-  }
+    # check if file downloaded or not
+    rds_path <- file.path(vers_path, paste0("v", version, ".rds"))
+    if (file.exists(rds_path)) {
+      completed(paste("Version", version, "successfully downloaded."))
+    } else {
+      not_completed(paste("Failed to download Version", version))
+    }
   }
 
   invisible(TRUE)
