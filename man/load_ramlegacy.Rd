@@ -31,8 +31,7 @@ Returns a list of specific dataframes or a list of all the dataframes present in
 }
 \examples{
 \donttest{
-# If version is not specified then current latest version
-# returns a list containing area and bioparams tables from version 4.44 database
+# Returns a list containing area and bioparams tables from version 4.44 database
 load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 }
 }
