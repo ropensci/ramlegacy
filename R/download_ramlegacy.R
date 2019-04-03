@@ -26,22 +26,22 @@
 #' @export
 #' @examples
 #' \donttest{
-#' 
+#'
 #' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
 #' download_ramlegacy()
-#' 
+#'
 #' # download version 1.0
 #' download_ramlegacy(version = "1.0")
-#' 
+#'
 #' # download version 4.40
 #' download_ramlegacy(version = "4.40")
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
-                               ram_url = "https://doi.org/10.5281/zenodo.2542918", overwrite = FALSE,
-                               quiet = FALSE) {
+                               ram_url = "https://doi.org/10.5281/zenodo.2542918",
+                               overwrite = FALSE, quiet = FALSE) {
 
-  # NOTE About Zenodo url: According to the Zenodo website this DOI will always resolve to the latest url.
+  # According to the Zenodo this DOI will always resolve to the latest url.
 
   # check internet connection and throw error if there is a connection issue
   net_check(ram_url, show_error = TRUE)

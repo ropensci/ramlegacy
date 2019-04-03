@@ -65,7 +65,8 @@ read_ramlegacy <- function(vers_path = NULL, version = NULL) {
     metadata_df <- temp_lst_dfs[["metadata"]]
     most.used.time.series <- vector("list", 31)
     # get the names of these most used time series dfs
-    ts_df_names <- grep("\\.data", names(temp_lst_dfs), perl = TRUE, value = TRUE)
+    ts_df_names <- grep("\\.data", names(temp_lst_dfs), perl = TRUE,
+                        value = TRUE)
     # store them in the list MostUsedTimeSeries
     for (i in c(1:31)) {
       most.used.time.series[[i]] <- temp_lst_dfs[[ts_df_names[i]]]
