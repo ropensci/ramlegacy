@@ -54,3 +54,28 @@ test_that("load_ramlegacy errors out when version is not present locally", {
     "Version 1.0 not found locally."
   )
 })
+
+test_that("defaults to all dfs in latest version when vers & tables not specified", {
+  temp_path <- tempfile("ramlegacy", tempdir())
+  download_ramlegacy("4.44", temp_path)
+  vers_path <- file.path(temp_path, "4.44")
+  dir_path <- file.path(vers_path, "RLSADB v4.44")
+  subdir_path <- file.path(dir_path, "DB Files With Assessment Data")
+  rds_path <- file.path(subdir_path, "v4.44.rds")
+  lst_dfs <- load_ramlegacy(ram_path = rds_path)
+  expect_equal(length(lst_dfs), 26)
+  expect_true(is.data.frame(lst_dfs[[1]]))
+})
+
+test_that("defaults to latest version when vers not specified but tables is specified", {
+  temp_path <- tempfile("ramlegacy", tempdir())
+  download_ramlegacy("4.44", temp_path)
+  vers_path <- file.path(temp_path, "4.44")
+  dir_path <- file.path(vers_path, "RLSADB v4.44")
+  subdir_path <- file.path(dir_path, "DB Files With Assessment Data")
+  rds_path <- file.path(subdir_path, "v4.44.rds")
+  lst_dfs <- load_ramlegacy(tables = c("area", "tb.data"), ram_path = rds_path)
+  expect_equal(length(lst_dfs), 2)
+  expect_true(is.data.frame(lst_dfs[[1]]))
+})
+
