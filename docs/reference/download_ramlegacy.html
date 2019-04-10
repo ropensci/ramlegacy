@@ -33,11 +33,11 @@
 <meta property="og:title" content="Download RAM Legacy Excel Database — download_ramlegacy" />
 
 <meta property="og:description" content="Downloads a specified version of RAM Legacy Stock Assessment
- Excel Database as an RDS object to a local directory specified by ram_dir.
+ Excel Database and as an RDS object to a local directory specified by ram_dir.
  The function will check if the version requested already exists
  and if it is then it's up to the user to download it again. The function also
- supports downloading all the versions from [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
- in case the database [website](www.ramlegacy.org) is down." />
+ supports downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
+ [a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -86,6 +86,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -115,16 +118,17 @@
     <div class="ref-description">
     
     <p>Downloads a specified version of RAM Legacy Stock Assessment
- Excel Database as an RDS object to a local directory specified by <code>ram_dir</code>.
+ Excel Database and as an RDS object to a local directory specified by <code><a href='ram_dir.html'>ram_dir</a></code>.
  The function will check if the version requested already exists
  and if it is then it's up to the user to download it again. The function also
- supports downloading all the versions from [backup location](www.github.com/kshtzgupta1/ramlegacy-assets)
- in case the database [website](www.ramlegacy.org) is down.</p>
+ supports downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
+ [a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>download_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ram_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ram_url</span> <span class='kw'>=</span> <span class='st'>"https://depts.washington.edu/ramlegac/wordpress/databaseVersions"</span>)</pre>
+  <span class='kw'>ram_url</span> <span class='kw'>=</span> <span class='st'>"https://doi.org/10.5281/zenodo.2542918"</span>,
+  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,49 +136,58 @@
     <tr>
       <th>version</th>
       <td><p>A character vector of length 1 specifying the version number
-of the database that should be downloaded. As of November 2018 the available versions are "1.0",
-"2.0", "2.5", "3.0" and "4.3". If the version argument is not specified then it defaults
-to latest version (currently latest version is "4.3"). Note that this function
-does not support vectorization so please <strong>don't pass in a vector of
-version numbers</strong></p></td>
+of the database that should be downloaded. As of Feb 2019, the available versions are "1.0",
+"2.0", "2.5", "3.0", "4.3", "4.40", "4.41", and "4.44". If the version argument is not specified then it defaults
+to latest version (currently latest version is "4.44"). If you want to download multiple versions please
+download them one at a time as passing them all at once will throw an error.</p></td>
     </tr>
     <tr>
       <th>ram_path</th>
       <td><p>A string specifying the path of the local directory where
-database will be downloaded.
-This path is OS specific and is set to the location provided by <span class="pkg">rappdirs</span>
-package. It can be viewed
-by calling <code>ram_dir</code>. This function <strong>does not</strong> support
-setting a user-specified path so <strong>please
-do not pass</strong> in a path to <code>ram_path</code>.</p></td>
+database will be downloaded. By default this path is set to the location provided by <span class="pkg">rappdirs</span>
+package and can be viewed by calling <code><a href='ram_dir.html'>ram_dir</a></code>. Although this is not the <strong>recommended</strong>
+approach <code>download_ramlegacy</code> supports downloading to a user-specified path.</p></td>
     </tr>
     <tr>
       <th>ram_url</th>
-      <td><p>A string. By default it is set to the url of the ramlegacy
-wordpress database website. Please <strong>do not pass</strong> in any other url to
- <code>ram_url</code>.</p></td>
+      <td><p>A string. By default it is set to the zenodo url of the database.
+Please <strong>do not pass</strong> in any other url to
+<code>ram_url</code>.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>If TRUE, user will not encounter the interactive prompt that confirms whether to
+overwrite the version present locally.</p></td>
+    </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p>If TRUE, suppress status messages</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other ramlegacy functions: <code><a href='load_ramlegacy.html'>load_ramlegacy</a></code>,
+  <code><a href='ram_dir.html'>ram_dir</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># If version is not specified then current latest version (4.3)</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># If version is not specified then current latest version (4.44)</span>
 <span class='co'># will be downloaded</span>
-<span class='fu'>download_ramlegacy</span>()
-
+<span class='fu'>download_ramlegacy</span>()</div><div class='output co'>#&gt; <span class='message'><span style='color: #0000BB;'>★</span><span> Version 4.44 has already been downloaded. Exiting the function.</span></div><div class='input'>
 <span class='co'># download version 1.0</span>
-<span class='fu'>download_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"1.0"</span>)
-
-<span class='co'># download version 4.3</span>
-<span class='fu'>download_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.3"</span>)
-<span class='co'># }</span></pre>
+<span class='fu'>download_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"1.0"</span>)</div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>★</span><span> Version 1.0 has already been downloaded. Exiting the function.</span></div><div class='input'>
+<span class='co'># download version 4.40</span>
+<span class='fu'>download_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.40"</span>)</div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>★</span><span> Version 4.40 has already been downloaded. Exiting the function.</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -183,7 +196,7 @@ wordpress database website. Please <strong>do not pass</strong> in any other url
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kshitiz Gupta, Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Kshitiz Gupta.</p>
 </div>
 
 <div class="pkgdown">

@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Read-in downloaded RAM Legacy Database — load_ramlegacy" />
 
-<meta property="og:description" content="Loads all the dataframes present in the specified version of the database into
- user's global environment" />
+<meta property="og:description" content="Returns a list of specific dataframes or a list of all the dataframes present in the
+ requested version of the database." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -82,6 +82,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -110,12 +113,12 @@
 
     <div class="ref-description">
     
-    <p>Loads all the dataframes present in the specified version of the database into
- user's global environment</p>
+    <p>Returns a list of specific dataframes or a list of all the dataframes present in the
+ requested version of the database.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tables</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ram_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,42 +126,49 @@
     <tr>
       <th>version</th>
       <td><p>A character vector of length 1 specifying the version number of the
-database. As of November 2018 the available versions are
-"1.0", "2.0", "2.5", "3.0" and "4.3". If version argument is not specified then it
-defaults to latest version (currently "4.3"). Note that this function
-does not support vectorization so please <strong>don't pass in a vector of
-version numbers</strong> to <code>version</code></p></td>
+database. As of February 2019, the available versions are "1.0", "2.0", "2.5", "3.0", "4.3",
+"4.40", "4.41" and "4.44". If version argument is not specified then it defaults to latest version
+(currently "4.44"). If you want to load multiple versions please
+load them one at a time as passing them all at once will throw an error.</p></td>
     </tr>
     <tr>
-      <th>path</th>
+      <th>tables</th>
+      <td><p>A character vector specifying the names of particular dataframes to load from a
+certain version. If not specified then a list containing all the dataframes within the requested version
+is returned.</p></td>
+    </tr>
+    <tr>
+      <th>ram_path</th>
       <td><p>path to the local directory where the specified version of
-the RAM Legacy Stock Excel Assesment database was downloaded.
- This path can be viewed using calling the function <code>ram_dir</code> and specifying
- the version number inside the function call. This function <strong>does not</strong> support
- setting a user-specified path so <strong>please
- do not pass</strong> in a path argument to <code>path</code>.</p></td>
+the RAM Legacy Stock Excel Assessment Database was downloaded.
+By default this path is set to within the rapddirs directory and can be viewed using calling the function
+<code><a href='ram_dir.html'>ram_dir</a></code> and specifying the version number inside.
+Although this is not the <strong>recommended</strong> approach <code>load_ramlegacy</code> supports reading in the
+ database's dataframes from a user-specified path provided that the database is present
+ at the specified path as an rds object.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other ramlegacy functions: <code><a href='download_ramlegacy.html'>download_ramlegacy</a></code>,
+  <code><a href='ram_dir.html'>ram_dir</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># If version is not specified then current latest version</span>
-<span class='co'># (4.3) will be loaded</span>
-<span class='fu'>load_ramlegacy</span>()
-
-<span class='co'># load version 3.0</span>
-<span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>'3.0'</span>)
-
-<span class='co'># load version 2.5</span>
-<span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>'2.5'</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='co'># Returns a list containing area and bioparams tables from version 4.44 database</span>
+<span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.44"</span>, <span class='kw'>tables</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"area"</span>, <span class='st'>"bioparams"</span>))</div><div class='output co'>#&gt;  Number of tables:  2 
+#&gt; ====================================== 
+#&gt; 'area':  821 obs. of 6 variables 
+#&gt; 'bioparams':  16204 obs. of 7 variables </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -167,7 +177,7 @@ the RAM Legacy Stock Excel Assesment database was downloaded.
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kshitiz Gupta, Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Kshitiz Gupta.</p>
 </div>
 
 <div class="pkgdown">
