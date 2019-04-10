@@ -1,16 +1,10 @@
----
-title: "NEWS"
-output: html_document:
-     keep_md: true
----
-
 NEWS 
 ====
 
 For more fine-grained list of changes or to report a bug, consult 
 
-* [The issues log](https://github.com/cboettig/knitcitations/issues)
-* [The commit log](https://github.com/cboettig/knitcitations/commits/master)
+* [The issues log](https://github.com/ropensci/ramlegacy/issues)
+* [The commit log](https://github.com/ropensci/ramlegacy/commits/master)
 
 Versioning
 ----------

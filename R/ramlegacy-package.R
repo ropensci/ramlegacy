@@ -4,7 +4,7 @@
 #' species with the RAM Legacy Stock Assessment Database.
 #' Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>
 #' @seealso \url{www.ramlegacy.org}
-#' @seealso \url{www.https://github.com/kshtzgupta1/ramlegacy}
-#' @seealso \url{www.https://github.com/kshtzgupta1/ramlegacy/issues}
+#' @seealso \url{www.https://github.com/ropensci/ramlegacy}
+#' @seealso \url{www.https://github.com/ropensci/ramlegacy/issues}
 
 "_PACKAGE"

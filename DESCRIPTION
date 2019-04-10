@@ -29,8 +29,8 @@ Description: Contains functions to download, cache and read in Excel version of 
     status of commercially exploited marine species with the RAM Legacy Stock Assessment
     Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>.
 License: MIT + file LICENSE
-URL: https://github.com/kshtzgupta1/ramlegacy
-BugReports: https://github.com/kshtzgupta1/ramlegacy/issues
+URL: https://github.com/ropensci/ramlegacy
+BugReports: https://github.com/ropensci/ramlegacy/issues
 Depends: 
     R (>= 2.10)
 Imports: 
@@ -50,4 +50,4 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-X-schema.org-keywords: ramlegacy, fish, marine, database, assessment, RAM, Legacy, download, read, cache, ropensci
+X-schema.org-keywords: ramlegacy, fisheries, fish, marine, database, assessment, RAM, Legacy, download, read, cache, ropensci
