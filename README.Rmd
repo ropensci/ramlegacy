@@ -29,9 +29,10 @@ ramlegacy
 
 ## What does `ramlegacy` do?
 
-  - Provides a function `download_ramlegacy()`, to download all the available  
-    versions of the RAM Legacy Stock Assessment Excel Database and cache them on the user's computer as           serialized RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded
-    for subsequent analysis.
+  - Provides a function `download_ramlegacy()`, to download all the available versions
+    of the RAM Legacy Stock Assessment Excel Database and cache them on the user's computer
+    as serialized RDS objects. This way once a version has been downloaded it doesn't need
+    to be re-downloaded for subsequent analysis.
   - Supports reading in specified tables or all tables from a cached version of the database through a 
     function `load_ramlegacy()`
   - Provides a function `ram_dir()` to view the path of the location where the downloaded database was cached.
