@@ -10,32 +10,36 @@ download_ramlegacy(version = NULL, ram_path = NULL,
 }
 \arguments{
 \item{version}{A character vector of length 1 specifying the version number
-of the database that should be downloaded. As of Feb 2019, the available versions are "1.0",
-"2.0", "2.5", "3.0", "4.3", "4.40", "4.41", and "4.44". If the version argument is not specified then it defaults
-to latest version (currently latest version is "4.44"). If you want to download multiple versions please
-download them one at a time as passing them all at once will throw an error.}
+of the database that should be downloaded. As of writing this package, the
+available versions are "1.0","2.0", "2.5", "3.0", "4.3", "4.40", "4.41",
+and "4.44". If the version argument is not specified then it defaults
+to latest version (currently latest version is "4.44").}
 
 \item{ram_path}{A string specifying the path of the local directory where
-database will be downloaded. By default this path is set to the location provided by \pkg{rappdirs}
-package and can be viewed by calling \code{\link{ram_dir}}. Although this is not the \strong{recommended}
+database will be downloaded. By default this path is set to the location
+provided by \pkg{rappdirs} package and can be viewed by calling
+\code{\link{ram_dir}}. Although this is not the \strong{recommended}
 approach \code{download_ramlegacy} supports downloading to a user-specified path.}
 
 \item{ram_url}{A string. By default it is set to the zenodo url of the database.
-Please \strong{do not pass} in any other url to
-\code{ram_url}.}
+Please \strong{do not pass} in any other url to \code{ram_url}.}
 
-\item{overwrite}{If TRUE, user will not encounter the interactive prompt that confirms whether to
-overwrite the version present locally.}
+\item{overwrite}{This argument is only relevant if you are trying to
+re-download a version that is already present locally in the rappdirs
+directory. If overwrite = TRUE then user will not encounter the interactive prompt
+that confirms whether to overwrite the version present locally.}
 
 \item{quiet}{If TRUE, suppress status messages}
 }
 \description{
 Downloads a specified version of RAM Legacy Stock Assessment
- Excel Database and as an RDS object to a local directory specified by \code{\link{ram_dir}}.
- The function will check if the version requested already exists
- and if it is then it's up to the user to download it again. The function also
- supports downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
- [a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)
+Excel Database and as an RDS object to a local directory specified by
+\code{\link{ram_dir}}. The function will check if the version requested
+already exists on the user's computer and if it does then it prompts the user
+to download it again unless `overwrite = TRUE` in which case the function will
+download the version without displaying the prompt. The function also supports
+downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
+[a github repo](www.github.com/kshtzgupta1/ramlegacy-assets)
 }
 \examples{
 \donttest{
@@ -52,8 +56,6 @@ download_ramlegacy(version = "4.40")
 }
 }
 \seealso{
-[load_ramlegacy()], \code{\link{ram_dir}}
-
 Other ramlegacy functions: \code{\link{load_ramlegacy}},
   \code{\link{ram_dir}}
 }

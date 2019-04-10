@@ -8,20 +8,24 @@ the RAM Legacy database is downloaded by default}
 ram_dir(vers = NULL)
 }
 \arguments{
-\item{vers}{character, version number of the database. As of January 2019,
-the available versions are "1.0", "2.0", "2.5", "3.0", "4.3", and "4.4" . If version
-is not specified the \code{ram_dir()} returns the path to the rappdirs directory.}
+\item{vers}{character, version number of the database. As of writing this
+package, the available versions are "1.0", "2.0", "2.5", "3.0", "4.3","4.40",
+"4.41", and "4.44". If version is not specified the \code{ram_dir()}
+returns the path to the rappdirs top-level directory which stores
+all the version subdirectories.}
 }
 \description{
 Provides the download location for \code{\link{download_ramlegacy}}
- in an  OS independent manner. This is also the location from where
- \code{\link{load_ramlegacy}} loads the database from.
+in an OS independent manner. This is also the location from where
+\code{\link{load_ramlegacy}} loads the database from.
 }
 \examples{
-# return the path to the rappdirs directory.
+# return the path to the rappdirs directory where all version
+subdirectories are stored
 ram_dir()
 
-# Returns the path of the location where version 4.3 of the database is downloaded to and
+# Returns the path of the subdirectory where version 4.3 of the database
+is downloaded to and
 # read from.
 ram_dir(vers = "4.3")
 }
