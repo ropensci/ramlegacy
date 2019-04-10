@@ -21,8 +21,8 @@ ramlegacy
 
 - **Authors**: Kshitiz Gupta, [Carl Boettiger](http://www.carlboettiger.info/)
 - **License**: [MIT](http://opensource.org/licenses/MIT)
-- [Package source code on Github](https://github.com/kshtzgupta1/ramlegacy)
-- [**Submit Bugs and feature requests**](https://github.com/kshtzgupta1/ramlegacy/issues)
+- [Package source code on Github](https://github.com/ramlegacy/ramlegacy)
+- [**Submit Bugs and feature requests**](https://github.com/ramlegacy/ramlegacy/issues)
 
 `ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](http://ramlegacy.org)
 
@@ -36,18 +36,18 @@ ramlegacy
   - Provides a function `ram_dir()` to view the path where the downloaded database was saved.
 
 ## Installation
-You can install the development version from [GitHub](https://github.com/kshtzgupta1/ramlegacy) with:
+You can install the development version from [GitHub](https://github.com/ramlegacy/ramlegacy) with:
 
 ```{r, eval = FALSE, echo = TRUE}
 install.packages("devtools")
 library(devtools)
-install_github("kshtzgupta1/ramlegacy")
+install_github("ramlegacy/ramlegacy")
 ```
 
 To ensure that the vignette is installed along with the package make sure to remove `--no-build-vignettes` from the `build_opts` in `install_github`
 
 ## Usage
-Please see the ramlegacy [vignette](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality. 
+Please see the ramlegacy [vignette](https://ramlegacy.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality. 
 
 Start by loading the package using `library`.
 
@@ -55,7 +55,7 @@ Start by loading the package using `library`.
 library(ramlegacy)
 ```
 
-When `ramlegacy` is loaded for the first time after installation of the package calling `library(ramlegacy)` will prompt the user to download a version of the database using `download_ramlegacy()`. After downloading a version or multiple versions of the database the subsequent behavior of `library(ramlegacy)` will depend on which version/versions were downloaded and are present on disk as well as whether `library(ramlegacy)` is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy [vignette.](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) 
+When `ramlegacy` is loaded for the first time after installation of the package calling `library(ramlegacy)` will prompt the user to download a version of the database using `download_ramlegacy()`. After downloading a version or multiple versions of the database the subsequent behavior of `library(ramlegacy)` will depend on which version/versions were downloaded and are present on disk as well as whether `library(ramlegacy)` is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy [vignette.](https://ramlegacy.github.io/ramlegacy/articles/ramlegacy.html) 
 
 ### download_ramlegacy
 
@@ -94,11 +94,11 @@ load_ramlegacy()
 ### ram_dir
 To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 ```{r, ram_dir_example1, eval = F, echo = T}
-# downloads version 2.5
-download_ramlegacy(version = "2.5")
+# download version 4.44
+download_ramlegacy(version = "4.44")
 
-# view the location where version 2.5 of the database was downloaded and cached
-ram_dir(vers = "2.5")
+# view the location where version 4.44 of the database was downloaded and cached
+ram_dir(vers = "4.44")
 ```
 
 ## Similar Projects
@@ -111,10 +111,14 @@ Sean Anderson has a namesake package that appears to be a stalled project on Git
 `RAMlegacyr` is an older package last updated in 2015. Similar to Sean Anderson's project, the package seems to be an R interface for the Microsoft Access version of the RAM Legacy Stock Assessment Database and provides a set of functions using RPostgreSQL to connect to the database.
 
 ## Citation
-Use of the RAM Legacy Stock Assessment Database is subject to a [Fair Use Policy.](http://ramlegacy.marinebiodiversity.ca/ram-legacy-stock-assessment-database/ram-legacy-stock-assessment-database-fair-use-policy)
+Current and older versions of the RAM Legacy Database are [archived in Zenodo](https://zenodo.org/communities/rlsadb/), each version with its own unique DOI. The suggested format for citing data is:
 
-Please cite the RAM Legacy Stock Assessment Database as follows:
+RAM Legacy Stock Assessment Database. 2018. Version 4.44-assessment-only. Released 2018-12-22. Accessed [Date accessed YYYY-MM-DD]. Retrieved from [DOI:10.5281/zenodo.2542919.](https://zenodo.org/record/2542919#.XE-rFs9KjBI)
 
-Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database. Fish and Fisheries 13 (4) 380-398. DOI: 10.1111/j.1467-2979.2011.00435.x
+The primary publication describing the RAM Legacy Stock Assessment Database, and suggested citation for general use is:
+
+Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database. Fish and Fisheries 13 (4) 380-398. [DOI: 10.1111/j.1467-2979.2011.00435.x](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-2979.2011.00435.x)
+
+Several [publications](http://sites.uw.edu/ramlegac/publications/) have relied on the RAM Legacy Stock Assessment Database.
 
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

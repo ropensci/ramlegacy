@@ -52,6 +52,8 @@ download_ramlegacy(version = "4.40")
 }
 }
 \seealso{
+[load_ramlegacy()], \code{\link{ram_dir}}
+
 Other ramlegacy functions: \code{\link{load_ramlegacy}},
   \code{\link{ram_dir}}
 }

@@ -4,11 +4,13 @@
 \name{ramlegacy-package}
 \alias{ramlegacy}
 \alias{ramlegacy-package}
-\title{dplyr: a grammar of data manipulation}
+\title{ramlegacy: download, cache and read RAM Legacy Stock Assessment Database}
 \description{
-Contains functions to download, cache and read in Excel version of the RAM Legacy Stock Assessment Data Base,
-an online compilation of stock assessment results for commercially exploited marine populations from around
-the world. More information about the database can be found at <http://ramlegacy.org/>.
+ramlegacy contains functions to download, cache and read in specified tables
+from the excel version of the RAM Legacy Stock Assessment Database,
+an online compilation of stock assessment results for commercially exploited
+marine populations from around the world. More information about the database
+can be found at <http://ramlegacy.org/>.
 }
 \references{
 Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012)
