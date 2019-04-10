@@ -7,8 +7,8 @@ ramlegacy
 
 -   **Authors**: Kshitiz Gupta, [Carl Boettiger](http://www.carlboettiger.info/)
 -   **License**: [MIT](http://opensource.org/licenses/MIT)
--   [Package source code on Github](https://github.com/ropensci/ramlegacy)
--   [**Submit Bugs and feature requests**](https://github.com/ropensci/ramlegacy/issues)
+-   [Package source code on Github](https://github.com/kshtzgupta1/ramlegacy)
+-   [**Submit Bugs and feature requests**](https://github.com/kshtzgupta1/ramlegacy/issues)
 
 `ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](http://ramlegacy.org)
 
