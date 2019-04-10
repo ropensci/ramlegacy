@@ -4,15 +4,11 @@
 \name{ramlegacy-package}
 \alias{ramlegacy}
 \alias{ramlegacy-package}
-\title{ramlegacy: Download And Read RAM Legacy Stock Assessment DataBase}
+\title{dplyr: a grammar of data manipulation}
 \description{
-Contains functions to download, cache and read in Excel version of the
-    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment
-    results for commercially exploited marine populations from around the world. More
-    information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,
-    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and
-    status of commercially exploited marine species with the RAM Legacy Stock Assessment
-    Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>.
+Contains functions to download, cache and read in Excel version of the RAM Legacy Stock Assessment Data Base,
+an online compilation of stock assessment results for commercially exploited marine populations from around
+the world. More information about the database can be found at <http://ramlegacy.org/>.
 }
 \references{
 Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012)
@@ -23,9 +19,9 @@ Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>
 \seealso{
 \url{www.ramlegacy.org}
 
-\url{www.https://github.com/ropensci/ramlegacy}
+\url{www.github.com/ropensci/ramlegacy}
 
-\url{www.https://github.com/ropensci/ramlegacy/issues}
+\url{www.github.com/ropensci/ramlegacy/issues}
 }
 \author{
 \strong{Maintainer}: Kshitiz Gupta \email{kshtzgupta1@berkeley.edu} [copyright holder]

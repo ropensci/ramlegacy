@@ -1,6 +1,6 @@
 Type: Package
 Package: ramlegacy
-Title: Download And Read RAM Legacy Stock Assessment DataBase
+Title: Download And Read RAM Legacy Stock Assessment Database
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Carl",
