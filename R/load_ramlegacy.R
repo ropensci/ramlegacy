@@ -24,11 +24,12 @@
 #'
 #' @examples
 #' \donttest{
-#' #' Returns a list containing area and bioparams tables from version 4.44 database
+#' # Returns a list containing area and bioparams tables from version 4.44 database
 #' load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 #' }
 #'
 #' @section Description of the dataframes present in the database:
+#'
 #' \itemize{
 #' \item metadata: Table with summarized metadata (only available in newer
 #'  versions 4.40, 4.41, 4.44)
@@ -42,8 +43,8 @@
 #' \item biometrics: This stores the biometrics database table
 #' \item tsmetrics: This stores the tsmetrics database table
 #' \item timeseries: The time series data is a matrix object with the following
-#'  headers/columns: (1) assessid (2) stockid (3) stocklong (4) tsid (5) tsyear
-#'  (6) tsvalue
+#' headers/columns: (1) assessid (2) stockid (3) stocklong (4) tsid (5) tsyear
+#' (6) tsvalue
 #' \item bioparams: The parameter data is a matrix object with the following
 #' headers/columns: (1) assessid (2) stockid (3) stocklong (4) bioid (5) biovalue
 #' (6) bioyear (7) bionotes
@@ -59,7 +60,6 @@
 #' type along the columns and stocks along the rows
 #' \item timeseries_sources_views: This stores the timeseries sources with timeseries
 #' type along the columns and stocks along the rows
-#' }
 #' \item timeseries_years_views: This stores the timeseries years with timeseries
 #' type along the columns and stocks along the rows
 #' \item bioparams_values_views: This stores the reference point values, with
@@ -74,9 +74,9 @@
 #' reference point type along the columns and stocks along the rows
 #' \item bioparams_notes_views: This stores the reference point notes, with
 #' reference point type along the columns and stocks along the rows
+#' }
 #'
-#' @section In addition to the dataframes above newer versions v4.40, v4.41, and v4.44 also
-#' contain dataframes for the individual most-used time series:
+#' @section v4.40, v4.41, and v4.44 also contain tables for individual most-used time series:
 #' \itemize{
 #' \item tb.data: Total Biomass
 #' \item ssb.data: Spawning Stock Biomass
@@ -108,6 +108,7 @@
 #' \item survb.data: survB
 #' \item cpue.data: CPUE
 #' \item effort.data: EFFORT
+#' }
 
 load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   ram_url <- "https://doi.org/10.5281/zenodo.2542918"
@@ -152,7 +153,7 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
     tables <- tolower(tables)
     listToReturn <- vector("list", length(tables))
     for (i in seq_len(length(tables))) {
-      #' construct df name
+      #  construct df name
       df_name <- tables[i]
       if (grepl("\\.data", tables[i])) {
         most.used.time.series <- list_dataframes[[26]]
