@@ -6,9 +6,9 @@
   "@type": "SoftwareSourceCode",
   "identifier": "ramlegacy",
   "description": "Contains functions to download, cache and read in Excel version of the\n    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment\n    results for commercially exploited marine populations from around the world. More\n    information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,\n    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and\n    status of commercially exploited marine species with the RAM Legacy Stock Assessment\n    Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>.",
-  "name": "ramlegacy: Download And Read RAM Legacy Stock Assessment DataBase",
-  "codeRepository": "https://github.com/kshtzgupta1/ramlegacy",
-  "issueTracker": "https://github.com/kshtzgupta1/ramlegacy/issues",
+  "name": "ramlegacy: Download And Read RAM Legacy Stock Assessment Database",
+  "codeRepository": "https://github.com/ropensci/ramlegacy",
+  "issueTracker": "https://github.com/ropensci/ramlegacy/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
@@ -191,13 +191,13 @@
       "sameAs": "https://CRAN.R-project.org/package=readxl"
     }
   ],
-  "readme": "https://github.com/kshtzgupta1/ramlegacy/blob/master/README.md",
+  "readme": "https://github.com/ropensci/ramlegacy/blob/master/README.md",
   "contIntegration": [
     "https://travis-ci.com/kshtzgupta1/ramlegacy",
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",
     "https://ci.appveyor.com/project/kshtzgupta1/ramlegacy"
   ],
-  "keywords": ["ramlegacy", "fish", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
+  "keywords": ["ramlegacy", "fisheries", "fish", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
   "developmentStatus": "https://www.repostatus.org/#wip",
   "contributor": [
     {
@@ -245,6 +245,6 @@
       }
     }
   ],
-  "releaseNotes": "https://github.com/kshtzgupta1/ramlegacy/blob/master/NEWS.md",
-  "fileSize": "129.668KB"
+  "releaseNotes": "https://github.com/ropensci/ramlegacy/blob/master/NEWS.md",
+  "fileSize": "130.169KB"
 }
