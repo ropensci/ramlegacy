@@ -38,7 +38,7 @@ ramlegacy
   - Provides a function `ram_dir()` to view the path of the location where the downloaded database was cached.
 
 ## Installation
-You can install the development version from [gitHub](https://github.com/ropensci/ramlegacy) with:
+You can install the development version from [github](https://github.com/ropensci/ramlegacy) with:
 
 ```{r, eval = FALSE, echo = TRUE}
 install.packages("devtools")
@@ -92,7 +92,7 @@ load_ramlegacy(version = "4.3", tables = c("area", "bioparams"))
 # of the database
 load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 
-# if tables is specified but version is not then the fucntion defaults
+# if tables is specified but version is not then the function defaults
 # to returning a list containing the specified tables from the current
 # latest version 4.44
 load_ramlegacy(tables = c("area", "bioparams"))
@@ -102,6 +102,7 @@ load_ramlegacy(tables = c("area", "bioparams"))
 load_ramlegacy()
 ```
 
+To learn more about the different tables present in the database please see this page.
 ### ram_dir
 To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 ```{r, ram_dir_example1, eval = F, echo = T}

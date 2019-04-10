@@ -15,15 +15,14 @@ ramlegacy
 What does `ramlegacy` do?
 -------------------------
 
--   Provides a function `download_ramlegacy()`, to download all the available
-    versions of the RAM Legacy Stock Assessment Excel Database and cache them on the user's computer as serialized RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded for subsequent analysis.
+-   Provides a function `download_ramlegacy()`, to download all the available versions of the RAM Legacy Stock Assessment Excel Database and cache them on the user's computer as serialized RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded for subsequent analysis.
 -   Supports reading in specified tables or all tables from a cached version of the database through a function `load_ramlegacy()`
 -   Provides a function `ram_dir()` to view the path of the location where the downloaded database was cached.
 
 Installation
 ------------
 
-You can install the development version from [gitHub](https://github.com/ropensci/ramlegacy) with:
+You can install the development version from [github](https://github.com/ropensci/ramlegacy) with:
 
 ``` r
 install.packages("devtools")
@@ -80,7 +79,7 @@ load_ramlegacy(version = "4.3", tables = c("area", "bioparams"))
 # of the database
 load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 
-# if tables is specified but version is not then the fucntion defaults
+# if tables is specified but version is not then the function defaults
 # to returning a list containing the specified tables from the current
 # latest version 4.44
 load_ramlegacy(tables = c("area", "bioparams"))
@@ -90,9 +89,7 @@ load_ramlegacy(tables = c("area", "bioparams"))
 load_ramlegacy()
 ```
 
-### ram\_dir
-
-To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
+To learn more about the different tables present in the database please see this page. \#\#\# ram\_dir To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 
 ``` r
 # download version 4.44
