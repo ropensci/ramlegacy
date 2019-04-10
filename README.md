@@ -7,28 +7,28 @@ ramlegacy
 
 -   **Authors**: Kshitiz Gupta, [Carl Boettiger](http://www.carlboettiger.info/)
 -   **License**: [MIT](http://opensource.org/licenses/MIT)
--   [Package source code on Github](https://github.com/kshtzgupta1/ramlegacy)
--   [**Submit Bugs and feature requests**](https://github.com/kshtzgupta1/ramlegacy/issues)
+-   [Package source code on Github](https://github.com/ramlegacy/ramlegacy)
+-   [**Submit Bugs and feature requests**](https://github.com/ramlegacy/ramlegacy/issues)
 
-`ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](http://ramlegacy.org)
+`ramlegacy` is an R package that supports caching and reading in different versions of the RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment results for commercially exploited marine populations from around the world. More information about the database can be found [here.](https://www.ramlegacy.org/)
 
 What does `ramlegacy` do?
 -------------------------
 
 -   Provides a function `download_ramlegacy()`, to download all the available
-    versions of the RAM Legacy Stock Assessment Excel Database as RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded for subsequent analysis.
--   Supports reading in the cached versions of the database through loading the package i.e. calling `library(ramlegacy)` and also by providing a function `load_ramlegacy()` to load any specified version.
--   Provides a function `ram_dir()` to view the path where the downloaded database was saved.
+    versions of the RAM Legacy Stock Assessment Excel Database and cache them on the user's computer as serialized RDS objects. This way once a version has been downloaded it doesn't need to be re-downloaded for subsequent analysis.
+-   Supports reading in specified tables or all tables from a cached version of the database through a function `load_ramlegacy()`
+-   Provides a function `ram_dir()` to view the path of the location where the downloaded database was cached.
 
 Installation
 ------------
 
-You can install the development version from [GitHub](https://github.com/kshtzgupta1/ramlegacy) with:
+You can install the development version from [gitHub](https://github.com/ropensci/ramlegacy) with:
 
 ``` r
 install.packages("devtools")
 library(devtools)
-install_github("kshtzgupta1/ramlegacy")
+install_github("ropensci/ramlegacy")
 ```
 
 To ensure that the vignette is installed along with the package make sure to remove `--no-build-vignettes` from the `build_opts` in `install_github`
@@ -36,7 +36,7 @@ To ensure that the vignette is installed along with the package make sure to rem
 Usage
 -----
 
-Please see the ramlegacy [vignette](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality.
+Please see the ramlegacy [vignette](https://ropensci.github.io/ramlegacy/articles/ramlegacy.html) for more detailed examples and additional package functionality.
 
 Start by loading the package using `library`.
 
@@ -44,40 +44,49 @@ Start by loading the package using `library`.
 library(ramlegacy)
 ```
 
-When `ramlegacy` is loaded for the first time after installation of the package calling `library(ramlegacy)` will prompt the user to download a version of the database using `download_ramlegacy()`. After downloading a version or multiple versions of the database the subsequent behavior of `library(ramlegacy)` will depend on which version/versions were downloaded and are present on disk as well as whether `library(ramlegacy)` is called in an interactive vs non-interactive session. For more details about this behavior please see the ramlegacy [vignette.](https://kshtzgupta1.github.io/ramlegacy/articles/ramlegacy.html)
-
 ### download\_ramlegacy
 
-`download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the [rappdirs](https://cran.r-project.org/web/packages/rappdirs/index.html) package. This location is also where `load_ramlegacy()` will look for the downloaded database.
+`download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the [rappdirs](https://cran.r-project.org/web/packages/rappdirs/index.html) package. This location is also where `load_ramlegacy()` by default will look for the downloaded database.
 
 ``` r
-# downloads version 3.0
-download_ramlegacy(version = "3.0")
+# downloads version 4.44
+download_ramlegacy(version = "4.44")
 ```
 
-If version is not specified then `download_ramlegacy` defaults to downloading current latest version (4.3) :
+If version is not specified then `download_ramlegacy` defaults to downloading current latest version (4.44) :
 
 ``` r
-# downloads current latest version 4.3
+# downloads current latest version 4.44
 download_ramlegacy()
 ```
 
-To ensure that the user is able to download the data in case www.ramlegacy.org is down, the function also supports downloading all the different versions of the database from a [backup](https://www.github.com/kshtzgupta1/ramlegacy-assets/) location:
+The latest versions of the RAM Legacy Database are [archived in Zenodo](https://zenodo.org/communities/rlsadb/) but the older versions (v4.3, v3.0, v2.5, v2.0, v1.0) are not. To ensure access to these older versions of the database `download_ramlegacy` supports downloading them from this [github repository](https://www.github.com/kshtzgupta1/ramlegacy-assets/):
 
 ``` r
-# downloads version 1.0 from backup location if www.ramlegacy.org is down
+# downloads older version 4.3
 download_ramlegacy(version = "4.3")
 ```
 
 ### load\_ramlegacy
 
-After the specified version of the database has been downloaded through `download_ramlegacy`, in addition to calling `library(ramlegacy)` to read in the database we can call `load_ramlegacy()` to do the same thing. That is, calling `load_ramlegacy` makes all the dataframes present in the database become available in the user's global environment. Note that `load_ramlegacy()` does not support vectorization and can only load and read in one version at a time. If version is not specified then `load_ramlegacy` defaults to loading the latest version (currently 4.3) :
+After the specified version of the database has been downloaded and cached on your local machine through `download_ramlegacy` you can call `load_ramlegacy` to obtain a list of specific tables/all the tables from that version of the database. If version is not specified but tables is then `load_ramlegacy` defaults to returning a list containing the specified dataframes from the latest version (currently 4.44). If both version and tables are not specified then `load_ramlegacy` defaults to returning a list containing all the dataframes in the latest version (currently 4.44)
 
 ``` r
-# load version 3.0
-load_ramlegacy(version = "3.0")
+# get a list containing area and bioparams tables from
+# version 4.3 of the database
+load_ramlegacy(version = "4.3", tables = c("area", "bioparams"))
 
-# loads the latest version (currently 4.3)
+# get a list containing area and bioparams tables from version 4.44
+# of the database
+load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
+
+# if tables is specified but version is not then the fucntion defaults
+# to returning a list containing the specified tables from the current
+# latest version 4.44
+load_ramlegacy(tables = c("area", "bioparams"))
+
+# since both tables and version are not specified the function returns
+# a list containing all the tables from the current latest version 4.44
 load_ramlegacy()
 ```
 
@@ -86,11 +95,11 @@ load_ramlegacy()
 To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 
 ``` r
-# downloads version 2.5
-download_ramlegacy(version = "2.5")
+# download version 4.44
+download_ramlegacy(version = "4.44")
 
-# view the location where version 2.5 of the database was downloaded and cached
-ram_dir(vers = "2.5")
+# view the location where version 4.44 of the database was downloaded and cached
+ram_dir(vers = "4.44")
 ```
 
 Similar Projects
@@ -103,10 +112,14 @@ Similar Projects
 Citation
 --------
 
-Use of the RAM Legacy Stock Assessment Database is subject to a [Fair Use Policy.](http://ramlegacy.marinebiodiversity.ca/ram-legacy-stock-assessment-database/ram-legacy-stock-assessment-database-fair-use-policy)
+Current and older versions of the RAM Legacy Database are [archived in Zenodo](https://zenodo.org/communities/rlsadb/), each version with its own unique DOI. The suggested format for citing data is:
 
-Please cite the RAM Legacy Stock Assessment Database as follows:
+RAM Legacy Stock Assessment Database. 2018. Version 4.44-assessment-only. Released 2018-12-22. Accessed \[Date accessed YYYY-MM-DD\]. Retrieved from [DOI:10.5281/zenodo.2542919.](https://zenodo.org/record/2542919#.XE-rFs9KjBI)
 
-Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database. Fish and Fisheries 13 (4) 380-398. DOI: 10.1111/j.1467-2979.2011.00435.x
+The primary publication describing the RAM Legacy Stock Assessment Database, and suggested citation for general use is:
+
+Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database. Fish and Fisheries 13 (4) 380-398. [DOI: 10.1111/j.1467-2979.2011.00435.x](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-2979.2011.00435.x)
+
+Several [publications](http://sites.uw.edu/ramlegac/publications/) have relied on the RAM Legacy Stock Assessment Database.
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
