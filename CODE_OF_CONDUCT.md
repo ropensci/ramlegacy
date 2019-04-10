@@ -1,12 +1,3 @@
-
----
-title: "CODE_OF_CONDUCT"
-output: 
-  html_document:
-    keep_md: true
----
-
-
 # Contributor Code of Conduct
 
 As contributors and maintainers of this project, we pledge to respect all people who 
