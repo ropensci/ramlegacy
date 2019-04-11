@@ -70,6 +70,17 @@ test_that("ram_dir returns a path", {
   expect_silent(ram_dir())
 })
 
+test_that("ram_dir returns the right path when RAM_HOME is set", {
+  temp_path <- tempdir()
+  Sys.setenv(RAM_HOME = temp_path)
+  expect_equal(ram_dir(), temp_path)
+})
+
+test_that("ram_dir returns the right path when RAM_HOME is not set", {
+  Sys.setenv(RAM_HOME = "")
+  expect_equal(ram_dir(), rappdirs::user_data_dir("ramlegacy"))
+})
+
 test_that("check_version_arg works with valid versions", {
   expect_true(check_version_arg(3.0))
   expect_true(check_version_arg(2.5))

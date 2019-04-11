@@ -20,12 +20,12 @@ in an OS independent manner. This is also the location from where
 \code{\link{load_ramlegacy}} loads the database from.
 }
 \examples{
-# return the path to the rappdirs directory where all version
-# subdirectories are stored
+# return the path to the rappdirs directory where
+# all version subdirectories are stored
 ram_dir()
 
-# Returns the path of the subdirectory where version 4.3 of
-# the database is downloaded to and read from.
+# Returns the path of the subdirectory where v4.3
+# of the database is downloaded to and read from.
 ram_dir(vers = "4.3")
 }
 \seealso{

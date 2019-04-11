@@ -1,4 +1,3 @@
-
 #' @name download_ramlegacy
 #' @family ramlegacy functions
 #' @title Download RAM Legacy Excel Database
@@ -30,14 +29,14 @@
 #' @export
 #' @examples
 #' \donttest{
-#' 
+#' \dontshow{Sys.setenv(RAM_HOME = tempdir())}
 #' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
 #' download_ramlegacy()
-#' 
+#'
 #' # download version 1.0
 #' download_ramlegacy(version = "1.0")
-#' 
+#'
 #' # download version 4.40
 #' download_ramlegacy(version = "4.40")
 #' }
@@ -45,9 +44,11 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL,
                                ram_url = "https://doi.org/10.5281/zenodo.2542918",
                                overwrite = FALSE, quiet = FALSE) {
 
-  # According to the Zenodo this DOI will always resolve to the latest url.
+  # According to the Zenodo this
+  # DOI will always resolve to the latest url.
 
-  # check internet connection and throw error if there is a connection issue
+  # check internet connection and throw error
+  # if there is a connection issue
   net_check(ram_url, show_error = TRUE)
 
   # user_path, a boolean flag set to FALSE by default
@@ -68,14 +69,12 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL,
 
   # ram_path argument
   if (is.null(ram_path)) {
-    vers_path <- ram_dir(vers = version)
     ram_path <- ram_dir()
   } else {
     check_path(ram_path)
-    vers_path <- file.path(ram_path, version)
     user_path <- TRUE
   }
-
+  vers_path <- file.path(ram_path, version)
   ## Provided that the path is not set by user if
   # there is an existing ramlegacy version
   # ask the user what to do in interactive mode otherwise exit

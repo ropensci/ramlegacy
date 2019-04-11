@@ -109,8 +109,8 @@
 <p>The RAM Legacy Stock Assessment Database is a compilation of stock assessment results for commercially exploited marine populations from around the world. It is inspired by Dr. Ransom A. Myers’ original <a href="http://wayback.archive-it.org/org-990/20170328023224/http://www.mscs.dal.ca/~myers/welcome.html">stock-recruitment database</a>, which is no longer being updated."</p>
 </blockquote>
 <p>As of April 2019, the available versions are 1.0, 2.0, 2.5, 3.0, 4.3, 4.40, 4.41, 4.44.</p>
-<p>The latest versions of the database (v4.44, v4.41, v4.40) are available at <a href="https://zenodo.org/communities/rlsadb/">Zenodo.</a>. This is where <code>download_ramlegacy</code> downloads the database from.</p>
-<p>The older versions of the database (v4.3, v3.0, v2.5, v2.0, v1.0) are available in <strong>Excel</strong> (Microsoft Excel Open XML Format Spreadsheet) format at this <a href="https://github.com/kshtzgupta1/ramlegacy-assets">github repo</a>.</p>
+<p>The latest versions of the database (4.44, 4.41, 4.40) are available at <a href="https://zenodo.org/communities/rlsadb/">Zenodo.</a> This is where <code>download_ramlegacy</code> downloads the database from.</p>
+<p>The older versions of the database (4.3, 3.0, 2.5, 2.0, 1.0) are available in <strong>Excel</strong> (Microsoft Excel Open XML Format Spreadsheet) format at this <a href="https://github.com/kshtzgupta1/ramlegacy-assets">github repo</a>.</p>
 </div>
 <div id="about-the-package" class="section level2">
 <h2 class="hasAnchor">
@@ -120,7 +120,7 @@
 <div id="package-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package-installation" class="anchor"></a>Package Installation</h2>
-<p>You can install the development version from <a href="https://github.com/ropensci/ramlegacy">GitHub</a> with the <code>install_github</code> function available in <code>devtools</code> package:</p>
+<p>You can install the development version from <a href="https://github.com/ropensci/ramlegacy">github</a> with the <code>install_github</code> function available in <code>devtools</code> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropensci/ramlegacy"</span>)</code></pre></div>
@@ -157,7 +157,7 @@
 <h3 class="hasAnchor">
 <a href="#file-structure-of-downloaded-database" class="anchor"></a>File Structure of Downloaded Database</h3>
 <p>This section illustrates the contents and file structure of the directory to which the database is saved once you call <code>download_ramlegacy</code></p>
-<p>If you have downloaded multiple versions through <code><a href="../reference/download_ramlegacy.html">download_ramlegacy()</a></code> the contents of ramlegacy directory (the path to this directory can be viewed by calling <code><a href="../reference/ram_dir.html">ram_dir()</a></code>) on your local computer will look something like this with each version geting its own subdirectory within the directory:</p>
+<p>If you have downloaded multiple versions through <code><a href="../reference/download_ramlegacy.html">download_ramlegacy()</a></code> the contents of ramlegacy directory (the path to this directory can be viewed by calling <code><a href="../reference/ram_dir.html">ram_dir()</a></code>) on your local computer will look something like this with each version getting its own subdirectory within the directory:</p>
 <div class="figure">
 <img src="subdir.png" alt="ramlegacy directory structure"><p class="caption">ramlegacy directory structure</p>
 </div>
@@ -176,7 +176,7 @@
 <div id="description-of-tables-and-stock-summary-files-within-the-database" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description-of-tables-and-stock-summary-files-within-the-database" class="anchor"></a>Description of Tables and Stock Summary Files within the Database</h2>
-<p>For a description of the dataframes present in the database as well as information on the stock summary files present in the database please see this <a href="tables_description.html">page.</a></p>
+<p>For a description of the dataframes present in the database as well as information on the stock summary files present in the database please see this <a href="https://ropensci.github.io/ramlegacy/articles/tables_description.html">page.</a></p>
 </div>
 <div id="load_ramlegacy" class="section level2">
 <h2 class="hasAnchor">

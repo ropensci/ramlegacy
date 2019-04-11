@@ -76,7 +76,12 @@ ram_dir <- function(vers = NULL) {
     vers <- fmt_version(vers)
     check_version_arg(vers)
   }
-  rappdirs::user_data_dir("ramlegacy", version = vers)
+  temp_path <- Sys.getenv("RAM_HOME")
+  if (nchar(temp_path) != 0) {
+    return(temp_path)
+  } else {
+    return(rappdirs::user_data_dir("ramlegacy", version = vers))
+  }
 }
 
 ## Ask for yes or no
