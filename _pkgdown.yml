@@ -1,9 +1,10 @@
 title: ramlegacy
 url: https://ropensci.github.io/ramlegacy/
+
 template:
   params:
-    bootswatch: flatly
-    ganalytics: UA-12345678-0
+    bootswatch: spacelab
+    ganalytics: UA-138170583-1
 
 navbar:
   structure:
