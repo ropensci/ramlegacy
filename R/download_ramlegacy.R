@@ -137,7 +137,9 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL,
           ". Saving the database as RDS object..."
         ))
       }
+      completed(paste("Version", version, "successfully downloaded."))
       suppressWarnings(read_ramlegacy(vers_path, version))
+
     }
   } else {
     vers_doi_vec <- c("2542935", "2542927", "2542919")

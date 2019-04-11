@@ -28,6 +28,7 @@
 #'
 #' # first download version 4.44 of the database
 #' download_ramlegacy(version = "4.44")
+#' }
 #'
 #' # get a list containing area and bioparams tables
 #' # from version 4.44 database
