@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//index.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//reference/download_ramlegacy.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//reference/load_ramlegacy.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//reference/ram_dir.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//reference/ramlegacy-package.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//articles/ramlegacy.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/ramlegacy//articles/tables_description.html</loc>
+  </url>
+</urlset>

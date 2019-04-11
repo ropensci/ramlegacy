@@ -23,15 +23,15 @@ From the database's [website](www.ramlegacy.org):
 
 As of April 2019, the available versions are 1.0, 2.0, 2.5, 3.0, 4.3, 4.40, 4.41, 4.44.
 
-The latest versions of the database (v4.44, v4.41, v4.40) are available at [Zenodo.](https://zenodo.org/communities/rlsadb/). This is where `download_ramlegacy` downloads the database from.
+The latest versions of the database (4.44, 4.41, 4.40) are available at [Zenodo.](https://zenodo.org/communities/rlsadb/) This is where `download_ramlegacy` downloads the database from.
 
-The older versions of the database (v4.3, v3.0, v2.5, v2.0, v1.0) are available in **Excel** (Microsoft Excel Open XML Format Spreadsheet) format at this [github repo](https://github.com/kshtzgupta1/ramlegacy-assets).
+The older versions of the database (4.3, 3.0, 2.5, 2.0, 1.0) are available in **Excel** (Microsoft Excel Open XML Format Spreadsheet) format at this [github repo](https://github.com/kshtzgupta1/ramlegacy-assets).
 
 ## About the package
 The goal of `ramlegacy` is to cache a specified version(s) of the RAM Legacy Stock Assessment Excel Database and this way save time and effort spent in re-downloading different versions of the database as part of any future analysis involving the data. The package also supports reading in any specified dataframe(s) of the database through a function called `load_ramlegacy()`. The user can always view the location to which the database is cached and read from by running `ram_dir()` and specifying its version argument. This vignette will outline a few more details about these functions and the package that will hopefully make `ramlegacy` easy to use.
 
 ## Package Installation
-You can install the development version from [GitHub](https://github.com/ropensci/ramlegacy) with the `install_github` function available in `devtools` package:
+You can install the development version from [github](https://github.com/ropensci/ramlegacy) with the `install_github` function available in `devtools` package:
 
 ```{r, eval = FALSE, echo = TRUE}
 install.packages("devtools")
@@ -80,7 +80,7 @@ To enable caching behavior, before downloading the specified version `download_r
 ### File Structure of Downloaded Database
 This section illustrates the contents and file structure of the directory to which the database is saved once you call `download_ramlegacy`
 
-If you have downloaded multiple versions through `download_ramlegacy()` the contents of ramlegacy directory (the path to this directory can be viewed by calling `ram_dir()`) on your local computer will look something like this with each version geting its own subdirectory within the directory:
+If you have downloaded multiple versions through `download_ramlegacy()` the contents of ramlegacy directory (the path to this directory can be viewed by calling `ram_dir()`) on your local computer will look something like this with each version getting its own subdirectory within the directory:
 
 
 ![ramlegacy directory structure](subdir.png)
@@ -103,7 +103,7 @@ The actual excel file of the database and the serialized rds database will be pr
 
 ## Description of Tables and Stock Summary Files within the Database
 For a description of the dataframes present in the database as well as information on the stock summary files 
-present in the database please see this [page.](tables_description.html)
+present in the database please see this [page.](https://ropensci.github.io/ramlegacy/articles/tables_description.html)
 
 ## load_ramlegacy
 `load_ramlegacy` can be used to obtain a list of particular dataframes and passed in to the `tables` argument. To get a list of all the dataframes within a specific version of the database set `tables = NULL`. Make sure that the version you want to load was downloaded and is already present locally at the path you specify using `ram_path` otherwise `load_ramlegacy` will throw an error. 

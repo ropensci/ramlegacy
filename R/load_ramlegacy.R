@@ -27,7 +27,7 @@
 #' # Returns a list containing area and bioparams tables from version 4.44 database
 #' load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 #' }
-#'
+#' 
 #' @section Description of the dataframes present in the database:
 #'
 #' \itemize{

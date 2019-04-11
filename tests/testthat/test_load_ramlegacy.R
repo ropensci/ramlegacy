@@ -78,4 +78,3 @@ test_that("defaults to latest version when vers not specified but tables is spec
   expect_equal(length(lst_dfs), 2)
   expect_true(is.data.frame(lst_dfs[[1]]))
 })
-

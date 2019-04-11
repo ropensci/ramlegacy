@@ -30,14 +30,14 @@
 #' @export
 #' @examples
 #' \donttest{
-#'
+#' 
 #' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
 #' download_ramlegacy()
-#'
+#' 
 #' # download version 1.0
 #' download_ramlegacy(version = "1.0")
-#'
+#' 
 #' # download version 4.40
 #' download_ramlegacy(version = "4.40")
 #' }
