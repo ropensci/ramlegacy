@@ -89,13 +89,18 @@ load_ramlegacy(tables = c("area", "bioparams"))
 load_ramlegacy()
 ```
 
-To learn more about the different tables present in the database please see this page. \#\#\# ram\_dir To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
+To learn more about the different tables present in the database, what the various acronyms mean and the different stock summaries accompanying the databases please see this [page.](https://ropensci.github.io/ramlegacy/articles/tables_description.html)
+
+### ram\_dir
+
+To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 
 ``` r
 # download version 4.44
 download_ramlegacy(version = "4.44")
 
-# view the location where version 4.44 of the database was downloaded and cached
+# view the location where version 4.44 of the database was
+# downloaded and cached
 ram_dir(vers = "4.44")
 ```
 
