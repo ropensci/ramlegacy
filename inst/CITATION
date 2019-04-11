@@ -1,6 +1,6 @@
 citHeader("To cite the RAM Legacy Stock Assessment Database please see the following instructions:")
 
-citHeader("If you are using any of the older versions(1.0, 2.0, 2.5, 3.0, 4.3) then please just cite the paper.")
+citHeader("If you are using any of the older versions(1.0, 2.0, 2.5, 3.0, 4.3) then please just cite the paper:")
 
 citEntry(
   entry = 'article',
@@ -16,7 +16,7 @@ citEntry(
 
 citHeader("If you are using any of the latest versions(4.40¸ 4.41, 4.44) then please cite the paper and also the database archived on zenodo as follows:")
 
-citHeader("For version 4.44:)
+citHeader("For version 4.44:")
 
 citEntry{
   entry = 'misc',
@@ -27,7 +27,7 @@ citEntry{
   url = 'https://doi.org/10.5281/zenodo.2542919'
 }
 
-citHeader("For version 4.41:)
+citHeader("For version 4.41:")
 
 citEntry{
   entry = 'misc',
@@ -38,7 +38,7 @@ citEntry{
   url = 'https://doi.org/10.5281/zenodo.2542927'
 }
 
-citHeader("For version 4.40:)
+citHeader("For version 4.40:")
 
 citEntry{
   entry = 'misc',
