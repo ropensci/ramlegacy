@@ -265,12 +265,16 @@ reference point type along the columns and stocks along the rows</p></li>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Returns a list containing area and bioparams tables from version 4.44 database</span>
+    <pre class="examples"><div class='input'>
+</div><div class='input'><span class='co'># first download version 4.44 of the database</span>
+<span class='fu'><a href='download_ramlegacy.html'>download_ramlegacy</a></span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.44"</span>)</div><div class='output co'>#&gt; <span class='message'><span style='color: #0000BB;'>★</span><span> Downloading...this may take a while</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>★</span><span> Finished Downloading. Now unzipping it...</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>★</span><span> Saving the unzipped database as RDS object...</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> Version 4.44 successfully downloaded.</span></div><div class='input'>
+
+<span class='co'># get a list containing area and bioparams tables</span>
+<span class='co'># from version 4.44 database</span>
 <span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.44"</span>, <span class='kw'>tables</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"area"</span>, <span class='st'>"bioparams"</span>))</div><div class='output co'>#&gt;  Number of tables:  2 
 #&gt; ====================================== 
 #&gt; 'area':  821 obs. of 6 variables 
-#&gt; 'bioparams':  16204 obs. of 7 variables </div><div class='input'>
-</div></pre>
+#&gt; 'bioparams':  16204 obs. of 7 variables </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

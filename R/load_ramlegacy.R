@@ -142,7 +142,6 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
     check_path(ram_path)
     rds_path <- ram_path
   }
-  print(paste("rds_path is", rds_path))
   # make sure version is present
   if (!file.exists(rds_path)) {
     stop(paste0("Version ", version, " not found locally."))
