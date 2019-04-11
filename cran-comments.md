@@ -1,3 +1,5 @@
+I have read and agree to the the CRAN policies at http://cran.r-project.org/web/packages/policies.html
+
 ## Test environments
 * Local - ubuntu 18.04 (R 3.5.1)
 * Travis CI - ubuntu 14.04 (R 3.5.3)
@@ -14,4 +16,3 @@ There were no ERRORs, no WARNINGs no NOTEs
 ## Downstream dependencies
 
 There are no downstream dependencies
-
