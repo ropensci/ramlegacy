@@ -23,14 +23,14 @@
 #' @export
 #'
 #' @examples
-#' 
+#' \donttest{
 #' \dontshow{
 #' Sys.setenv(RAM_HOME = tempfile())
 #' }
 #' # first download version 4.44 of the database
 #' download_ramlegacy(version = "4.44")
-#' 
-#' 
+#' }
+#'
 #' # get a list containing area and bioparams tables
 #' # from version 4.44 database
 #' load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
@@ -142,7 +142,7 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
     check_path(ram_path)
     rds_path <- ram_path
   }
-
+  print(paste("rds_path is", rds_path))
   # make sure version is present
   if (!file.exists(rds_path)) {
     stop(paste0("Version ", version, " not found locally."))

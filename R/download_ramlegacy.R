@@ -28,7 +28,7 @@
 #' @param quiet If TRUE, suppress status messages
 #' @export
 #' @examples
-#'
+#' \donttest{
 #' \dontshow{
 #' Sys.setenv(RAM_HOME = tempfile())
 #' }
@@ -41,6 +41,7 @@
 #'
 #' # download version 4.40
 #' download_ramlegacy(version = "4.40")
+#' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
                                ram_url = "https://doi.org/10.5281/zenodo.2542918",
                                overwrite = FALSE, quiet = FALSE) {
