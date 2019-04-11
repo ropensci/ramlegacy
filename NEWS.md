@@ -11,7 +11,7 @@ Versioning
 
 Releases will be numbered with the following semantic versioning format:
 
-<major>.<minor>.<patch>
+`<major>.<minor>.<patch>`
 
 And constructed with the following guidelines:
 
