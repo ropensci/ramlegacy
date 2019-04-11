@@ -13,6 +13,7 @@ test_that("defaults to curr. latest version 4.44 if version not specified", {
 })
 
 test_that("download_ramlegacy errors when there is no internet", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   httptest::without_internet(
     expect_error(

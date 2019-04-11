@@ -23,18 +23,17 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' \dontshow{Sys.setenv(RAM_HOME = tempdir())}
-#'
+#' 
+#' \dontshow{
+#' Sys.setenv(RAM_HOME = tempfile())
+#' }
 #' # first download version 4.44 of the database
 #' download_ramlegacy(version = "4.44")
-#' }
-#'
+#' 
+#' 
 #' # get a list containing area and bioparams tables
 #' # from version 4.44 database
 #' load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
-#' }
-#'
 #' @section Description of the dataframes present in the database:
 #'
 #' \itemize{
@@ -131,16 +130,11 @@ load_ramlegacy <- function(version = NULL, tables = NULL, ram_path = NULL) {
   }
 
   if (is.null(ram_path)) {
+    vers_path <- file.path(ram_dir(), version)
     if (version < "4.40") {
-      rds_path <- file.path(
-        ram_dir(vers = version),
-        paste0("v", version, ".rds")
-      )
+      rds_path <- file.path(vers_path, paste0("v", version, ".rds"))
     } else {
-      rds_path <- file.path(
-        ram_dir(vers = version),
-        paste0("RLSADB v", version)
-      )
+      rds_path <- file.path(vers_path, paste0("RLSADB v", version))
       rds_path <- file.path(rds_path, "DB Files With Assessment Data")
       rds_path <- file.path(rds_path, paste0("v", version, ".rds"))
     }

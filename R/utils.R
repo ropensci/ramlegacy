@@ -133,7 +133,7 @@ find_latest <- function(ram_url) {
   vers <- "4.44"
 
   # make sure there are no connection issues
-  if (net_check(ram_url, show_error = F)) {
+  if (net_check(ram_url, show_error = FALSE)) {
     req <- httr::GET(ram_url)
     # try to get latest version
     if (req$status_code == 200) {

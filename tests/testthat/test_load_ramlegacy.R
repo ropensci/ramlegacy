@@ -1,6 +1,7 @@
 context("test load_ramlegacy works as expected")
 
 test_that("load_ramlegacy works as expected when particular dataframes are requested for older version", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("1.0", temp_path)
   vers_path <- file.path(temp_path, "1.0")
@@ -11,6 +12,7 @@ test_that("load_ramlegacy works as expected when particular dataframes are reque
 })
 
 test_that("load_ramlegacy works as expected when particular dataframes are requested for newer version", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.44", temp_path)
   vers_path <- file.path(temp_path, "4.44")
@@ -23,6 +25,7 @@ test_that("load_ramlegacy works as expected when particular dataframes are reque
 })
 
 test_that("load_ramlegacy works as expected when all dataframes are requested for newer version", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.44", temp_path)
   vers_path <- file.path(temp_path, "4.44")
@@ -35,6 +38,7 @@ test_that("load_ramlegacy works as expected when all dataframes are requested fo
 })
 
 test_that("load_ramlegacy works as expected when all dataframes are requested for older version", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.3", temp_path)
   vers_path <- file.path(temp_path, "4.3")
@@ -46,6 +50,7 @@ test_that("load_ramlegacy works as expected when all dataframes are requested fo
 
 
 test_that("load_ramlegacy errors out when version is not present locally", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   # pass in the path to rds to load_ramlegacy
   rds_path <- file.path(temp_path, "1.0/v1.0.rds")
@@ -56,6 +61,7 @@ test_that("load_ramlegacy errors out when version is not present locally", {
 })
 
 test_that("defaults to all dfs in latest version when vers & tables not specified", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.44", temp_path)
   vers_path <- file.path(temp_path, "4.44")
@@ -68,6 +74,7 @@ test_that("defaults to all dfs in latest version when vers & tables not specifie
 })
 
 test_that("defaults to latest version when vers not specified but tables is specified", {
+  skip_on_cran()
   temp_path <- tempfile("ramlegacy", tempdir())
   download_ramlegacy("4.44", temp_path)
   vers_path <- file.path(temp_path, "4.44")

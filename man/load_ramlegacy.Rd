@@ -118,10 +118,16 @@ reference point type along the columns and stocks along the rows
 }
 
 \examples{
-\donttest{
-# Returns a list containing area and bioparams tables from version 4.44 database
+
+\dontshow{Sys.setenv(RAM_HOME = tempfile())}
+# first download version 4.44 of the database
+download_ramlegacy(version = "4.44")
+
+
+# get a list containing area and bioparams tables
+# from version 4.44 database
 load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
-}
+
 
 }
 \seealso{

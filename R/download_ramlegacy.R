@@ -28,8 +28,10 @@
 #' @param quiet If TRUE, suppress status messages
 #' @export
 #' @examples
-#' \donttest{
-#' \dontshow{Sys.setenv(RAM_HOME = tempdir())}
+#'
+#' \dontshow{
+#' Sys.setenv(RAM_HOME = tempfile())
+#' }
 #' # If version is not specified then current latest version (4.44)
 #' # will be downloaded
 #' download_ramlegacy()
@@ -39,7 +41,6 @@
 #'
 #' # download version 4.40
 #' download_ramlegacy(version = "4.40")
-#' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
                                ram_url = "https://doi.org/10.5281/zenodo.2542918",
                                overwrite = FALSE, quiet = FALSE) {
@@ -128,7 +129,7 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL,
 
     # download the older version and convert the excel database to rds file in
     # user's rappdirs directory using read_ramlegacy
-    httr::GET(ram_url, httr::write_disk(excel_path, overwrite = T))
+    httr::GET(ram_url, httr::write_disk(excel_path, overwrite = TRUE))
 
     if (file.exists(excel_path)) {
       if (!quiet) {
@@ -139,7 +140,6 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL,
       }
       completed(paste("Version", version, "successfully downloaded."))
       suppressWarnings(read_ramlegacy(vers_path, version))
-
     }
   } else {
     vers_doi_vec <- c("2542935", "2542927", "2542919")
