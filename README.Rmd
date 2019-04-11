@@ -102,7 +102,8 @@ load_ramlegacy(tables = c("area", "bioparams"))
 load_ramlegacy()
 ```
 
-To learn more about the different tables present in the database please see this page.
+To learn more about the different tables present in the database, what the various acronyms mean and the different stock summaries accompanying the databases please see this page.
+
 ### ram_dir
 To view the exact path where a certain version of the database was downloaded and cached by `download_ramlegacy` you can run `ram_dir(vers = 'version')`, specifying the version number inside the function call:
 ```{r, ram_dir_example1, eval = F, echo = T}
