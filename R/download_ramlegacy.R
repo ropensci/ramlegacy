@@ -32,15 +32,17 @@
 #' \dontshow{
 #' Sys.setenv(RAM_HOME = tempfile())
 #' }
-#' # If version is not specified then current latest version (4.44)
-#' # will be downloaded
-#' download_ramlegacy()
+#' # download version 4.44
+#' download_ramlegacy(version = "4.44")
 #'
 #' # download version 1.0
 #' download_ramlegacy(version = "1.0")
-#'
-#' # download version 4.40
-#' download_ramlegacy(version = "4.40")
+#' \dontshow{
+#' Sys.setenv(RAM_HOME = tempfile())
+#' }
+#' # If version not specified then default
+#' # to latest version (currently 4.44)
+#' download_ramlegacy()
 #' }
 download_ramlegacy <- function(version = NULL, ram_path = NULL,
                                ram_url = "https://doi.org/10.5281/zenodo.2542918",
@@ -51,7 +53,7 @@ download_ramlegacy <- function(version = NULL, ram_path = NULL,
 
   # check internet connection and throw error
   # if there is a connection issue
-  net_check(ram_url, show_error = TRUE)
+  #net_check(ram_url, show_error = TRUE)
 
   # user_path, a boolean flag set to FALSE by default
   user_path <- FALSE
