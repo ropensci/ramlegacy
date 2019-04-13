@@ -3,7 +3,7 @@ title: 'Tables and Stock Summary Description'
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: |
-  %\VignetteIndexEntry{ramlegacy}
+  %\VignetteIndexEntry{tables_description}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 ## Description of the dataframes present in the database:
 
-* metadata: Table with summarized metadata (only available in newer versions 4.40, 4.41, 4.44)
+* metadata: Table with summarized metadata (only available in newer versions starting from v4.40)
 * stock: This stores the stock database table
 * assessment: This stores the assessment database table
 * taxonomy: This stores the taxonomy database table
@@ -43,7 +43,7 @@ knitr::opts_chunk$set(
 * bioparams_sources_views: This stores the reference point sources, with reference point type along the columns and stocks along the rows
 * bioparams_notes_views: This stores the reference point notes, with reference point type along the columns and stocks along the rows
 
-## Newer Versions (4.40, 4.41, 4.44) also contain tables for individual most-used time series:
+## Newer Versions (v4.40 onwards) also contain tables of individual most-used time series:
 
 * tb.data: Total Biomass
 * ssb.data: Spawning Stock Biomass
@@ -84,7 +84,6 @@ knitr::opts_chunk$set(
 * A list of all stocks present in the region
     + specifies whether the stock includes B/Bmsy, U/Umsy, B/Bmgt, and U/Umgt time series data
     + specifies whether TB or SSB is preferred, and whether ER or F is preferred, if both types are present
-
 
 ### Information available for each stock:
 

@@ -10,7 +10,7 @@
 #'
 #' \itemize{
 #' \item metadata: Table with summarized metadata (only available in newer
-#'  versions 4.40, 4.41, 4.44)
+#'  versions starting from v4.40)
 #' \item stock: This stores the stock database table
 #' \item assessment: This stores the assessment database table
 #' \item taxonomy: This stores the taxonomy database table
@@ -54,7 +54,7 @@
 #' reference point type along the columns and stocks along the rows
 #' }
 #'
-#' @section v4.40, v4.41, and v4.44 also contain tables for individual most-used time series:
+#' @section Newer versions (v4.40 onwards) also contains tables of individual most-used time series:
 #' \itemize{
 #' \item tb.data: Total Biomass
 #' \item ssb.data: Spawning Stock Biomass
@@ -90,7 +90,7 @@
 #' @references Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012)
 #' Evaluating the knowledge base and status of commercially exploited marine
 #' species with the RAM Legacy Stock Assessment Database.
-#' Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>
+#' Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x>
 #' @seealso \url{www.ramlegacy.org}
 #' @seealso \url{www.github.com/ropensci/ramlegacy}
 #' @seealso \url{www.github.com/ropensci/ramlegacy/issues}
