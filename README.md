@@ -45,7 +45,7 @@ library(ramlegacy)
 
 ### download\_ramlegacy
 
-`download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the [rappdirs](https://cran.r-project.org/web/packages/rappdirs/index.html) package. This location is also where `load_ramlegacy()` by default will look for the downloaded database.
+`download_ramlegacy()` downloads the specified version of **RAM Legacy Stock Assessment Excel Database** and then saves it as an RDS object in user’s application data directory as detected by the [rappdirs](https://CRAN.R-project.org/package=rappdirs) package. This location is also where `load_ramlegacy()` by default will look for the downloaded database.
 
 ``` r
 # downloads version 4.44
