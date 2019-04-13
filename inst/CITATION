@@ -1,4 +1,4 @@
-citHeader("To cite the RAM Legacy Stock Assessment Database please follow these instructions.If you are using any of the older versions(1.0, 2.0, 2.5, 3.0, 4.3) then please just cite the paper in the format given below. If you are using any of the latest versions(4.40¸ 4.41, 4.44) then in addition to citing the paper please also cite the database in the format given below:")
+citHeader("To cite the RAM Legacy Stock Assessment Database please follow these instructions.If you are using any of the older versions(1.0, 2.0, 2.5, 3.0, 4.3) then please just cite the paper in the format given below. If you are using any of the latest versions(4.40¸ 4.41, 4.44) then in addition to citing the paper please also cite that particular version of the database in the format given below:")
 
 citEntry(
   entry = 'article',
