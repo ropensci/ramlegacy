@@ -1,6 +1,6 @@
 Type: Package
 Package: ramlegacy
-Title: Download And Read RAM Legacy Stock Assessment Database
+Title: Download and Read RAM Legacy Stock Assessment Database
 Version: 0.2.0
 Authors@R: 
     c(person(given = "Carl",
@@ -27,7 +27,7 @@ Description: Contains functions to download, cache and read in Excel version of 
     information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,
     Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and
     status of commercially exploited marine species with the RAM Legacy Stock Assessment
-    Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x>.
+    Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x>
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/ramlegacy
 BugReports: https://github.com/ropensci/ramlegacy/issues
