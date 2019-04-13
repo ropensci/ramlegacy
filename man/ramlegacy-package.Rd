@@ -17,7 +17,7 @@ can be found at <http://ramlegacy.org/>.
 
 \itemize{
 \item metadata: Table with summarized metadata (only available in newer
- versions 4.40, 4.41, 4.44)
+ versions starting from v4.40)
 \item stock: This stores the stock database table
 \item assessment: This stores the assessment database table
 \item taxonomy: This stores the taxonomy database table
@@ -62,7 +62,7 @@ reference point type along the columns and stocks along the rows
 }
 }
 
-\section{v4.40, v4.41, and v4.44 also contain tables for individual most-used time series}{
+\section{Newer versions (v4.40 onwards) also contains tables of individual most-used time series}{
 
 \itemize{
 \item tb.data: Total Biomass

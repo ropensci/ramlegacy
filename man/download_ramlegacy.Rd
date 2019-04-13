@@ -46,15 +46,17 @@ downloading all the older versions (1.0, 2.0, 2.5, 3.0, 4.3) from
 \dontshow{
 Sys.setenv(RAM_HOME = tempfile())
 }
-# If version is not specified then current latest version (4.44)
-# will be downloaded
-download_ramlegacy()
+# download version 4.44
+download_ramlegacy(version = "4.44")
 
 # download version 1.0
 download_ramlegacy(version = "1.0")
-
-# download version 4.40
-download_ramlegacy(version = "4.40")
+\dontshow{
+Sys.setenv(RAM_HOME = tempfile())
+}
+# If version not specified then default
+# to latest version (currently 4.44)
+download_ramlegacy()
 }
 }
 \seealso{
