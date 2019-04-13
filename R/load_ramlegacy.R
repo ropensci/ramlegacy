@@ -24,9 +24,7 @@
 #'
 #' @examples
 #' \donttest{
-#' \dontshow{
-#' Sys.setenv(RAM_HOME = tempfile())
-#' }
+#' \dontshow{Sys.setenv(RAM_HOME = tempfile())}
 #' # first download version 4.44 of the database
 #' download_ramlegacy(version = "4.44")
 #'
