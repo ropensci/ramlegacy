@@ -20,7 +20,7 @@ in the database please see below.}
 
 \item{ram_path}{path to the local directory where the specified version of
 the RAM Legacy Stock Excel Assessment Database was downloaded. By default
-this path is set to within the rapddirs directory and can be viewed using
+this path is set to within the rappdirs directory and can be viewed using
 calling the function \code{\link{ram_dir}} and specifying the version number
 inside the function call. Although this is not the \strong{recommended}
 approach \code{load_ramlegacy} supports reading in the database's
@@ -119,16 +119,14 @@ reference point type along the columns and stocks along the rows
 
 \examples{
 \donttest{
-\dontshow{
-Sys.setenv(RAM_HOME = tempfile())
-}
+\dontshow{Sys.setenv(RAM_HOME = tempfile())}
 # first download version 4.44 of the database
 download_ramlegacy(version = "4.44")
-}
 
 # get a list containing area and bioparams tables
 # from version 4.44 database
 load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
+}
 }
 \seealso{
 Other ramlegacy functions: \code{\link{download_ramlegacy}},
