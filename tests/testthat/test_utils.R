@@ -2,48 +2,48 @@ context("Testing functions in utils.R")
 
 ram_url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
 
-test_that("net_check doesn't error behind proxy server with show_error as F", {
-  skip_on_cran()
-  httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234), {
-    expect_silent(net_check(ram_url, show_error = FALSE))
-    expect_false(net_check(ram_url, show_error = FALSE))
-  })
-})
-
-test_that("net_check errors behind proxy server with show_error as TRUE", {
-  skip_on_cran()
-  httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234), {
-    expect_error(
-      net_check(ram_url, show_error = TRUE),
-      paste(
-        "Could not connect to the internet.",
-        "Please check your connection settings and try again."
-      )
-    )
-  })
-})
-
-
-test_that("net_check doesn't error when no net connection w/ show_error as F", {
-  skip_on_cran()
-  httptest::without_internet({
-    expect_silent(net_check(ram_url, show_error = FALSE))
-    expect_false(net_check(ram_url, show_error = FALSE))
-  })
-})
-
-test_that("net_check errors if no internet connection with show_error as T", {
-  skip_on_cran()
-  httptest::without_internet({
-    expect_error(
-      net_check(ram_url, show_error = TRUE),
-      paste(
-        "Could not connect to the internet.",
-        "Please check your connection settings and try again."
-      )
-    )
-  })
-})
+# test_that("net_check doesn't error behind proxy server with show_error as F", {
+#   skip_on_cran()
+#   httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234), {
+#     expect_silent(net_check(ram_url, show_error = FALSE))
+#     expect_false(net_check(ram_url, show_error = FALSE))
+#   })
+# })
+#
+# test_that("net_check errors behind proxy server with show_error as TRUE", {
+#   skip_on_cran()
+#   httr::with_config(httr::use_proxy(url = "http://google.com", port = 1234), {
+#     expect_error(
+#       net_check(ram_url, show_error = TRUE),
+#       paste(
+#         "Could not connect to the internet.",
+#         "Please check your connection settings and try again."
+#       )
+#     )
+#   })
+# })
+#
+#
+# test_that("net_check doesn't error when no net connection w/ show_error as F", {
+#   skip_on_cran()
+#   httptest::without_internet({
+#     expect_silent(net_check(ram_url, show_error = FALSE))
+#     expect_false(net_check(ram_url, show_error = FALSE))
+#   })
+# })
+#
+# test_that("net_check errors if no internet connection with show_error as T", {
+#   skip_on_cran()
+#   httptest::without_internet({
+#     expect_error(
+#       net_check(ram_url, show_error = TRUE),
+#       paste(
+#         "Could not connect to the internet.",
+#         "Please check your connection settings and try again."
+#       )
+#     )
+#   })
+# })
 
 test_that("find_latest behaves correctly", {
   skip_on_cran()
