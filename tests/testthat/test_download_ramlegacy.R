@@ -12,36 +12,6 @@ test_that("defaults to curr. latest version 4.44 if version not specified", {
   unlink(rds_path, recursive = TRUE)
 })
 
-test_that("download_ramlegacy errors when there is no internet", {
-  skip_on_cran()
-  temp_path <- tempfile("ramlegacy", tempdir())
-  httptest::without_internet(
-    expect_error(
-      download_ramlegacy("3.0", temp_path),
-      paste(
-        "Could not connect to the internet.",
-        "Please check your connection settings and try again."
-      )
-    )
-  )
-  unlink(temp_path, recursive = TRUE)
-})
-
-test_that("download_ramlegacy errors out behind a proxy server", {
-  skip_on_cran()
-  temp_path <- tempfile("ramlegacy", tempdir())
-  httr::with_config(
-    httr::use_proxy(url = "http://google.com", port = 1234),
-    expect_error(
-      download_ramlegacy("3.0", temp_path),
-      paste(
-        "Could not connect to the internet.",
-        "Please check your connection settings and try again."
-      )
-    )
-  )
-  unlink(temp_path, recursive = TRUE)
-})
 
 test_that("Overwrites existing download when overwrite = TRUE", {
   skip_on_cran()
