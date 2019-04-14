@@ -5,19 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ramlegacy",
-  "description": "Contains functions to download, cache and read in Excel version of the\n    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment\n    results for commercially exploited marine populations from around the world. More\n    information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,\n    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and\n    status of commercially exploited marine species with the RAM Legacy Stock Assessment\n    Database. Fish and Fisheries 13 (4) 380-398. <doi:10.1111/j.1467-2979.2011.00435.x.>.",
-  "name": "ramlegacy: Download And Read RAM Legacy Stock Assessment Database",
+  "description": "Contains functions to download, cache and read in Excel version of the\n    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment\n    results for commercially exploited marine populations from around the world. More\n    information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,\n    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and\n    status of commercially exploited marine species with the RAM Legacy Stock Assessment\n    Database. Fish and Fisheries 13 (4) 380-398 <doi:10.1111/j.1467-2979.2011.00435.x>.",
+  "name": "ramlegacy: Download and Read RAM Legacy Stock Assessment Database",
   "codeRepository": "https://github.com/ropensci/ramlegacy",
   "issueTracker": "https://github.com/ropensci/ramlegacy/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.5.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
   "author": [
     {
       "@type": "Person",
@@ -197,7 +197,23 @@
     "https://codecov.io/github/kshtzgupta1/ramlegacy?branch=master",
     "https://ci.appveyor.com/project/kshtzgupta1/ramlegacy"
   ],
-  "keywords": ["ramlegacy", "fisheries", "fish", "marine", "database", "assessment", "RAM", "Legacy", "download", "read", "cache", "ropensci", "r", "rstats", "r-package"],
+  "keywords": [
+    "ramlegacy",
+    "fisheries",
+    "fish",
+    "marine",
+    "database",
+    "assessment",
+    "RAM",
+    "Legacy",
+    "download",
+    "read",
+    "cache",
+    "ropensci",
+    "r",
+    "rstats",
+    "r-package"
+  ],
   "developmentStatus": "https://www.repostatus.org/#wip",
   "contributor": [
     {
@@ -291,5 +307,5 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/ramlegacy/blob/master/NEWS.md",
-  "fileSize": "291.521KB"
+  "fileSize": "292.051KB"
 }
