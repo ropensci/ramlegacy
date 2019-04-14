@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramlegacy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -128,12 +128,52 @@
       <small>Source: <a href='https://github.com/ropensci/ramlegacy/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ramlegacy-0-1-0" class="section level1">
+<h1 class="page-header">
+<a href="#ramlegacy-0-1-0" class="anchor"></a>ramlegacy 0.1.0</h1>
+<ul>
+<li>Initial Release</li>
+</ul>
+</div>
+    <div id="ramlegacy-0-2-0" class="section level1">
+<h1 class="page-header">
+<a href="#ramlegacy-0-2-0" class="anchor"></a>ramlegacy 0.2.0</h1>
+<ul>
+<li>Removed the loading behavior of <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(ramlegacy)</a></code> leaving the loading solely to <code>load_ramlegacy</code>
+</li>
+<li>Instead of assigning all the tables to global environment <code>load_ramlegacy</code> now just returns a list of tables that can be specified through <code>tables</code> argument.</li>
+<li>Modified <code>download_ramlegacy</code> and <code>load_ramlegacy</code> so that that while the default is still to download and read in the dataframes from the rappdirs directory the functions now also support downloading to a location chosen by the user and reading from that location.</li>
+</ul>
+<div id="for-more-fine-grained-list-of-changes-or-to-report-a-bug-consult" class="section level2">
+<h2 class="hasAnchor">
+<a href="#for-more-fine-grained-list-of-changes-or-to-report-a-bug-consult" class="anchor"></a>For more fine-grained list of changes or to report a bug, consult</h2>
+<ul>
+<li><a href="https://github.com/ropensci/ramlegacy/issues">The issues log</a></li>
+<li><a href="https://github.com/ropensci/ramlegacy/commits/master">The commit log</a></li>
+</ul>
+</div>
+<div id="versioning-guidelines" class="section level2">
+<h2 class="hasAnchor">
+<a href="#versioning-guidelines" class="anchor"></a>Versioning Guidelines</h2>
+<p>Releases will be numbered with the following semantic versioning format:</p>
+<p><code>&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;</code></p>
+<p>And constructed with the following guidelines:</p>
+<ul>
+<li>Breaking backward compatibility bumps the major (and resets the minor and patch)</li>
+<li>New additions without breaking backward compatibility bumps the minor (and resets the patch)</li>
+<li>Bug fixes and misc changes bumps the patch</li>
+<li>Following the RStudio convention, a .99 is appended after the patch number to indicate the development version on Github. Any version Coming from Github will now use the .99 extension, which will never appear in a version number for the package on CRAN.</li>
+</ul>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#ramlegacy-0-1-0">0.1.0</a></li>
+        <li><a href="#ramlegacy-0-2-0">0.2.0</a></li>
       </ul>
     </div>
   </div>
