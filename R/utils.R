@@ -67,7 +67,7 @@ check_path <- function(path) {
 #' # return the path to the rappdirs directory where
 #' # all version subdirectories are stored
 #' ram_dir()
-#'
+#' 
 #' # Returns the path of the subdirectory where v4.3
 #' # of the database is downloaded to and read from.
 #' ram_dir(vers = "4.3")

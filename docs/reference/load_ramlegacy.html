@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramlegacy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -164,7 +164,7 @@ in the database please see below.</p></td>
       <th>ram_path</th>
       <td><p>path to the local directory where the specified version of
 the RAM Legacy Stock Excel Assessment Database was downloaded. By default
-this path is set to within the rapddirs directory and can be viewed using
+this path is set to within the rappdirs directory and can be viewed using
 calling the function <code><a href='ram_dir.html'>ram_dir</a></code> and specifying the version number
 inside the function call. Although this is not the <strong>recommended</strong>
 approach <code>load_ramlegacy</code> supports reading in the database's
@@ -178,7 +178,7 @@ at the specified path as an rds object.</p></td>
     
     <ul>
 <li><p>metadata: Table with summarized metadata (only available in newer
- versions 4.40, 4.41, 4.44)</p></li>
+ versions starting from v4.40)</p></li>
 <li><p>stock: This stores the stock database table</p></li>
 <li><p>assessment: This stores the assessment database table</p></li>
 <li><p>taxonomy: This stores the taxonomy database table</p></li>
@@ -222,7 +222,7 @@ reference point type along the columns and stocks along the rows</p></li>
 reference point type along the columns and stocks along the rows</p></li>
 </ul>
     
-    <h2 class="hasAnchor" id="v-v-and-v-also-contain-tables-for-individual-most-used-time-series"><a class="anchor" href="#v-v-and-v-also-contain-tables-for-individual-most-used-time-series"></a>v4.40, v4.41, and v4.44 also contain tables for individual most-used time series</h2>
+    <h2 class="hasAnchor" id="newer-versions-v-onwards-also-contains-tables-of-individual-most-used-time-series"><a class="anchor" href="#newer-versions-v-onwards-also-contains-tables-of-individual-most-used-time-series"></a>Newer versions (v4.40 onwards) also contains tables of individual most-used time series</h2>
 
     
     <ul>
@@ -265,10 +265,9 @@ reference point type along the columns and stocks along the rows</p></li>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div><div class='input'><span class='co'># first download version 4.44 of the database</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.setenv'>Sys.setenv</a></span>(<span class='kw'>RAM_HOME</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>())
+<span class='co'># first download version 4.44 of the database</span>
 <span class='fu'><a href='download_ramlegacy.html'>download_ramlegacy</a></span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.44"</span>)</div><div class='output co'>#&gt; <span class='message'><span style='color: #0000BB;'>★</span><span> Downloading...this may take a while</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>★</span><span> Finished Downloading. Now unzipping it...</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>★</span><span> Saving the unzipped database as RDS object...</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> Version 4.44 successfully downloaded.</span></div><div class='input'>
-
 <span class='co'># get a list containing area and bioparams tables</span>
 <span class='co'># from version 4.44 database</span>
 <span class='fu'>load_ramlegacy</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"4.44"</span>, <span class='kw'>tables</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"area"</span>, <span class='st'>"bioparams"</span>))</div><div class='output co'>#&gt;  Number of tables:  2 
@@ -283,7 +282,7 @@ reference point type along the columns and stocks along the rows</p></li>
       
       <li><a href="#description-of-the-dataframes-present-in-the-database">Description of the dataframes present in the database</a></li>
 
-      <li><a href="#v-v-and-v-also-contain-tables-for-individual-most-used-time-series">v4.40, v4.41, and v4.44 also contain tables for individual most-used time series</a></li>
+      <li><a href="#newer-versions-v-onwards-also-contains-tables-of-individual-most-used-time-series">Newer versions (v4.40 onwards) also contains tables of individual most-used time series</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
