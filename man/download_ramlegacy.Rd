@@ -21,7 +21,7 @@ provided by \pkg{rappdirs} package and can be viewed by calling
 \code{\link{ram_dir}}. Although this is not the \strong{recommended}
 approach \code{download_ramlegacy} supports downloading to a user-specified path.}
 
-\item{ram_url}{A string. By default it is set to the zenodo url of the database.
+\item{ram_url}{A string. By default it is set to the Zenodo url of the database.
 Please \strong{do not pass} in any other url to \code{ram_url}.}
 
 \item{overwrite}{This argument is only relevant if you are trying to

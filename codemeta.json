@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ramlegacy",
-  "description": "Contains functions to download, cache and read in Excel version of the\n    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment\n    results for commercially exploited marine populations from around the world. More\n    information about the database can be found at <http://ramlegacy.org/>. Ricard, D.,\n    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and\n    status of commercially exploited marine species with the RAM Legacy Stock Assessment\n    Database. Fish and Fisheries 13 (4) 380-398 <doi:10.1111/j.1467-2979.2011.00435.x>.",
+  "description": "Contains functions to download, cache and read in Excel version of the\n    RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment\n    results for commercially exploited marine populations from around the world. More\n    information about the database can be found at <https://ramlegacy.org/>. Ricard, D.,\n    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and\n    status of commercially exploited marine species with the RAM Legacy Stock Assessment\n    Database. Fish and Fisheries 13 (4) 380-398 <doi:10.1111/j.1467-2979.2011.00435.x>.",
   "name": "ramlegacy: Download and Read RAM Legacy Stock Assessment Database",
   "codeRepository": "https://github.com/ropensci/ramlegacy",
   "issueTracker": "https://github.com/ropensci/ramlegacy/issues",
@@ -307,5 +307,5 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/ramlegacy/blob/master/NEWS.md",
-  "fileSize": "292.035KB"
+  "fileSize": "356.668KB"
 }

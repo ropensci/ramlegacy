@@ -10,7 +10,7 @@ ramlegacy contains functions to download, cache and read in specified tables
 from the excel version of the RAM Legacy Stock Assessment Database,
 an online compilation of stock assessment results for commercially exploited
 marine populations from around the world. More information about the database
-can be found at <http://ramlegacy.org/>.
+can be found at <https://ramlegacy.org/>.
 }
 \section{Description of the dataframes present in the database}{
 

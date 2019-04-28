@@ -19,8 +19,8 @@ ramlegacy
 
 
 
-- **Authors**: Kshitiz Gupta, [Carl Boettiger](http://www.carlboettiger.info/)
-- **License**: [MIT](http://opensource.org/licenses/MIT)
+- **Authors**: Kshitiz Gupta, [Carl Boettiger](https://www.carlboettiger.info/)
+- **License**: [MIT](https://opensource.org/licenses/MIT)
 - [Package source code on Github](https://github.com/ropensci/ramlegacy)
 - [**Submit Bugs and feature requests**](https://github.com/ropensci/ramlegacy/issues)
 
@@ -38,7 +38,7 @@ ramlegacy
   - Provides a function `ram_dir()` to view the path of the location where the downloaded database was cached.
 
 ## Installation
-You can install the development version from [github](https://github.com/ropensci/ramlegacy) with:
+You can install the development version from [Github](https://github.com/ropensci/ramlegacy) with:
 
 ```{r, eval = FALSE, echo = TRUE}
 install.packages("devtools")
@@ -73,7 +73,7 @@ If version is not specified then `download_ramlegacy` defaults to downloading cu
 download_ramlegacy()
 ```
 
-The latest versions of the RAM Legacy Database are [archived in Zenodo](https://zenodo.org/communities/rlsadb/) but the older versions (v4.3, v3.0, v2.5, v2.0, v1.0) are not. To ensure access to these older versions of the database `download_ramlegacy` supports downloading them from this [github repository](https://www.github.com/kshtzgupta1/ramlegacy-assets/):
+The latest versions of the RAM Legacy Database are [archived in Zenodo](https://zenodo.org/communities/rlsadb/) but the older versions (v4.3, v3.0, v2.5, v2.0, v1.0) are not. To ensure access to these older versions of the database `download_ramlegacy` supports downloading them from this [Github repository](https://www.github.com/kshtzgupta1/ramlegacy-assets/):
 
 ```{r, download_ramlegacy_example3, eval = F, echo = T}
 # downloads older version 4.3
@@ -119,7 +119,7 @@ ram_dir(vers = "4.44")
 ## Similar Projects
 
 1. [`ramlegacy`](https://github.com/seananderson/ramlegacy) 
-Sean Anderson has a namesake package that appears to be a stalled project on GitHub (last updated 9 months ago). However, unlike this package which supports downloading and reading in the Excel version of the database, Sean Anderson's project downloads the Microsoft Access version and converts it to a local sqlite3 database. 
+Sean Anderson has a namesake package that appears to be a stalled project on Github (last updated 9 months ago). However, unlike this package which supports downloading and reading in the Excel version of the database, Sean Anderson's project downloads the Microsoft Access version and converts it to a local sqlite3 database. 
  
 
 2. [`RAMlegacyr`](https://github.com/ashander/RAMlegacyr)
@@ -134,6 +134,6 @@ The primary publication describing the RAM Legacy Stock Assessment Database, and
 
 Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and status of commercially exploited marine species with the RAM Legacy Stock Assessment Database. Fish and Fisheries 13 (4) 380-398. [DOI: 10.1111/j.1467-2979.2011.00435.x](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-2979.2011.00435.x)
 
-Several [publications](http://sites.uw.edu/ramlegac/publications/) have relied on the RAM Legacy Stock Assessment Database.
+Several [publications](https://sites.uw.edu/ramlegac/publications/) have relied on the RAM Legacy Stock Assessment Database.
 
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

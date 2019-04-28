@@ -7,10 +7,7 @@ knitr::opts_chunk$set(
 ## ---- eval = FALSE, echo = TRUE------------------------------------------
 #  install.packages("devtools")
 #  library(devtools)
-#  install_github("kshtzgupta1/ramlegacy")
-
-## ----packages, warning=FALSE, message=FALSE, echo = TRUE, eval = F-------
-#  library(ramlegacy)
+#  install_github("ropensci/ramlegacy")
 
 ## ---- download_ramlegacy_example1, eval=FALSE, echo = T------------------
 #  # download version 1.0
@@ -27,14 +24,17 @@ knitr::opts_chunk$set(
 #  
 #  # download version 4.3
 #  download_ramlegacy(version = "4.3")
+#  
+#  # download version 4.44
+#  download_ramlegacy(version "4.44")
 
 ## ---- download_ramlegacy_example2, echo = T, eval = F--------------------
-#  # downloads latest version (currently 4.3)
+#  # downloads latest version (currently 4.44)
 #  download_ramlegacy()
 
 ## ---- load_ramlegacy_example1, echo = T, eval = F------------------------
-#  # loads in version 3.0
-#  load_ramlegacy(version = "3.0"")
+#  # returns a list containing area and bioparams tables from version 4.44 database
+#  load_ramlegacy(version = "4.44", tables = c("area", "bioparams"))
 
 ## ---- ram_dir_example1, echo = T, eval = F-------------------------------
 #  # view the path where version 4.3 of the database was cached

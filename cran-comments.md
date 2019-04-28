@@ -1,4 +1,4 @@
-I have read and agree to the the CRAN policies at http://cran.r-project.org/web/packages/policies.html
+I have read and agree to the the CRAN policies at https://cran.r-project.org/web/packages/policies.html
 
 ## Test environments
 * Local - ubuntu 18.04 (R 3.5.3)

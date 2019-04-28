@@ -29,5 +29,5 @@ Following types of contributions are always welcome:
 
 # Code formatting
 
-- In general follow the convention of <http://r-pkgs.had.co.nz/r.html#style> (snake_case functions and argument names, etc.)
+- In general follow the convention of <https://r-pkgs.had.co.nz/r.html#style> (snake_case functions and argument names, etc.)
 - Use explicit package imports (i.e. package_name::package_function) and avoid @import if at all possible
