@@ -10,9 +10,9 @@ This is a resubmission. In this version I have:
   sake of having clear unambiguous examples.
 
 ## Test environments
-* Local - ubuntu 18.04 (R 3.5.3)
-* Travis CI - ubuntu 14.04 (R 3.5.3)
-* Appveyor - Windows Server 2012 R2 x64 (R 3.5.3 (patched))
+* Local - ubuntu 18.04 (R 3.6.0)
+* Travis CI - ubuntu 14.04 (R 3.6.0)
+* Appveyor - Windows Server 2012 R2 x64 (R 3.6.0 (patched))
 * win-builder (oldrelease, release, and devel)
 
 ## Note about examples in download_ramlegacy and load_ramlegacy
