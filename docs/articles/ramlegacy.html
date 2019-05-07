@@ -92,7 +92,7 @@
       <h1>Introduction to ramlegacy</h1>
                         <h4 class="author">Carl Boettiger &amp; Kshitiz Gupta</h4>
             
-            <h4 class="date">2019-04-14</h4>
+            <h4 class="date">2019-05-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/ramlegacy/blob/master/vignettes/ramlegacy.Rmd"><code>vignettes/ramlegacy.Rmd</code></a></small>
       <div class="hidden name"><code>ramlegacy.Rmd</code></div>
@@ -121,35 +121,35 @@
 <h2 class="hasAnchor">
 <a href="#package-installation" class="anchor"></a>Package Installation</h2>
 <p>You can install the development version from <a href="https://github.com/ropensci/ramlegacy">github</a> with the <code>install_github</code> function available in <code>devtools</code> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropensci/ramlegacy"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropensci/ramlegacy"</span>)</a></code></pre></div>
 <p>To ensure that the vignette is installed along with the package make sure to remove <code>--no-build-vignettes</code> from the <code>build_opts</code> in <code>install_github</code></p>
 </div>
 <div id="download_ramlegacy" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download_ramlegacy" class="anchor"></a>download_ramlegacy</h2>
 <p>You can download any available version of the RAM Legacy Stock Assessment Excel Database (“1.0”,“2.0”, “2.5”, “3.0”, “4.3”, “4.40”, “4.41”, and “4.44”) through <code><a href="../reference/download_ramlegacy.html">download_ramlegacy()</a></code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download version 1.0</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"1.0"</span>)
-
-<span class="co"># download version 2.0</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"2.0"</span>)
-
-<span class="co"># download version 2.5</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"2.5"</span>)
-
-<span class="co"># download version 3.0</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"3.0"</span>)
-
-<span class="co"># download version 4.3</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"4.3"</span>)
-
-<span class="co"># download version 4.44</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(version <span class="st">"4.44"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># download version 1.0</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"1.0"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># download version 2.0</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"2.0"</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># download version 2.5</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"2.5"</span>)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># download version 3.0</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"3.0"</span>)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># download version 4.3</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"4.3"</span>)</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># download version 4.44</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>(version <span class="st">"4.44"</span>)</a></code></pre></div>
 <p>If version is not specified then <code>download_ramlegacy</code> will default to downloading the latest version of the database:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># downloads latest version (currently 4.44)</span>
-<span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># downloads latest version (currently 4.44)</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/download_ramlegacy.html">download_ramlegacy</a></span>()</a></code></pre></div>
 <p>If you want to download multiple versions please download them one at a time as passing them all at once will throw an error.</p>
 <p>To enable caching behavior, before downloading the specified version <code>download_ramlegacy</code> checks whether that version has already been downloaded. If it is then <code>download_ramlegacy</code> gives the user the option to either download again and overwrite the existing version or not download and just exit the function. This behavior is modified if <code>overwrite</code>, a function argument to <code>download_ramlegacy</code>, is set to true. Then even if the version has already been downloaded calling <code>download_ramlegacy</code> will download it again overwriting the already present version. After downloading the database download_ramlegacy caches it by converting it to an RDS object which can then be read in through calling <code><a href="../reference/load_ramlegacy.html">load_ramlegacy()</a></code>.</p>
 <p><code>download_ramlegacy</code> also has three other arguments: <code>ram_path</code>, <code>ram_url</code>, and <code>quiet</code>. By default <code>ram_path</code> has been set to a location provided by the rappdirs package and can be viewed by calling <code><a href="../reference/ram_dir.html">ram_dir(vers = "version")</a></code>. Although this is <strong>not the recommended approach</strong> download_ramlegacy supports downloading to a user-specified path. <code>ram_url</code> is fixed to the zenodo URL of the database. Please do not <strong>pass in any other url</strong> to ram_url. By default, <code>download_ramlegacy</code> after it is called keeps the user updated of the download progress through status messages. Setting <code>quiet</code> to TRUE enables the user to suppress all status messages.</p>
@@ -182,8 +182,8 @@
 <h2 class="hasAnchor">
 <a href="#load_ramlegacy" class="anchor"></a>load_ramlegacy</h2>
 <p><code>load_ramlegacy</code> can be used to obtain a list of particular dataframes and passed in to the <code>tables</code> argument. To get a list of all the dataframes within a specific version of the database set <code>tables = NULL</code>. Make sure that the version you want to load was downloaded and is already present locally at the path you specify using <code>ram_path</code> otherwise <code>load_ramlegacy</code> will throw an error.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># returns a list containing area and bioparams tables from version 4.44 database</span>
-<span class="kw"><a href="../reference/load_ramlegacy.html">load_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"4.44"</span>, <span class="dt">tables =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"area"</span>, <span class="st">"bioparams"</span>))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># returns a list containing area and bioparams tables from version 4.44 database</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="../reference/load_ramlegacy.html">load_ramlegacy</a></span>(<span class="dt">version =</span> <span class="st">"4.44"</span>, <span class="dt">tables =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"area"</span>, <span class="st">"bioparams"</span>))</a></code></pre></div>
 <p>In case in you want to load multiple versions please load them one at a time as passing them all at once will throw an error. Similar, to <code>download_ramlegacy</code>, <code>load_ramlegacy</code> has a <code>ram_path</code> argument which is set to local directory where the specified version of the RAM Legacy Stock Excel Assessment Database was downloaded. You can view that path through <code><a href="../reference/ram_dir.html">ram_dir(vers = "version")</a></code>. Although this is <strong>not the recommended approach</strong> load_ramlegacy supports reading in the database’s dataframes from a user-specified path provided that the database is present at the specified path as an rds file.</p>
 </div>
 <div id="ram_dir" class="section level2">
@@ -191,8 +191,8 @@
 <a href="#ram_dir" class="anchor"></a>ram_dir</h2>
 <p>To see the path of the directory where the specified version of database was downloaded on the user’s computer, the user can call <code>ram_dir</code>. Note that this is also the location from which <code>load_ramlegacy</code> reads in the database.</p>
 <p>For example, to see where version 4.3 of the database was downloaded you can call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># view the path where version 4.3 of the database was cached</span>
-<span class="kw"><a href="../reference/ram_dir.html">ram_dir</a></span>(<span class="dt">vers =</span> <span class="st">"4.3"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># view the path where version 4.3 of the database was cached</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="../reference/ram_dir.html">ram_dir</a></span>(<span class="dt">vers =</span> <span class="st">"4.3"</span>)</a></code></pre></div>
 </div>
   </div>
 
