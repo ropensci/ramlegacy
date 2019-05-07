@@ -21,13 +21,12 @@ Authors@R:
             email = "afflerbach@nceas.ucsb.edu", comment = c(ORCID = "https://orcid.org/0000-0002-5215-9342")),     
       person(given = "RAM Legacy Stock Assessment Database",
       role = "dtc"))
-Description: Contains functions to download, cache and read in Excel version of the
+Description: Contains functions to download, cache and read in 'Excel' version of the
     RAM Legacy Stock Assessment Data Base, an online compilation of stock assessment
-    results for commercially exploited marine populations from around the world. More
-    information about the database can be found at <https://ramlegacy.org/>. Ricard, D.,
-    Minto, C., Jensen, O.P. and Baum, J.K. (2012) Evaluating the knowledge base and
-    status of commercially exploited marine species with the RAM Legacy Stock Assessment
-    Database. Fish and Fisheries 13 (4) 380-398 <doi:10.1111/j.1467-2979.2011.00435.x>.
+    results for commercially exploited marine populations from around the world. 
+    The database is named after Dr. Ransom A. Myers whose original stock-recruitment database,
+    is no longer being updated. More information about the database can be found at
+    <https://ramlegacy.org/>. Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) <doi:10.1111/j.1467-2979.2011.00435.x>.
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/ramlegacy
 BugReports: https://github.com/ropensci/ramlegacy/issues

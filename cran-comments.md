@@ -1,4 +1,13 @@
-I have read and agree to the the CRAN policies at https://cran.r-project.org/web/packages/policies.html
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Corrected the database reference in DESCRIPTION to be in the form: authors (year) <doi:....>
+* Put Excel within quotes in DESCRIPTION
+* Explained the acronym RAM in DESCRIPTION
+* Ensured that functions do not write by default in the user's home filespace.
+* Ensured that functions in examples/vignettes/tests write to tempdir(). Please note that the code
+  where we explicitly set the destination file path to `tempdir()` is within `\dontshow{}` for the 
+  sake of having clear unambiguous examples.
 
 ## Test environments
 * Local - ubuntu 18.04 (R 3.5.3)
@@ -11,7 +20,7 @@ Because of the large size of the RAM Legacy database the examples in `download_r
 
 ## R CMD check results
 
-There were no ERRORs, no WARNINGs no NOTEs
+There were no ERRORs, no WARNINGs, no NOTEs.
 
 ## Downstream dependencies
 
