@@ -3,15 +3,17 @@
 
 # ramlegacy
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ramlegacy)](https://cran.r-project.org/package=ramlegacy)
 [![Travis Build
 Status](https://travis-ci.com/ropensci/ramlegacy.svg?branch=master)](https://travis-ci.com/ropensci/ramlegacy)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/ropensci/ramlegacy?branch=master&svg=true)](https://ci.appveyor.com/project/kshtzgupta1/ramlegacy)
 [![Coverage
 status](https://codecov.io/gh/ropensci/ramlegacy/branch/master/graph/badge.svg)](https://codecov.io/github/ropensci/ramlegacy)
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/264_status.svg)](https://github.com/ropensci/software-review/issues/264)
 
   - **Authors**: Kshitiz Gupta, [Carl
