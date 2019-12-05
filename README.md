@@ -60,7 +60,7 @@ sure to remove `--no-build-vignettes` from the `build_opts` in
 ## Usage
 
 Please see the ramlegacy
-[vignette](https://ropensci.github.io/ramlegacy/articles/ramlegacy.html)
+[vignette](https://docs.ropensci.org/ramlegacy/articles/ramlegacy.html)
 for more detailed examples and additional package functionality.
 
 Start by loading the package using `library`.
@@ -137,7 +137,7 @@ load_ramlegacy()
 To learn more about the different tables present in the database, what
 the various acronyms mean and the different stock summaries accompanying
 the databases please see this
-[page.](https://ropensci.github.io/ramlegacy/articles/tables_description.html)
+[page.](https://docs.ropensci.org/ramlegacy/articles/tables_description.html)
 
 ### ram\_dir
 
