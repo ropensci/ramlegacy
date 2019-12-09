@@ -28,7 +28,7 @@ Description: Contains functions to download, cache and read in 'Excel' version o
     is no longer being updated. More information about the database can be found at
     <https://ramlegacy.org/>. Ricard, D., Minto, C., Jensen, O.P. and Baum, J.K. (2012) <doi:10.1111/j.1467-2979.2011.00435.x>.
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/ramlegacy
+URL: https://docs.ropensci.org/ramlegacy, https://github.com/ropensci/ramlegacy
 BugReports: https://github.com/ropensci/ramlegacy/issues
 Depends: 
     R (>= 2.10)
